@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/> <!--Sử dụng các icon-->
+    
+    
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    background: #E5E7EB;
+    position: relative;
+    display: flex;
+}
+
+#menu {
+    background-color: #111827;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#menu .logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 30px 0 23px 30px;
+}
+
+#menu .logo img {
+    width: 50px;
+    margin-right: 15px;
+    margin-bottom: 17px;
+}
+
+#menu .items li {
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3s ease;
+}
+
+#menu .items li:hover {
+    background: #253047;
+    cursor: pointer;
+}
+
+#menu .items li:nth-child(3) {
+    border-left: 4px solid #fff;
+}
+
+#menu .items li i {
+    color: rgb(134, 141, 151);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px 0 25px;
+}
+
+#menu .items li:hover i,
+#menu .items li:hover a {
+    color: #F3F4F6;
+}
+
+#menu .items li a {
+    text-decoration: none;
+    color: rgb(134, 141, 151);
+    font-weight: 300px;
+    transition: 0.3s ease;
+}
+
+#interface {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    position: relative;
+}
+
+#interface .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px 30px;
+    border-bottom: 3px solid #594ef7;
+    position: fixed;
+    width: calc(100% - 300px);
+}
+
+#interface .navigation .search{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid #d7dbe6;
+    border-radius: 4px;
+}
+
+#interface .navigation .search i {
+    margin-right: 14px;
+}
+
+#interface .navigation .search input{
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+#interface .navigation .profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#interface .navigation .profile i {
+    margin-right: 20px;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+#interface .navigation .profile img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.n1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#menu-btn {
+    display: none;
+    color: #2b2b2b;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.admin-text {
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.add {
+    margin-top: -11px;
+}
+
+.add span {
+    display: inline-block;
+    margin-right: .6rem;
+    font-size: .9rem;
+    color: #666;
+    font-size: 19px;
+    font-weight: 700;
+    margin: 16px 20px -3px 53px;
+}
+
+/*****************************************************************************/
+
+
+button {
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  padding: 14px 22px;
+  border: none;
+  background: #4070f4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #265df2;
+}
+.modal-box {
+  position: fixed;
+  left: 58%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: 500px;
+  max-width: 380px;
+  width: 100%;
+  padding: 30px 20px;
+  border-radius: 24px;
+  background-color: #fff;
+}
+
+.modal-box i {
+  font-size: 70px;
+  color: #4070f4;
+}
+.modal-box h2 {
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 500;
+  color: #333;
+}
+.modal-box .buttons {
+  margin-top: 25px;
+}
+.modal-box a {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  background: #4070f4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-box a:hover {
+  background-color: #265df2;
+}
+
+</style>
+
+</head>
+</head>
+<body>
+    <section id="menu">
+    <div class="logo">
+      <img src="http://127.0.0.1:5500/src/views/AdminPage/images/trainlogo.png" alt=""/>
+      <h2>Quản lí ga tàu</h2>
+    </div>
+        
+    <div class="items">
+      <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
+      <li><i class="fas solid fa-list"></i><a href="/AdminPage/ejs/danhsachve">Danh sách vé</a></li>
+      <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
+      <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlilichtrinh">Quản lí lịch trình</a></li>
+      <li><i class="fas solid fa-user"></i><a href="#">Tài khoản</a></li>
+    </div>
+    </section>
+
+    <section id="interface">
+    <div class="navigation">
+      <div class="n1">
+        <div>
+          <i id="menu-btn" class="fas fa-bars"></i>
+        </div>
+        <div class="search">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Tìm kiếm">
+        </div>
+      </div>
+
+      <div class="profile">
+        <i class="far fa-bell"></i>
+        <img src="http://127.0.0.1:5500/src/views/AdminPage/images/user.png" alt="">
+        <span class="admin-text">Admin</span>
+        </div>
+    </div>
+    </section> 
+
+    <section>
+      <div class="modal-box">
+        <i class="far fa-check-circle"></i>
+        <h2>Xoá thành công!</h2>
+
+        <div class="buttons">
+            <a href="/AdminPage/ejs/thongtindat" class="close-btn">Thoát</a>
+        </div>
+      </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+    "trains": [
+        {
+            "ten": "SE1",
+            "xuatPhat": "Hà Nội",
+            "diemDen": "Sài Gòn",
+            "thoiGianDi": "6:00",
+            "thoiGianDen": "21:15"
+        },
+        {
+            "ten": "SE3",
+            "xuatPhat": "Hanoi",
+            "diemDen": "Ho Chi Minh City",
+            "thoiGianDi": "19:30",
+            "thoiGianDen": "10:15"
+        },
+        {
+            "ten": "SE5",
+            "xuatPhat": "Hanoi",
+            "diemDen": "Ho Chi Minh City",
+            "thoiGianDi": "9:00",
+            "thoiGianDen": "23:15"
+        },
+        {
+            "ten": "TN1",
+            "xuatPhat": "Hanoi",
+            "diemDen": "Lao Cai",
+            "thoiGianDi": "21:35",
+            "thoiGianDen": "6:30"
+        },
+        {
+            "ten": "SP3",
+            "xuatPhat": "Hanoi",
+            "diemDen": "Da Nang",
+            "thoiGianDi": "19:30",
+            "thoiGianDen": "8:00"
+        }
+    ]
+}

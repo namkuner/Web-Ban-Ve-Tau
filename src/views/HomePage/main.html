@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Home Page</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+	<!--///////////////////////////////////////////////////-->
+	<!--<script>
+		function search() {
+			var from = document.getElementById("from").value;
+			var to = document.getElementById("to").value;
+			var type = document.getElementById("type").value;
+			var goday = document.getElementById("goday").value;
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText == "found") {
+						window.location.href = "booking.html";
+					} else {
+						document.getElementById("result").innerHTML = "Không tìm thấy vé tàu phù hợp.";
+					}
+				}
+			};
+			xhttp.open("GET", "search.php?from=" + from + "&to=" + to + "&type=" + type + "&daygo=" + goday, true);
+			xhttp.send();
+		}
+	</script>-->
+	<!--///////////////////////////////////////////////////-->
+	<script src="search.js"></script>
+
+    <style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+body {
+	background-color: #d6d6d6;
+}
+
+
+.nav-item {
+	display: inline-block;
+}
+
+.nav-link {
+	color: #fff;
+}
+
+
+:root {
+	--maincolor: #014a9e;
+}
+.main-color-text{
+	color: var(--maincolor);
+}
+
+.main-color-bg{
+	background-color: var(--maincolor);
+}
+
+header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+}
+
+header li a {
+	text-transform: uppercase;
+	font-size: 18px !important;
+	color: #fff !important;
+	font-weight: 600 !important;
+}
+
+header li:hover a {
+	color: var(--maincolor) !important;
+}
+
+header > nav {
+	background-color: #2727277d;
+}
+
+main {
+    overflow: hidden;
+
+}
+
+.slider {
+	height: 65vh;
+	background-color: var(--maincolor);
+}
+
+.swiper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.booking-form {
+	background-color: var(--maincolor);
+	color: #fff;
+	position: relative;
+    border-top: 3px dashed #333;
+
+}
+.booking-form::after {
+	display: inline-block;
+	content: '';
+	position: absolute;
+	top: -24px;
+	left: 0;
+    z-index: 2;
+
+	width:295px;
+	height: 23px;
+    background-image: url('/HomePage/images/train-footer.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: trainRun linear 14s infinite;
+    /* background-color: #333; */
+}
+@keyframes trainRun {
+    from {
+        left: -295px;
+
+    }
+    to {
+        left: calc(100% + 300px);
+    }
+}
+
+.booking-form .hotline {
+	padding: 6px 0;
+	text-align: center;
+}
+.booking-form form {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.booking-form .hotline h3 {
+	text-transform: uppercase;
+	margin: 0;
+}
+
+.booking-form .hotline p {
+	margin: 0;
+}
+
+.booking-form .form-child {
+	width: 13%;
+	display: inline-block;
+}
+
+.booking-form .form-child.day {
+	background-color: #fff;
+	color: #333;
+	border-radius: 8px;
+}
+
+.booking-form .form-child input[type='date'] {
+	border: none;
+}
+
+.booking-form .form-child.btn {
+	width: 13%;
+	display: inline-block;
+	font-size: 20px;
+	padding: 9px 0;
+	font-weight: 600;
+}
+
+.form-child input {
+	padding: 10px 16px;
+	font-size: 18px;
+}
+
+.form-child input::placeholder {
+	font-size: 18px;
+	color: black;
+}
+
+
+.some-regulations .container{
+	background-color: #fff;
+}
+.some-regulations .container .title{
+	background-color: var(--maincolor);
+	color: #fff;
+}
+.some-regulations .container .titlegatau{
+	background-color: var(--maincolor);
+	color: #fff;
+	margin-top: 20px;
+}
+/*Nơi đi*/
+#noidi{
+	margin-bottom: 0px;
+}
+.autobox {
+  	list-style: none;
+  	padding: 0;
+  	margin: 0;
+	position: absolute;
+	/*top: 100%;*/
+	width: 170px;
+	background-color: #f1eded;
+	overflow-y: auto;
+	max-height: 200px;
+}
+.autobox li {
+	padding: 0px;
+  	background-color: #f5f5f5;
+  	border: 1px solid #ddd;
+	list-style: none;
+	padding: 6px 0 6px 36px;
+	cursor: pointer;
+	color: #333;
+	display: none;
+}
+.autobox li:hover {
+	color: #8133e0;
+}
+.autobox.active li {
+	display: block;
+}
+
+/*Nơi đến*/
+.autobox2 {
+	list-style: none;
+  	padding: 0;
+  	margin: 0;
+	position: absolute;
+	/*top: 100%;*/
+	width: 170px;
+	background-color: #f1eded;/*rgba(221, 221, 221, 0.5);*/
+	overflow-y: auto;
+	max-height: 200px;
+}
+.autobox2 li {
+	padding: 5px;
+  	background-color: #f5f5f5;
+  	border: 1px solid #ddd;
+	list-style: none;
+	padding: 6px 0 6px 36px;
+	cursor: pointer;
+	color: #333;
+	display: none;
+}
+.autobox2 li:hover {
+	color: #8133e0;
+}
+.autobox2.active li {
+	display: block;
+}
+
+/*Tìm ga tàu*/
+.gatau-search {
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+}
+.autobox3 {
+	position: absolute;
+	width: 872px;
+	background-color: #f1eded;/*rgba(221, 221, 221, 0.5);*/
+	overflow-y: auto;
+	display: grid;
+  	grid-template-columns: repeat(4, 1fr);
+  	grid-gap: 10px;
+}
+.autobox3 li {
+	list-style: none;
+	padding: 6px 0 6px 36px;
+	cursor: pointer;
+	color: #333;
+	display: none;
+}
+.autobox3 li:hover {
+	color: #8133e0;
+}
+.autobox3.active li {
+	display: block;
+}
+
+/**/
+
+
+
+    </style>
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img src="/HomePage/images/train-logo.png" alt="logo-train" width="70px" />
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse d-inline-flex" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="  nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Các quy định</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Thông tin lịch trình</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Quản lý đặt chỗ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page"
+									href="https://vr.com.vn/cam-nang-di-tau.html" target="_blank">Cẩm nang đi tàu</a>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class="slider">
+			<div class="swiper mySwiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="/HomePage/images/train-1.jpg" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/HomePage/images/train-2.jpg" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/HomePage/images/train-3.jpg" alt="" />
+					</div>
+				</div>
+
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+
+		<div class="booking-form">
+			<div class="container">
+				<form action="/booking" method="POST"><!--action="booking.js" method="GET"-->
+					<div class="form-child hotline">
+						<h3>Vé tàu</h3>
+						<p>Hotline: 999999999</p>
+					</div>
+
+					<div class="form-child">
+						<input required type="text" name="from" id="from" placeholder="Nơi đi" class="form-control input-search" />
+						<div class="autobox">
+							<li>Biên Hòa</li>
+							<li>Bỉm Sơn</li>
+							<li>Bình Thuận</li>
+							<li>Bồng Sơn</li>
+							<li>Chợ Sy</li>
+							<li>Đà Nẵng</li>
+							<li>Dĩ An</li>
+							<li>Diêu Trì</li>
+							<li>Đông Hà</li>
+							<li>Đồng Hới</li>
+							<li>Đồng Lê</li>
+							<li>Đức Phổ</li>
+							<li>Giã</li>
+                            <li>Hà Nội</li>
+							<li>Huế</li>
+							<li>Hương Phố</li>	
+							<li>Minh Khôi</li>
+							<li>Nam Định</li>
+							<li>Nha Trang</li>
+							<li>Ninh Bình</li>
+							<li>Ninh Hòa</li>
+							<li>Núi Thành</li>
+							<li>Phủ lý</li>
+							<li>Quãng Ngãi</li>
+							<li>Sài Gòn</li>
+							<li>Sôn Mao</li>
+							<li>Tam Kỳ</li>
+							<li>Thanh Hóa</li>
+							<li>Tháp Chàm</li>
+							<li>Tuy Hòa</li>
+							<li>Vinh</li>
+							<li>Yên Trung</li>
+						</div>
+					</div>
+					<div class="form-child">
+						<input required type="text" name="to" id="to" placeholder="Nơi đến" class="form-control output-search" />
+						<div class="autobox2">
+							<li>Hà Nội</li>
+							<li>Phủ lý</li>
+							<li>Nam Định</li>
+							<li>Ninh Bình</li>
+							<li>Bỉm Sơn</li>
+							<li>Thanh Hóa</li>
+							<li>Minh Khôi</li>
+							<li>Chợ Sy</li>
+							<li>Vinh</li>
+							<li>Yên Trung</li>
+							<li>Hương Phố</li>
+							<li>Đồng Lê</li>
+							<li>Đồng Hới</li>
+							<li>Đông Hà</li>
+							<li>Huế</li>
+							<li>Đà Nẵng</li>
+							<li>Tam Kỳ</li>
+							<li>Núi Thành</li>
+							<li>Quãng Ngãi</li>
+							<li>Đức Phổ</li>
+							<li>Bồng Sơn</li>
+							<li>Diêu Trì</li>
+							<li>Tuy Hòa</li>
+							<li>Giã</li>
+							<li>Ninh Hòa</li>
+							<li>Nha Trang</li>
+							<li>Tháp Chàm</li>
+							<li>Sôn Mao</li>
+							<li>Bình Thuận</li>
+							<li>Biên Hòa</li>
+							<li>Dĩ An</li>
+							<li>Sài Gòn</li>
+						</div>
+					</div>
+					<div class="form-child">
+						<select id="trip-type" class="form-select form-select-lg" aria-label=".form-select-lg example" name="type" required>
+							<option selected disabled>Loại vé</option>
+							<option value="1">Một chiều</option>
+							<option value="2">Khứ hồi</option>
+						</select>
+					</div>
+
+					<div class="form-child day">
+						<input id="godate" required name="daygo" class="form-control" type="datetime-local" placeholder="Ngày đi" />   <!--id="go-date"-->
+					</div> 
+					<div class="form-child day">
+						<input id="returndate" name="dayback" class="form-control" type="datetime-local" placeholder="Ngày về" />
+					</div>
+					<!--<button class="form-child btn btn-primary" type="submit" onclick="handleSearch()">
+						Tìm kiếm
+					</button>-->
+					<button class="form-child btn btn-primary" type="submit" onclick="handleSearch()">
+						Tìm kiếm
+					</button>
+					<div id="result"></div>
+					<!--///////-->
+					<script src="validateForm.js"></script>
+
+					<!--Nếu chọn một chiều thì ô khứu hồi sẽ bị kháo và không cho người dùng chọn-->
+							<script>
+								const tripTypeSelect = document.getElementById("trip-type");
+								const returnDateInput = document.getElementById("returndate");
+
+								tripTypeSelect.addEventListener("change", function() {
+  									if (tripTypeSelect.value === "1") {
+    									returnDateInput.disabled = true;
+  									} else {
+    								returnDateInput.disabled = false;
+  									}
+								});
+							</script>
+
+
+
+
+
+
+
+
+
+
+
+					<!--************************Nút tìm kiếm ở trang chủ************************-->
+					<!-- Trang chủ EJS -->
+<!-- Thêm mã JavaScript vào đây -->
+<script>
+	// Bắt sự kiện khi người dùng click vào nút "Tìm kiếm"
+	document.getElementById('search-btn').addEventListener('click', function() {
+	  // Lấy giá trị các trường dữ liệu từ form tìm kiếm
+	  const diemXuatPhat = document.getElementById('from-input').value;
+	  const diemDen = document.getElementById('to-input').value;
+	  const thoiGianDi = document.getElementById('departure-time-input').value;
+  
+	  // Gửi yêu cầu tìm kiếm thông qua AJAX
+	  const xhr = new XMLHttpRequest();
+	  xhr.open('POST', '/search');
+	  xhr.setRequestHeader('Content-Type', 'application/json');
+	  xhr.onload = function() {
+		if (xhr.status === 200) {
+		  // Nếu tìm thấy kết quả, chuyển hướng sang trang kết quả
+		  window.location.href = '/booking';
+		} else {
+		  // Nếu không tìm thấy kết quả, hiển thị thông báo lỗi
+		  alert('Không tìm thấy chuyến tàu phù hợp');
+		}
+	  };
+	  xhr.send(JSON.stringify({ diemXuatPhat, diemDen, thoiGianDi }));
+	});
+  </script>
+  
+					<!--************************Nút tìm kiếm ở trang chủ************************-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<!------------------------------------------------------------------------------>
+				</form>
+			</div>
+		</div>
+
+
+		<div class="some-regulations">
+
+			<div class="container  pt-5 px-0 pb-5">
+				<h3 class="title text-center mb-5 text-uppercase py-2">Quy định đổi, trả vé:</h3>
+				<div class="grid">
+					<div class="row">
+						<div class="col-2 l-2 text-center">
+							<img class=" w-75" src="/HomePage/images/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">
+						</div>
+						<div class=" col-8 l-8">
+							<h5>1. Thời gian, mức phí đổi trả vé:</h5>
+
+							<p>
+								<strong>- Đổi vé:</strong> Vé cá nhân đổi trước giờ tàu chạy 24 giờ
+								trở lên, lệ phí là 20.000 đồng/vé, dưới 24 giờ không đổi vé; không
+								áp dụng đổi vé đối với vé tập thể. <br />
+								<strong> - Trả vé:</strong> <br />
+								+ Vé cá nhân: Trả vé trước giờ tàu chạy từ 24 giờ trở lên lệ phí là
+								10% giá vé, từ 4 giờ đến dưới 24 giờ lệ phí là 20% giá vé, dưới 4
+								giờ không trả vé. <br />
+								+ Vé tập thể: Trả vé trước giờ tàu chạy từ 72 giờ trở lên lệ phí là
+								10% giá vé ,từ 24 giờ đến dưới 72 giờ lệ phí là 20% giá vé, dưới 24
+								giờ không trả vé.
+							</p>
+							<h5>2. Hình thức trả vé.</h5>
+
+							<p>
+								<p>
+									- Khi hành khách mua vé và thanh toán online qua website bán vé của
+									ngành Đường sắt, app bán vé hoặc các ứng dụng mua vé tàu hỏa của các
+									đối tác thứ ba thì có thể trả vé online qua các website bán vé của
+									ngành đường sắt hoặc đến trực tiếp nhà ga.
+								</p>
+								<p>
+									- Khi hành khách mua vé
+									bằng các hình thức khác, muốn đổi vé, trả vé hành khách đến trực
+									tiếp nhà ga kèm theo giấy tờ tùy thân bản chính của người đi tàu
+									hoặc người mua vé cho nhân viên đường sắt. Đồng thời, thông tin trên
+									thẻ đi tàu phải trùng khớp với giấy tờ tùy thân của hành khách.
+								</p>
+							</p>
+							<strong>Trân trọng cảm ơn!.</strong>
+
+							<!--tìm kiếm ga tàu-->
+							<h5 class="titlegatau text-center mb-0 text-uppercase py-2">TÌM TÊN GA:</h5>
+							<div class="form-child">
+								<input required type="text" name="to" placeholder="Tìm ga tàu" class="form-control gatau-search" tabindex="0" />
+
+								<div class="autobox3">
+									<li>Hà Nội</li>
+									<li>Phủ lý</li>
+									<li>Nam Định</li>
+									<li>Ninh Bình</li>
+									<li>Bỉm Sơn</li>
+									<li>Thanh Hóa</li>
+									<li>Minh Khôi</li>
+									<li>Chợ Sy</li>
+									<li>Vinh</li>
+									<li>Yên Trung</li>
+									<li>Hương Phố</li>
+									<li>Đồng Lê</li>
+									<li>Đồng Hới</li>
+									<li>Đông Hà</li>
+									<li>Huế</li>
+									<li>Đà Nẵng</li>
+									<li>Tam Kỳ</li>
+									<li>Núi Thành</li>
+									<li>Quãng Ngãi</li>
+									<li>Đức Phổ</li>
+									<li>Bồng Sơn</li>
+									<li>Diêu Trì</li>
+									<li>Tuy Hòa</li>
+									<li>Giã</li>
+									<li>Ninh Hòa</li>
+									<li>Nha Trang</li>
+									<li>Tháp Chàm</li>
+									<li>Sôn Mao</li>
+									<li>Bình Thuận</li>
+									<li>Biên Hòa</li>
+									<li>Dĩ An</li>
+									<li>Sài Gòn</li>
+								</div>
+							</div>
+							
+							<!------------------->
+
+							<div class="download-app mt-2">
+								<div class="container bg-white text-center border-top p-4 border-primary ">
+									<h5 class="main-color-text mb-3">Tải ứng dụng</h5>
+									<a href="#"><img class="me-2" src="/HomePage/images/playstore.png" alt="playstore"
+											width="15%"></a>
+									<a href="#"><img src="/HomePage/images/appstore.png" alt="appstore" width="15%"></a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-2 l-2 text-center  ">
+							<img class=" w-75" src="/HomePage/images/mua-ve-tau-online.png" alt="mua ve tau">
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</main>
+
+	<footer>
+		<div class="container px-0 ">
+			<ul class="nav justify-content-center main-color-bg py-2 ">
+
+				<div class="w-75 text-center">
+					<li class=" nav-item">
+						<a class="nav-link " aria-current="page" href="#">Tìm vé</a>
+					</li>
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Thông tin đặt chỗ</a>
+					</li>
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Giờ tàu - Giá vé</a>
+					</li>
+					<li class=" nav-item">
+						<!-- <a class="nav-link disabled">Disabled</a> -->
+						<a class="nav-link " href="#">Hướng dẫn</a>
+					</li>
+
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Liên hệ</a>
+					</li>
+				</div>
+				<div class="w-75 text-center">
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Chính sách mua hàng</a>
+					</li>
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Chính sách thanh toán</a>
+					</li>
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Chính sách hoàn trả</a>
+					</li>
+					<li class=" nav-item">
+						<a class="nav-link" href="#">Chính sách bảo mật</a>
+					</li>
+				</div>
+			</ul>
+
+			<div class="about bg-white d-flex py-5">
+				<div class="w-75 m-auto text-center">
+					<h5>Nhóm 28, Phát triển website bán vé tàu</h5>
+
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<!--<script src="../js/index.js"></script>
+	<script src="../js/validateForm.js"></script>-->
+
+
+<!---------------------------------Ô nơi đến, nơi đi------------------------------------------------>
+    <script>
+const inputSearch = document.querySelector(".input-search")
+const autoBox = document.querySelector(".autobox")
+const outputSearch = document.querySelector(".output-search")
+const autoBox2 = document.querySelector(".autobox2")
+const gatauSearch = document.querySelector(".gatau-search")
+const autoBox3 = document.querySelector(".autobox3")
+
+
+function slugName(str) {
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    str = str.replace(/ /g, "-");
+    return str;
+}
+
+let recomentlist = [
+    "Biên Hòa",
+    "Bỉm Sơn",
+    "Bình Thuận",
+    "Bồng Sơn",
+    "Chợ Sy",
+    "Đà Nẵng",
+    "Dĩ An",
+    "Diêu Trì",
+    "Đông Hà",
+    "Đồng Hới",
+    "Đồng Lê",
+    "Đức Phổ",
+    "Giã",
+    "Hà Nội",
+    "Huế",
+    "Hương Phố",
+    "Minh Khôi",
+    "Nam Định",
+    "Nha Trang",
+    "Ninh Bình",
+    "Ninh Hòa",
+    "Núi Thành",
+    "Phủ lý",
+    "Quãng Ngãi",
+    "Sài Gòn",
+    "Sôn Mao",
+    "Tam Kỳ",
+    "Thanh Hóa",
+    "Tháp Chàm",
+    "Tuy Hòa",
+    "Vinh",
+    "Yên Trung",
+]
+  
+
+
+//Nơi đi (tìm kiếm không cần dấu)
+inputSearch.oninput = (e) => {
+    let checkData = slugName(e.target.value);
+    let dataArray = [];
+    if (checkData) {
+      dataArray = recomentlist.filter((data) => {
+        return slugName(data).startsWith(checkData);
+      });
+      dataArray = dataArray.map((data) => {
+        return "<li>" + data + "</li>";
+      });
+      autoBox.classList.add("active");
+      showAddress(dataArray);
+      let liItem = autoBox.querySelectorAll("li");
+      for (let i = 0; i < liItem.length; i++) {
+        liItem[i].addEventListener("click", function () {
+          inputSearch.value = liItem[i].innerHTML;
+          autoBox.classList.remove("active");
+        });
+      }
+    } else {
+      autoBox.classList.remove("active");
+    }
+};
+  
+function showAddress(list) {
+    let listData;
+    if (!list.length) {
+      listData = "<li>" + inputSearch.value + "</li>";
+    } else {
+      listData = list.join("");
+    }
+    autoBox.innerHTML = listData;
+}
+
+//Nơi đến (tìm kiếm không cần dấu)
+outputSearch.onkeyup = (e) => {
+    //console.log(e.target.value)
+    let checkData = slugName(e.target.value);
+    let dataArray = []
+    if(checkData){
+        dataArray = recomentlist.filter((data) => {
+            return slugName(data).startsWith(checkData);
+        })
+        
+        dataArray = dataArray.map((data) => {
+            return "<li>" + data + "</li>";
+        });
+        autoBox2.classList.add('active');
+        showAdress2 (dataArray);
+        let liItem = autoBox2.querySelectorAll("li");
+        for(let i=0;i<liItem.length;i++){
+            liItem[i].addEventListener("click",function(){
+                outputSearch.value = liItem[i].innerHTML;
+                autoBox2.classList.remove('active');
+            });
+        }
+        //console.log(dataArray)
+    }else{
+        autoBox2.classList.remove('active');
+    }
+}
+function showAdress2 (list){
+    let listData2;
+    if (!list.length) {
+        listData2 = '<li>'+outputSearch.value+'</li>';
+    }else {
+        listData2 = list.join('');
+    }
+    autoBox2.innerHTML = listData2;
+}
+/////
+
+//Tìm ga tàu (tìm kiếm không cần dấu)
+gatauSearch.onkeyup = (e) => {
+    //console.log(e.target.value)
+    let checkData = slugName(e.target.value);
+    let dataArray = []
+    if(checkData){
+        dataArray = recomentlist.filter((data) => {
+            return slugName(data).startsWith(checkData);
+        })
+        
+        dataArray = dataArray.map((data) => {
+            return data = '<li>'+data+'</li>'
+        })
+        autoBox3.classList.add('active')
+        showAdress3 (dataArray)
+        let liItem = autoBox3.querySelectorAll("li")
+        for(let i=0;i<liItem.length;i++){
+            liItem[i].addEventListener("click",function(){
+                gatauSearch.value = liItem[i].innerHTML
+                autoBox3.classList.remove('active')
+            })
+        }
+        //console.log(dataArray)
+    }else{
+        autoBox3.classList.add('active')
+    }
+}
+function showAdress3 (list){
+    let listData3
+    if (!list.length) {
+        listData3 = '<li>'+gatauSearch.value+'</li>'
+    }else {
+        listData3 = list.join('')
+    }
+    autoBox3.innerHTML = listData3
+}
+//
+
+//////TÌM GA TÀU TRONG PHẦN TRANG CHỦ
+gatauSearch.addEventListener("click", function(){
+    autoBox3.classList.remove('active');
+    let allDataArray = recomentlist.map((data) => {
+        return data = '<li>'+data+'</li>'
+    })
+    autoBox3.classList.add('active')
+    showAdress3 (allDataArray)
+    let liItem = autoBox3.querySelectorAll("li")
+    for(let i=0;i<liItem.length;i++){
+        liItem[i].addEventListener("click",function(){
+            gatauSearch.value = liItem[i].innerHTML
+            autoBox3.classList.remove('active')
+        })
+    }
+})
+//
+
+//Khi ckick ra khỏi ô tìm ga tàu thì bảng dữ liệu sẽ ẩn đi
+document.addEventListener('click', function(event) {
+    const isClickInsideInput = gatauSearch.contains(event.target);
+    const isClickInsideBox = autoBox3.contains(event.target);
+    if (!isClickInsideInput && !isClickInsideBox) {
+        autoBox3.classList.remove('active');
+    }
+});
+function showBox3() {
+    const isActive = autoBox3.classList.contains('active');
+    if (!isActive) {
+        autoBox3.classList.add('active');
+    }
+}
+gatauSearch.addEventListener('focus', showBox3);
+////////
+
+//////TÌM NƠI ĐI TRONG PHẦN TRANG CHỦ
+inputSearch.addEventListener("click", function(){
+    autoBox.classList.remove('active');
+    let allDataArray = recomentlist.filter(data => data.toLowerCase().includes(inputSearch.value.toLowerCase())).map((data) => {
+        return data = '<li>'+data+'</li>'
+    })
+    autoBox.classList.add('active')
+    showAdress (allDataArray)
+    let liItem = autoBox.querySelectorAll("li")
+    for(let i=0;i<liItem.length;i++){
+        liItem[i].addEventListener("click",function(){
+            inputSearch.value = liItem[i].innerHTML
+            autoBox.classList.remove('active')
+        })
+    }
+})
+//
+function showAdress (list){
+    let listData
+    if (!list.length) {
+        listData = '<li>'+inputSearch.value+'</li>'
+    }else {
+        listData = list.join('')
+    }
+    autoBox.innerHTML = listData
+    //show các ga tàu khi click vào
+    inputSearch.addEventListener("click", function() {
+        document.querySelector(".table").classList.add("active");
+    });
+}
+//Khi click ra khỏi ô tìm ga tàu thì bảng dữ liệu sẽ ẩn đi
+document.addEventListener('click', function(event) {
+    const isClickInsideInput = inputSearch.contains(event.target);
+    const isClickInsideBox = autoBox.contains(event.target);
+    if (!isClickInsideInput && !isClickInsideBox) {
+        autoBox.classList.remove('active');
+    }
+});
+function showBox() {
+    const isActive = autoBox.classList.contains('active');
+    if (!isActive) {
+        autoBox.classList.add('active');
+    }
+}
+inputSearch.addEventListener('focus', showBox);
+//////
+
+//////TÌM NƠI ĐẾN TRONG PHẦN TRANG CHỦ
+outputSearch.addEventListener("click", function(){
+    autoBox2.classList.remove('active');
+    let allDataArray = recomentlist.map((data) => {
+        return data = '<li>'+data+'</li>'
+    })
+    autoBox2.classList.add('active')
+    showAdress2 (allDataArray)
+    let liItem = autoBox2.querySelectorAll("li")
+    for(let i=0;i<liItem.length;i++){
+        liItem[i].addEventListener("click",function(){
+            outputSearch.value = liItem[i].innerHTML
+            autoBox2.classList.remove('active')
+        })
+    }
+})
+//
+function showAdress2 (list){
+    let listData
+    if (!list.length) {
+        listData = '<li>'+outputSearch.value+'</li>'
+    }else {
+        listData = list.join('')
+    }
+    autoBox2.innerHTML = listData
+    //show các ga tàu khi click vào
+    outputSearch.addEventListener("click", function() {
+        document.querySelector(".table").classList.add("active");
+    });
+}
+//Khi ckick ra khỏi ô tìm ga tàu thì bảng dữ liệu sẽ ẩn đi
+document.addEventListener('click', function(event) {
+    const isClickInsideInput = outputSearch.contains(event.target);
+    const isClickInsideBox = autoBox2.contains(event.target);
+    if (!isClickInsideInput && !isClickInsideBox) {
+        autoBox2.classList.remove('active');
+    }
+});
+function showBox() {
+    const isActive = autoBox2.classList.contains('active');
+    if (!isActive) {
+        autoBox2.classList.add('active');
+    }
+}
+outputSearch.addEventListener('focus', showBox);
+//////
+</script>  
+<!--------------------------------------------------------------------------------->
+
+<!-------------------------Ảnh động chuyển động qua lại---------------------------->
+<script>
+	var swiper = new Swiper('.mySwiper', {
+	  spaceBetween: 30,
+	  centeredSlides: true,
+	  autoplay: {
+		delay: 2500,
+		disableOnInteraction: false,
+	  },
+	  pagination: {
+		el: '.swiper-pagination',
+		clickable: true,
+	  },
+	  navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+	  },
+	});
+  </script>
+<!--------------------------------------------------------------------------------->
+
+	<script>
+		flatpickr("input[type='datetime-local']", {
+			dateFormat: 'd-m-Y',
+			minDate: Date.now(),
+		});
+	</script>
+</body>
+
+</html>

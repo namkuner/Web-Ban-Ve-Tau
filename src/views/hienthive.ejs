@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin vé tàu</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Thông tin vé tàu</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/AdminPage/ejs/admin">Trang chủ</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Tên Ghế</th>
+                    <th scope="col">Trạng Thái</th>
+                    <th scope="col">Toa</th>
+                    <th scope="col">Giá vé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < ve.length; i++) { %>
+                    <tr>
+                        <td><%= ve[i].tenGhe %></td>
+                        <td>
+                            <% if (ve[i].trangThai === 1) { %>
+                                Đã bán
+                            <% } else { %>
+                                Chưa bán
+                            <% } %>
+                        </td>
+                        <td><%= ve[i].toa %></td>
+                        <td><%= ve[i].giaVe %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</body>
+</html>

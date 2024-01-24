@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" /> <!--Sử dụng các icon-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            background: #E5E7EB;
+            position: relative;
+            display: flex;
+        }
+
+        #menu {
+            background-color: #111827;
+            width: 300px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        #menu .logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            padding: 30px 0 23px 30px;
+        }
+
+        #menu .logo img {
+            width: 50px;
+            margin-right: 15px;
+            margin-bottom: 17px;
+        }
+
+        #menu .items li {
+            list-style: none;
+            padding: 15px 0;
+            transition: 0.3s ease;
+        }
+
+        #menu .items li:hover {
+            background: #253047;
+            cursor: pointer;
+        }
+
+#menu .items li:nth-child(3) {
+    border-left: 4px solid #fff;
+}
+
+        #menu .items li i {
+            color: rgb(134, 141, 151);
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 14px;
+            margin: 0 10px 0 25px;
+        }
+
+        #menu .items li:hover i,
+        #menu .items li:hover a {
+            color: #F3F4F6;
+        }
+
+        #menu .items li a {
+            text-decoration: none;
+            color: rgb(134, 141, 151);
+            font-weight: 300px;
+            transition: 0.3s ease;
+        }
+
+        #interface {
+            width: calc(100% - 300px);
+            margin-left: 300px;
+            position: relative;
+        }
+
+        #interface .navigation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 15px 30px;
+            border-bottom: 3px solid #594ef7;
+            position: fixed;
+            width: calc(100% - 300px);
+        }
+
+        #interface .navigation .search {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid #d7dbe6;
+            border-radius: 4px;
+        }
+
+        #interface .navigation .search i {
+            margin-right: 14px;
+        }
+
+        #interface .navigation .search input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #interface .navigation .profile {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #interface .navigation .profile i {
+            margin-right: 20px;
+            font-size: 19px;
+            font-weight: 400;
+        }
+
+        #interface .navigation .profile img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .n1 {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #menu-btn {
+            display: none;
+            color: #2b2b2b;
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .admin-text {
+            margin-left: 10px;
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .i-name {
+            color: #444a53;
+            padding: 30px 30px 0 30px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 80px;
+        }
+
+        .values {
+            padding: 30px 30px 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .values .val-box {
+            background: #fff;
+            width: 275px;
+            padding: 16px 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .values .val-box i {
+            font-size: 25px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            margin-right: 15px;
+        }
+
+        .values .val-box h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .values .val-box span {
+            font-size: 15px;
+            color: #828997;
+        }
+
+        .values .val-box:nth-child(1) i {
+            background: #7B74EC;
+        }
+
+        .values .val-box:nth-child(2) i {
+            background: #5C8AF0;
+        }
+
+        .values .val-box:nth-child(3) i {
+            background: #E45D99;
+        }
+
+        .values .val-box:nth-child(4) i {
+            background: #74daeC;
+        }
+
+        .i-name1 {
+            color: #444a53;
+            padding: 30px 30px 0 30px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0px;
+        }
+
+        /**/
+        .records {
+            box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+            background: #fff;
+            border-radius: 3px;
+            margin-top: 30px;
+        }
+
+        .record-header {
+            padding: 0.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 100px;
+            margin-bottom: 20px;
+        }
+
+        .add {
+            margin-top: -11px;
+        }
+
+        .add .browse {
+            display: flex;
+            align-items: center;
+        }
+
+        .add span {
+            display: inline-block;
+            margin-right: .6rem;
+            font-size: .9rem;
+            color: #666;
+            font-size: 19px;
+            font-weight: 700;
+            margin: 16px 20px -3px 53px;
+        }
+
+        input,
+        button,
+        select {
+            outline: none;
+        }
+
+        .add select,
+        .browse input,
+        .browse select {
+            /*height: 35px;*/
+            border: 1px solid #b0b0b0;
+            border-radius: 3px;
+            display: inline-block;
+            width: 75px;
+            padding: 0rem .5rem;
+            margin-right: .8rem;
+            color: #666;
+        }
+
+        .add button {
+            background: #45b669;
+            color: #fff;
+            height: 37px;
+            border-radius: 4px;
+            padding: 0rem 1rem;
+            border: none;
+            font-weight: 600;
+            text-align: center;
+            /*margin-bottom: 6px;*/
+        }
+
+        .browse input {
+            width: 150px;
+        }
+
+        .browse select {
+            width: 100px;
+        }
+
+        .browse {
+            display: flex;
+        }
+
+        .browse .search1 i {
+            margin-right: 10px;
+        }
+
+        .browse .search1 input {
+            border: none;
+            outline: none;
+            margin-right: 14px;
+            margin-left: -8px;
+        }
+
+        .browse .search1 {
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid #d7dbe6;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+
+button:hover {
+    background-color: rgb(41, 174, 70);
+    color: white;
+  }
+  .add a {
+  text-decoration: none; /* Loại bỏ dấu gạch chân */
+  color: white; /* Chuyển màu chữ thành trắng */
+}
+  
+
+
+	</style>
+
+</head>
+</head>
+
+<body>
+
+    <section id="menu">
+        <div class="logo">
+            <img src="http://127.0.0.1:5500/src/views/AdminPage/images/trainlogo.png" alt="" />
+            <h2>Quản lí ga tàu</h2>
+        </div>
+
+        <div class="items">
+            <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
+            <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
+            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlilichtrinh">Quản lí lịch trình</a></li>
+            <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm">
+                </div>
+            </div>
+
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/249803599_4381368368599156_2938778103120703174_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=_Q9etVQwFLUAX-BYVv3&_nc_oc=AQnCvwdc7nYIV3M954xlwSjseoAaQ7HvWepCV27txJUiPYZIJI9OB7jI5zbXh2cSiiq1VrCGC2AOeZE7iU6xrsaN&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdRGUyky7FiKnUHb10_66dmbH0x-3ceDFGEWCqX2wB0cpw&oe=6483DF7B" alt="">
+                <span class="admin-text">Admin</span>
+            </div>
+        </div>
+
+
+
+        <!--Tải dữ liệu lên-->
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./dataUser.js"></script>
+
+        <!--////////////////////////////////////////////////////////////////////////////-->
+
+        <div class="records">
+            <div class="record-header">
+                <div class="add">
+                    <span>Quản lí lịch trình:</span>
+                    <a href="/nhapTrip">
+                        <button>Thêm lịch trình</button>
+                    </a>
+                </div>
+
+                <div class="browse">
+                    <!--<i class="fas fa-search"></i>
+        <input type="search" placeholder="Tìm kiếm" class="record-search">-->
+                    <div class="search1">
+                        <form action="/search" method="get">
+                            <i class="fas fa-search"></i>
+                            <input type="text" name="keyword" placeholder="Tìm kiếm">\
+                            <button type="submit">Tìm</button>
+                        </form>
+                    </div>
+
+                    <select name="" id="">
+                        <option value="">Status</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------------------------------------------------------->
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Điểm xuất phát</th>
+            <th scope="col">Điểm đến</th>
+            <th scope="col">Thời gian đi</th>
+            <th scope="col">Số vé đã bán</th>
+            <th scope="col">Số vé chưa bán</th>
+            <th scope="col">Số toa</th>
+            <th scope="col">Tên tàu</th>
+            <th scope="col">Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i=0; i < trip.length; i++) { %>
+            <tr>
+                <td>
+                    <%= trip[i].train.diemXuatPhat %>
+                </td>
+                <td>
+                    <%= trip[i].train.diemDen %>
+                </td>
+                <td>
+                    <%= trip[i].train.thoiGianDi %>
+                </td>
+                <td>
+                    <%= trip[i].totalTickets %>
+                </td>
+                <td>
+                    <%= trip[i].train.soGhe-trip[i].totalTickets %>
+                </td>
+                <td>
+                    <%= trip[i].train.soToa %>
+                </td>
+                <td>
+                    <%= trip[i].train.tenTau %>
+                </td>
+
+                <td>
+                    <div class="button-container">
+                        <a href="/xemvetau?id=<%=trip[i].train.id %>" class="edit-button" type="button">Xem Vé</a>
+                        <a href="/edit-trip?id=<%=trip[i].train.id %>" class="edit-button" type="button">Edit</a>
+                        <a href="/delete-trip?id=<%=trip[i].train.id %>" class="delete-button" type="button">Delete</a>
+                        
+                    </div>
+                </td>
+            </tr>
+            <% } %>
+    </tbody>
+</table>
+
+
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            table th,
+            .table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            table th {
+                background-color: #f2f2f2;
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 200px;
+                margin: auto;
+            }
+
+            .edit-button,
+            .delete-button {
+                border: none;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .edit-button {
+                background-color: #6ab04c;
+            }
+
+            .delete-button {
+                background-color: #dc3545;
+            }
+
+            .edit-button:hover,
+            .delete-button:hover {
+                opacity: 0.8;
+            }
+        </style>
+
+
+        <!------------------------------------------------------------------------------------->
+
+
+    </section>
+
+
+</body>
+
+</html>

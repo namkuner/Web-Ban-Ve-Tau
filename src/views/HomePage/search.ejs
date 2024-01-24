@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin chuyến đi</title>
+</head>
+
+<body>
+    <h1>Thông tin chuyến đi</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Điểm xuất phát</th>
+                <th scope="col">Điểm đến</th>
+                <th scope="col">Ngày khởi hành</th>
+                <th scope="col">Giá vé</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Tên toa</th>
+                <th scope="col">Tên tàu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <%= tripData.diemXuatPhat %>
+                </td>
+                <td>
+                    <%= tripData.diemDen %>
+                </td>
+                <td>
+                    <%= tripData.ngayKhoiHanh %>
+                </td>
+                <td>
+                    <%= tripData.giaVe %>
+                </td>
+                <td>
+                    <%= tripData.trangThai %>
+                </td>
+                <td>
+                    <%= tripData.tenToa %>
+                </td>
+                <td>
+                    <%= tripData.tenTau %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

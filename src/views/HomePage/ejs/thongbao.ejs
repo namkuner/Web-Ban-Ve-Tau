@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Thông tin người đặt</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+	<script src="/src/services/nguoidatveService.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+<!--------------------CSS--------------------->
+    <style>           
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: #d6d6d6;
+}
+
+.nav-item {
+	display: inline-block;
+}
+
+.nav-link {
+	color: #fff;
+}
+
+:root {
+	--maincolor: #014a9e;
+}
+
+.main-color-text{
+	color: var(--maincolor);
+}
+
+.main-color-bg{
+	background-color: var(--maincolor);
+}
+
+header {
+    /*position: fixed;*/ /*làm cho thanh header trở nên trong suốt cà cố định thanh header*/
+    width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+    background-color: #2727277d;
+}
+
+header li a {
+	text-transform: uppercase;
+	font-size: 18px !important;
+	color: #fff !important;
+	font-weight: 600 !important;
+}
+
+header li:hover a {
+	color: var(--maincolor) !important;
+}
+
+main {
+    overflow: hidden;
+}
+
+.some-regulations .container{
+	background-color: #fff;
+	max-width: 75%;
+}
+.some-regulations .container .title{
+	background-color: var(--maincolor);
+	color: #fff;
+}
+.some-regulations .container .titlegatau{
+	background-color: var(--maincolor);
+	color: #fff;
+	margin-top: 20px;
+}
+
+.some-regulations .container1{
+	background-color: #fff;
+	margin-top: 30px;
+	width: 1140px;
+}
+
+.my-custom-class1 {
+  position: fixed;
+  top: 130px;
+  left: -3px;
+}
+.my-custom-class2 {
+  position: fixed;
+  right: -3px;
+  bottom: 0;
+  top: 130px;
+}
+
+.inf {
+	margin-left: 20px;
+}
+/**************************************NEW***************************************/
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+.et-col-md-1, .et-col-md-10, .et-col-md-11, .et-col-md-12, .et-col-md-2, .et-col-md-3, .et-col-md-4, .et-col-md-5, .et-col-md-6, .et-col-md-7, .et-col-md-8, .et-col-md-9 {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.et-col-md-12 {
+    width: 100%;
+}
+
+.table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+}
+
+div {
+    display: block;
+}
+
+body {
+    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+body {
+    background-color: #f0f1f3;
+    /*font-family: Verdana!important;*/
+}
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}*/
+/**/
+
+element.style {
+    padding: 6px 0px 0px 0px;
+}
+.et-car-icon img {
+    width: 100%;
+    height: 130%;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.et-car-icon-avaiable {
+    background-color: #80b5d6;
+}
+.et-car-icon-selected {
+    background-color: #a6b727;
+}
+.et-car-icon-sold-out {
+    background-color: #df5327;
+}
+.et-car-icon {
+    margin: 0 1px 10px;
+    border-radius: 15%;
+    height: 18px;
+    overflow: visible;
+}
+.et-car-icon img {
+    width: 100%;
+    height: 130%;
+}
+.et-col-md-3 {
+  display: flex;
+  align-items: center;
+}
+.et-col-16 {
+    width: 16%;
+    float: left;
+    min-height: 1px;
+}
+.et-sit-side {
+    height: 30px;/*100%*/
+    background-color: #948a54;
+    border-radius: 2px;
+	padding-top: 7px;
+}
+.et-sit-sur {
+    height: 30px;/*100%*/
+    border-radius: 5px;
+    border-top: 1px solid #888;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
+    line-height: inherit;
+    font-size: 1em;
+}
+.text-center {
+    text-align: center;
+}
+.et-col-md-3 {
+    width: 25%;
+}
+.et-bed-left {
+    border-left: 3px solid #385d8a;
+    height: 37px;
+}
+.et-bed-left .et-bed-outer {
+    padding-right: 2px;
+    padding-top: 3px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+.et-bed-illu {
+    border-bottom: 3px solid #385d8a;
+    border-left: 3px solid #385d8a;
+    border-right: 3px solid #385d8a;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+	height: 10px;
+    width: 30px;
+    line-height: 30px;
+}
+.et-bed {
+    height: 100%;
+    margin: 0 4px -8px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    line-height: 25px;
+}
+.text-center {
+    text-align: center;
+}
+.et-sit-longer {
+    background-color: #3578bd;
+    color: #fff;
+}
+.et-sit-blocked {
+    background-color: #df5327;
+    color: #fff;
+}
+h5 {
+  font-size: 20px;
+}
+.py-5 {
+    padding-bottom: 0!important;
+}
+.col-md-12 {
+    flex: 0 0 auto;
+    width: 1050px;
+	margin-left: 47px;
+}
+.et-col-md-4 {
+	top: 10px;
+}
+/**/
+.list-group-item {
+  max-width: 1070px; /* Giới hạn kích thước tối đa là 400px */
+  left: 43px;
+}
+.form-group {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	max-width: 1100px; /* Giới hạn kích thước tối đa là 400px */
+	padding-left: 43px;
+	font-weight: 600;
+	padding-top: 15px;
+}
+.form-group label {
+  display: flex;
+  align-items: center;
+}
+/**/
+.et-main-label {
+    background: url(https://dsvn.vn/images/label_bg.png) right bottom no-repeat #0082c4;
+    padding: 5px 40px 5px 10px;
+    margin-left: 50px;
+    color: #fff;
+    font-family: Verdana;
+}
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #3a87ad;
+	left: 35px;
+	top: 10px;
+	width: 1080px;
+	font-weight: 490;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+/**/
+.container2 {
+  max-width: 950px; /* kích thước tối đa của container */
+  margin: 0 auto; /* căn giữa container */
+}
+/**/
+.form-control[name="Hoten"], .form-control[name="CCCD"], .form-control[name="Phone"], .form-control[name="Email"], .form-control[name="email1"] {
+  font-size: 15px;
+}
+
+
+
+
+/********************************************************************************/
+    </style>
+<!-------------------------------------------->
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img src="http://127.0.0.1:5500/src/views/HomePage/images/trainlogo.png" alt="logo-train" width="70px" />
+						<!-- <img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/280068745_1908162402711465_8113313082114855897_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=d63DoD9VXSkAX--VfPO&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdTKF1dlnj07Tp-aUR8eFvU9yr6CYND0ru0im8sVnQT9HQ&oe=6483D505" alt="logo-train" width="70px"/> -->
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse d-inline-flex" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="  nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Các quy định</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Thông tin lịch trình</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Quản lý đặt chỗ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page"
+								href="https://vr.com.vn/cam-nang-di-tau.html" target="_blank">Cẩm nang đi tàu</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	
+    
+    
+    <main>
+		<div class="some-regulations">
+			<div class="col-2 l-2 text-center my-custom-class1">
+				<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu mua ve">
+				<!-- <img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/346104697_1569997260076324_3939682777754183455_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=olcx-YTmVwQAX8ERTCk&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdSYR9Wjzj0lDf6HhC2fmD9Q2OKdofwa0NmxS_5bKelWOQ&oe=64868227" alt="cac dich vu"> -->
+			</div>
+
+			<div class="container  pt-5 px-0 pb-5">
+				<div class="grid">
+					<div class="row">
+
+						<div class="et-page-header" style="float: right;">
+							<span class="et-main-label ng-binding" style="float:left">THÔNG TIN GIỎ VÉ</span>&nbsp;&nbsp; 
+							<a class="list-ticket-mobile" ng-click="thongBaoHetThoiGianGiuCho()" style="float:left"></a>
+						</div>
+
+						<div class="alert alert-info">
+							<p ng-bind-html="'PBuyTicket_dienGiaiNhapTT'|translate" class="ng-binding" style="margin-bottom: -10px;padding-bottom: 10px;">
+								Quý khách vui lòng điền đầy đủ, chính xác tất cả các thông tin về hành khách đi tàu bao gồm: Họ tên đầy đủ, số giấy tờ tùy thân (Số chứng minh nhân dân hoặc số hộ chiếu hoặc số giấy phép lái xe đường bộ được pháp luật Việt Nam công nhận hoặc ngày tháng năm sinh nếu là trẻ em hoặc thẻ sinh viên nếu là sinh viên). Để đảm bảo an toàn, minh bạch trong quá trình bán vé các thông tin này sẽ được nhân viên soát vé kiểm tra trước khi lên tàu theo đúng các quy định của Tổng công ty Đường sắt Việt Nam.
+							</p>
+						</div>
+						<h5 class="ng-binding" style="color: #e55a05!important;font-weight: 700!important;font-size: 16px;margin: 10px 0 10px 35px;padding-top: 10px;">Thông tin người đặt vé</h5>
+						<p style="width: 1140px;padding-left: 30px;font-weight: 570;color: #3a87ad;">Quý khách vui lòng điền đẩy đủ và chính xác các thông tin về người mua vé dưới đây. Các thông tin này sẽ được sử dụng để xác minh người mua vé và lấy vé tại ga trước khi lên tàu theo đúng các quy định của Tổng công ty Đường sắt Việt Nam.</p>
+											
+
+						<style>
+							.customer-info {
+								width: 935px;
+								border-collapse: collapse;
+								margin-bottom: 20px;
+								margin-left: 110px;
+							}
+						
+							.customer-info th,
+							.customer-info td {
+								padding: 8px;
+								border: 1px solid #ddd;
+								text-align: left;
+							}
+						
+							.customer-info th {
+								background-color: #f5f5f5;
+							}
+						
+							.customer-info p {
+								margin: 0;
+							}
+						</style>
+						
+
+                        <div class="notification">
+                            <p>Đặt vé thành công!</p>
+                        </div>
+                        <script>
+                            setTimeout(function() {
+                                window.location.href = '/HomePage/ejs/main';
+                            }, 3000); // Chuyển hướng sau 3 giây (3000 milliseconds)
+                        </script>
+                        <style>
+                            .notification {
+                                background-color: #f8d7da;
+                                color: #721c24;
+                                padding: 10px;
+                                text-align: center;
+                            }
+                        </style>
+						<!-- Bảng thông tin khách hàng -->
+						<h1 style="margin-bottom: 17px;margin-left: 40px;margin-top: 7px;">Thông tin khách hàng</h1>
+						<table class="customer-info">
+							<tr>
+								<th>Số lượng ghế đã đặt</th>
+								<td><span id="seatCount"></span></td>
+							</tr>
+							<tr>
+								<th>Giá vé</th>
+							</tr>
+							<tr>
+								<th>Tên ghế</th>
+							</tr>
+							<tr>
+								<th>Tên tàu</th>
+								
+							</tr>
+							<tr>
+								<th>Điểm xuất phát</th>
+								
+							</tr>
+							<tr>
+								<th>Điểm đến</th>
+								
+							</tr>
+							<tr>
+								<th>Thời gian đi</th>
+								
+							</tr>
+						</table>
+						
+
+
+						<script>
+							var urlParams = new URLSearchParams(window.location.search);
+							var seatCount = urlParams.get('Sove');
+							document.getElementById('seatCount').textContent = seatCount; // Hiển thị số lượng ghế đã đặt trong một phần tử HTML có id 'seatCount'
+							// Lấy giá trị từ trường ẩn
+							var giaVeElement = document.getElementById('giaVe');
+							var giaVe = giaVeElement.value;
+							// Sử dụng giá trị giaVe theo nhu cầu của bạn
+							console.log(giaVe); // In giá trị giaVe ra console
+
+						</script>
+  
+
+						<!--------------------------------------------------------------------------->
+
+						<div class="container2">
+							<div class="row">
+							  <form action="/complete-databooker" method="POST">
+							
+								<div class="row">
+
+								  <div class="col-md-6">
+									<div class="mb-3">
+									  <label for="Hoten" style="margin-bottom: 10px;font-weight: 600;">Họ và tên</label>
+									  <input
+										type="text"
+										class="form-control"
+										name="Hoten"
+										placeholder="Họ và tên"
+										required
+										style="padding-top: 10px; padding-bottom: 10px;"
+									  />
+									</div>
+									<div class="mb-3">
+									  <label for="CCCD" style="margin-bottom: 10px;font-weight: 600;">Số CCCD/Hộ chiếu</label>
+									  <input
+										type="tel"
+										class="form-control"
+										name="CCCD"
+										placeholder="Số CCCD/Hộ chiếu"
+										required
+										style="padding-top: 10px; padding-bottom: 10px;"
+									  />
+									</div>
+									<div class="mb-3">
+										<label for="Phone" style="margin-bottom: 10px;font-weight: 600;">Số di động</label>
+										<input
+										  type="text"
+										  class="form-control"
+										  name="Phone"
+										  placeholder="Số di động"
+										  required
+										  style="padding-top: 10px; padding-bottom: 10px;"
+										/>
+									</div>
+								  </div>
+								  <div class="col-md-6">
+									<div class="mb-3">
+									  <label for="Email" style="margin-bottom: 10px;font-weight: 600;">Email</label>
+									  <input
+										type="email"
+										class="form-control"
+										name="Email"
+										placeholder="Enter email"
+										required
+										style="padding-top: 10px; padding-bottom: 10px;"
+									  />
+									</div>
+						  
+									<div class="mb-3">
+									  <label for="email1" style="margin-bottom: 10px;font-weight: 600;">Xác nhận email</label>
+									  <input
+										type="email"
+										class="form-control"
+										name="email1"
+										placeholder="Xác nhận email"
+										required
+										style="padding-top: 10px; padding-bottom: 10px;"
+									  />
+									</div>
+								  </div>
+								</div>
+								<input type="hidden" name="roleid" value="R3">
+								<button class="btn btn-primary" type="submit" style="padding: 7px 30px;font-size: 16px;margin-top: 7px;">Xác nhận</button>
+								<!---->
+								<div class="modal">
+									<div class="modal_inner">
+										<div class="modal_header">
+											<p>Welcome</p>
+											<i class="fas fa-times"></i>
+										</div>
+										<div class="modal_body">
+											<h2>Modal</h2>
+											<p>Đặt vé thành công</p>
+										</div>
+										<div class="modal_footer">
+											<button>Close</button>
+										</div>
+									</div>
+								</div>
+								<!---->
+							  </form>
+							  
+							</div>
+						  </div>
+						  
+						</div>
+						
+						<script>
+							document.addEventListener('DOMContentLoaded', function() {
+							  var form = document.querySelector('form');
+							  var urlParams = new URLSearchParams(window.location.search);
+							  var seatCount = urlParams.get('Sove');
+							  var hiddenInput = document.querySelector('input[name="Sove"]');
+							  hiddenInput.value = seatCount;
+						  
+							  var SoveInput = document.getElementById('sove');
+							  var Sove = parseInt(SoveInput.value);
+							  var giaVeInput = document.getElementById('giave');
+							  var giaVe = parseInt(giaVeInput.value);
+							  var Tongtien = Sove * giaVe;
+						  
+							  var hiddenTongtienInput = document.querySelector('input[name="Tongtien"]');
+							  hiddenTongtienInput.value = Tongtien;
+
+
+
+							
+	
+  const ids = [];
+
+  urlParams.forEach((value, key) => {
+    if (key === "id") {
+      ids.push(value);
+    }
+  });
+  const ticketIds = ids;
+  //console.log(ids); // Kiểm tra giá trị của mảng ids trong console
+
+  // Gửi mảng IDs đến tệp JavaScript
+  /*const script = document.createElement('script');
+  script.innerHTML = `const ticketIds = ${JSON.stringify(ticketIds)};`;
+  document.body.appendChild(script);*/
+
+const script = document.createElement('script');
+script.innerHTML = `const ids = ${JSON.stringify(ids)};`;
+document.body.appendChild(script);
+  axios.post('/complete-databooker', { ids: ticketIds })
+  .then(response => {
+    //console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+  
+
+
+  
+
+
+							  /////////////////////////////////////////////////////////
+
+						  
+							  form.addEventListener('submit', function(event) {
+								event.preventDefault();
+								form.submit();
+							  });
+							});
+						</script>
+
+					
+						  
+						<p style="width: 1140px;padding-left: 30px;font-weight: 570;color: #2fa4e7;margin-top: 15px;">Để ngăn chặn dịch bệnh COVID-19, ĐSVN kính mong quý khách hàng nhập đúng thông tin số điện thoại để trong trường hợp cần thông báo chúng tôi có thể liên hệ với quý khách hàng nhanh nhất có thể.</p>
+						<!--------------------------------------------------------------------------->
+
+						<h5 class="ng-binding" style="color: #e55a05!important;font-weight: 700!important;font-size: 16px;margin: 10px 0 10px 35px;padding-top: 10px;">Phương thức thanh toán</h5>
+						<div class="list-group">
+							<!-- 1 -->
+							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+									<tbody>
+										<tr>
+											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
+												<input type="radio" name="phuongThucThanhToan" ng-checked="isCheckedCongTT(item.MaCongTT)" ng-disabled="register.IsVeThang || (item.MaCongTT=='PayLater' &amp;&amp; !canPayLatter)" style="cursor:pointer;height: 1.2em;width: 100%">
+											</td>
+											<td style="cursor:pointer;width: 12%" ng-click="setCongTT(item.MaCongTT)">
+												<img ng-show="!register.IsVeThang" ng-src="/images/logo-dvtt-NL.png" style="width: 100px" src="https://dsvn.vn/images/logo-dvtt-NL.png" class=""> 
+											</td>
+											<td ng-show="!register.IsVeThang" class="">
+												<div class="text-info" style="font-size: 12px">
+													<strong class="ng-binding">
+														Thanh toán trực tuyến qua cổng thanh toán Ngân Lượng
+													</strong>
+												</div>
+												<p ng-show="installmentMin===null" class="list-group-item-text ng-binding ng-hide" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content'|translate">
+													<div>
+														- Sử dụng thẻ Visa/Master/JCB, thẻ ATM nội địa, QRPAY bằng ứng dụng Mobile Banking các ngân hàng
+													</div>
+												</p>
+												<p ng-show="installmentMin!==null" class="list-group-item-text ng-binding" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content_installment'|translate">                             
+													<div class="text-danger">
+														- Đối với đơn hàng từ 3 triệu trở lên quý khách có thể chọn hình thức thanh toán trả góp.
+													</div>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<!-- 2 -->
+							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+									<tbody>
+										<tr>
+											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
+												<input type="radio" name="phuongThucThanhToan" ng-checked="isCheckedCongTT(item.MaCongTT)" ng-disabled="register.IsVeThang || (item.MaCongTT=='PayLater' &amp;&amp; !canPayLatter)" style="cursor:pointer;height: 1.2em;width: 100%">
+											</td>
+											<td style="cursor:pointer;width: 12%" ng-click="setCongTT(item.MaCongTT)">
+												<img ng-show="!register.IsVeThang" ng-src="/images/logo-dvtt-SML.png" style="width: 100px" src="https://dsvn.vn/images/logo-dvtt-SML.png" class=""> 
+											</td>
+											<td ng-show="register.IsVeThang" class="ng-hide">
+												<div class="text-info" style="font-size: 12px"></div>
+												<p class="list-group-item-text ng-binding" style="font-size: 12px" ng-bind-html="'PBuyTicket_TraSauVeThang_content'|translate"></p>
+											</td>
+											<td ng-show="!register.IsVeThang" class="">
+												<div class="text-info" style="font-size: 12px">
+													<strong class="ng-binding">Thanh toán trực tuyến qua cổng thanh toán Napas</strong>
+												</div>
+												<p ng-show="installmentMin===null" class="list-group-item-text ng-binding ng-hide" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content'|translate">
+													<div>
+														-Bằng thẻ nội địa, thẻ quốc tế qua cổng của công ty cổ phần thanh toán quốc gia Việt Nam - Napas
+													</div>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- 3 -->
+							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+									<tbody>
+										<tr>
+											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
+												<input type="radio" name="phuongThucThanhToan" ng-checked="isCheckedCongTT(item.MaCongTT)" ng-disabled="register.IsVeThang || (item.MaCongTT=='PayLater' &amp;&amp; !canPayLatter)" style="cursor:pointer;height: 1.2em;width: 100%">
+											</td>
+											<td style="cursor:pointer;width: 12%" ng-click="setCongTT(item.MaCongTT)">
+												<img ng-show="!register.IsVeThang" ng-src="/images/logo-dvtt-SML.png" style="width: 100px" src="https://dsvn.vn/images/logo-dvtt-VNP.png" class=""> 
+											</td>
+											<td ng-show="register.IsVeThang" class="ng-hide">
+												<div class="text-info" style="font-size: 12px"></div>
+												<p class="list-group-item-text ng-binding" style="font-size: 12px" ng-bind-html="'PBuyTicket_TraSauVeThang_content'|translate"></p>
+											</td>
+											<td ng-show="!register.IsVeThang" class="">
+												<div class="text-info" style="font-size: 12px">
+													<strong class="ng-binding">Thanh toán trực tuyến qua cổng thanh toán VNPay</strong>
+												</div>
+												<p ng-show="installmentMin===null" class="list-group-item-text ng-binding ng-hide" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content'|translate">
+													<div>
+														- Thẻ nội địa, Thẻ quốc tế, QR PAY trên ứng dụng Mobile Banking của các ngân hàng (quét mã VNPAY-QR để thanh toán)
+													</div>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- 4 -->
+							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+									<tbody>
+										<tr>
+											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
+												<input type="radio" name="phuongThucThanhToan" ng-checked="isCheckedCongTT(item.MaCongTT)" ng-disabled="register.IsVeThang || (item.MaCongTT=='PayLater' &amp;&amp; !canPayLatter)" style="cursor:pointer;height: 1.2em;width: 100%">
+											</td>
+											<td style="cursor:pointer;width: 12%" ng-click="setCongTT(item.MaCongTT)">
+												<img ng-show="!register.IsVeThang" ng-src="/images/logo-dvtt-SML.png" style="width: 100px" src="https://dsvn.vn/images/logo-dvtt-PAYOO.png" class=""> 
+											</td>
+											<td ng-show="register.IsVeThang" class="ng-hide">
+												<div class="text-info" style="font-size: 12px"></div>
+												<p class="list-group-item-text ng-binding" style="font-size: 12px" ng-bind-html="'PBuyTicket_TraSauVeThang_content'|translate"></p>
+											</td>
+											<td ng-show="!register.IsVeThang" class="">
+												<div class="text-info" style="font-size: 12px">
+													<strong class="ng-binding">Thanh toán trực tuyến qua cổng thanh toán Payoo</strong>
+												</div>
+												<p ng-show="installmentMin===null" class="list-group-item-text ng-binding ng-hide" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content'|translate">
+													<div>
+														- Ví điện tử, thẻ nội địa, thẻ quốc tế qua cổng thanh toán Payoo
+													</div>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- 5 -->
+							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+									<tbody>
+										<tr>
+											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
+												<input type="radio" name="phuongThucThanhToan" ng-checked="isCheckedCongTT(item.MaCongTT)" ng-disabled="register.IsVeThang || (item.MaCongTT=='PayLater' &amp;&amp; !canPayLatter)" style="cursor:pointer;height: 1.2em;width: 100%">
+											</td>
+											<td style="cursor:pointer;width: 12%" ng-click="setCongTT(item.MaCongTT)">
+												<img ng-show="!register.IsVeThang" ng-src="/images/logo-dvtt-SML.png" style="width: 100px" src="https://dsvn.vn/images/logo-dvtt-MOM.png" class=""> 
+											</td>
+											<td ng-show="register.IsVeThang" class="ng-hide">
+												<div class="text-info" style="font-size: 12px"></div>
+												<p class="list-group-item-text ng-binding" style="font-size: 12px" ng-bind-html="'PBuyTicket_TraSauVeThang_content'|translate"></p>
+											</td>
+											<td ng-show="!register.IsVeThang" class="">
+												<div class="text-info" style="font-size: 12px">
+													<strong class="ng-binding">Thanh toán trực tuyến qua ví điện tử MoMo</strong>
+												</div>
+												<p ng-show="installmentMin===null" class="list-group-item-text ng-binding ng-hide" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content'|translate">
+													<div>
+														- Thanh toán bằng hình thức Quét Mã QR sử dụng ví điện tử MoMo
+													</div>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- 6 -->
+							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
+								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+									<tbody>
+										<tr>
+											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
+												<input type="radio" name="phuongThucThanhToan" ng-checked="isCheckedCongTT(item.MaCongTT)" ng-disabled="register.IsVeThang || (item.MaCongTT=='PayLater' &amp;&amp; !canPayLatter)" style="cursor:pointer;height: 1.2em;width: 100%">
+											</td>
+											<td style="cursor:pointer;width: 12%" ng-click="setCongTT(item.MaCongTT)">
+												<img ng-show="!register.IsVeThang" ng-src="/images/logo-dvtt-SML.png" style="width: 100px" src="https://dsvn.vn/images/logo-dvtt-PayLater.png" class=""> 
+											</td>
+											<td ng-show="register.IsVeThang" class="ng-hide">
+												<div class="text-info" style="font-size: 12px"></div>
+												<p class="list-group-item-text ng-binding" style="font-size: 12px" ng-bind-html="'PBuyTicket_TraSauVeThang_content'|translate"></p>
+											</td>
+											<td ng-show="!register.IsVeThang" class="">
+												<div class="text-info" style="font-size: 12px">
+													<strong class="ng-binding">Thanh toán trả sau bằng tiền mặt, internet banking tại các điểm giao dịch:</strong>
+												</div>
+												<p ng-show="installmentMin===null" class="list-group-item-text ng-binding ng-hide" style="font-size: 12px" ng-bind-html="'PBuyTicket_'+item.MaCongTT+'_content'|translate">
+													<div>
+														- Tại các nhà ga, các điểm bưu cục VNPost, ngân hàng VIB, Payoo, Internet Banking
+													</div>
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'et-error-block': notAgreementError}">
+							<!--<div ng-show="notAgreementError" class="ng-hide">
+								<span class="et-error-label ng-binding">
+									Bạn chưa đồng ý với những quy định mua vé trực tuyến.
+								</span>
+							</div>-->
+							<div>
+								<input type="checkbox" ng-model="agreement" class="ng-valid ng-dirty"> 
+								<span ng-bind-html="'PBuyTicket_xacNhanDongYMuaVeOnline'|translate" class="ng-binding">
+									Tôi đã đọc kỹ và đồng ý tuân thủ tất cả các quy định mua vé trực tuyến các chương trình khuyến mại của Tổng công ty đường sắt Việt Nam và chịu trách nhiệm về tính xác thực của các thông tin trên.
+								</span>
+							</div>
+						</div>
+
+
+						<div class="et-col-md-12 hidden-print text-center">
+							<div class="alert alert-info" style="margin-top: 15px; font-size: 16px;">
+								<strong>Chú ý:</strong> Xem quy định trả vé, đổi vé (Áp dụng với các tàu chạy từ ngày 01/4/2023 đến hết ngày 30/8/2023)
+							</div>
+						</div>
+
+						<div class="download-app mt-2">
+							<div class="container bg-white text-center border-top p-4 border-primary ">
+								<h5 class="main-color-text mb-3" style="margin-top: 17px;">Tải ứng dụng</h5>
+								<a href="#"><img class="me-2" src="/HomePage/images/playstore.png" alt="playstore"
+										width="15%"></a>
+								<a href="#"><img src="/HomePage/images/appstore.png" alt="appstore" width="15%"></a>
+								<!-- <a href="#"><img class="me-2" src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/346106358_193278496982944_2021392920144749953_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_ohc=QNSLXzi-JigAX9o-exe&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdSL_OTkKkivyVA9G51kkI84Pa7nxzSjyFLWniK51ohcFA&oe=64866CEB" alt="playstore" width="15%"></a>
+								<a href="#"><img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346103565_765134348499818_4747672716900201717_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=jz9nL_8O7G4AX8qSPDR&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdQlF9_cED2pThY-r8ZLUZHLum_HdMmyT0PVDsyxvJCmPQ&oe=64867751" alt="appstore" width="15%"></a> -->
+							</div>
+						</div>
+
+						<div class="container1 px-0">
+							<ul class="nav justify-content-center main-color-bg py-2 ">
+				
+								<div class="w-75 text-center">
+									<li class=" nav-item">
+										<a class="nav-link " aria-current="page" href="#">Tìm vé</a>
+									</li>
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Thông tin đặt chỗ</a>
+									</li>
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Giờ tàu - Giá vé</a>
+									</li>
+									<li class=" nav-item">
+										<!-- <a class="nav-link disabled">Disabled</a> -->
+										<a class="nav-link " href="#">Hướng dẫn</a>
+									</li>
+				
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Liên hệ</a>
+									</li>
+								</div>
+								<div class="w-75 text-center">
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Chính sách mua hàng</a>
+									</li>
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Chính sách thanh toán</a>
+									</li>
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Chính sách hoàn trả</a>
+									</li>
+									<li class=" nav-item">
+										<a class="nav-link" href="#">Chính sách bảo mật</a>
+									</li>
+								</div>
+							</ul>
+				
+							<div class="about bg-white d-flex py-5">
+								<div class="w-75 m-auto text-center">
+									<h5>Nhóm 28, Phát triển website bán vé tàu</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-2 l-2 text-center my-custom-class2">
+				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/mua-ve-tau-online.png" alt="mua ve tau">-->
+				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/346105117_916327686330998_2380265099123286209_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=Yr8vdDqDhxAAX-4gzKX&_nc_ht=scontent.fsgn3-1.fna&oh=03_AdSRZXq6oJyd0zCRCQo5nB17HYUqgGhKn58SBWQjKz0HXQ&oe=648688F6" alt="mua ve tau">
+			</div>
+		</div>
+
+	</main>
+
+</body>
+
+</html>

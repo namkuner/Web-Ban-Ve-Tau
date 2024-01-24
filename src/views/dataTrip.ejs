@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Info</title>
+</head>
+
+<body>
+    <h1>Trip Info
+        <a class="add-trip" href="/nhapTrip">Thêm chuyến mới</a>
+    </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Điểm xuất phát</th>
+                <th scope="col">Điểm đến</th>
+                <th scope="col">Thời gian đi</th>
+                <th scope="col">Thời gian đến</th>
+                <th scope="col">Giá vé</th>
+                <th scope="col">Tên tàu</th>
+                <th scope="col">Số toa</th>
+                <th scope="col">Số ghế</th>
+                <th scope="col">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i=0; i < trip.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= trip[i].diemXuatPhat %>
+                    </td>
+                    <td>
+                        <%= trip[i].diemDen %>
+                    </td>
+                    <td>
+                        <%= (new Date(trip[i].thoiGianDi)).toLocaleString('vi-VN', { day: '2-digit' , month: '2-digit' ,
+                            year: 'numeric' , hour: '2-digit' , minute: '2-digit' , second: '2-digit' }) %>
+                    </td>
+                    <td>
+                        <%= (new Date(trip[i].thoiGianDen)).toLocaleString('vi-VN', { day: '2-digit' , month: '2-digit'
+                            , year: 'numeric' , hour: '2-digit' , minute: '2-digit' , second: '2-digit' }) %>
+                    </td>
+                    <td>
+                        <%= trip[i].giaVe %>
+                    </td>
+                    <td>
+                        <%= trip[i].tenTau %>
+                    </td>
+                    <td>
+                        <%= trip[i].soToa %>
+                    </td>
+                    <td>
+                        <%= trip[i].soGhe %>
+                    </td>
+
+                    <td>
+                        <div class="button-container">
+                            <a href="/vetau?id=<%=trip[i].id %>" class="edit-button" type="button">Xem</a>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table {
+            position: relative;
+            top: 100px;
+
+        }
+
+        table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+            margin: auto;
+        }
+
+        .edit-button,
+        .delete-button {
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .edit-button {
+            background-color: #6ab04c;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+        }
+
+        .edit-button:hover,
+        .delete-button:hover {
+            opacity: 0.8;
+        }
+
+        h1 {
+            position: fixed;
+            width: 100%;
+            z-index: 1;
+            color: #007bff;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        .add-trip {
+            position: absolute;
+            right: 50px;
+            padding: 3px 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+        }
+    </style>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kết quả</title>
+</head>
+<body>
+  <h1>Kết quả</h1>
+  <ul>
+    <% Object.keys(sortedResult).forEach(function(diemXuatPhat) { %>
+      <li><%= diemXuatPhat %>: <%= sortedResult[diemXuatPhat] %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
