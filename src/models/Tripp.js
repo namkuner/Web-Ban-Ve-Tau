@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       // For example, you might want to associate Tripp with Train
       Tripp.belongsTo(models.Train, {
         foreignKey: 'MaTau',
-        targetKey: 'Matau',
+        targetKey: 'MaTau',
         as: 'Train'
       });
     }
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {
         model: 'Train', // Assuming 'Train' is the name of the Train model
-        key: 'Matau'
+        key: 'MaTau'
       }
     }
   }, {

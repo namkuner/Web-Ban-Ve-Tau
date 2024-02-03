@@ -8,14 +8,14 @@ module.exports = (sequelize, DataTypes) => {
       // For example, you might want to associate Train with Toa
       Train.hasMany(models.Toa, {
         foreignKey: 'MaTau',
-        sourceKey: 'Matau',
-        as: 'Toas'
+        sourceKey: 'MaTau',
+        as: 'Toa'
       });
     }
   };
 
   Train.init({
-    Matau: {
+    MaTau: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true

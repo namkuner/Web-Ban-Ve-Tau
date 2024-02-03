@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Đặt vé</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+
+<body>
+<!--------------------CSS--------------------->
+    <style>           
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: #d6d6d6;
+}
+
+.nav-item {
+	display: inline-block;
+}
+
+.nav-link {
+	color: #fff;
+}
+
+:root {
+	--maincolor: #014a9e;
+}
+
+.main-color-text{
+	color: var(--maincolor);
+}
+
+.main-color-bg{
+	background-color: var(--maincolor);
+}
+
+header {
+    /*position: fixed;*/ /*làm cho thanh header trở nên trong suốt cà cố định thanh header*/
+    width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+    background-color: #2727277d;
+}
+
+header li a {
+	text-transform: uppercase;
+	font-size: 18px !important;
+	color: #fff !important;
+	font-weight: 600 !important;
+}
+
+header li:hover a {
+	color: var(--maincolor) !important;
+}
+
+main {
+    overflow: hidden;
+}
+
+.some-regulations .container{
+	background-color: #fff;
+	max-width: 75%;
+}
+.some-regulations .container .title{
+	background-color: var(--maincolor);
+	color: #fff;
+}
+.some-regulations .container .titlegatau{
+	background-color: var(--maincolor);
+	color: #fff;
+	margin-top: 20px;
+    width: 815px;
+    margin-left: 170px;
+}
+
+.some-regulations .container1{
+	background-color: #fff;
+	margin-left: 7px;
+	margin-top: 50%;
+	width: 1140px;
+}
+
+.my-custom-class1 {
+  position: fixed;
+  top: 130px;
+  left: -3px;
+}
+.my-custom-class2 {
+  position: fixed;
+  right: -3px;
+  bottom: 0;
+  top: 130px;
+}
+
+.inf {
+	margin-left: 20px;
+}
+/**************************************NEW***************************************/
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+.et-col-md-1, .et-col-md-10, .et-col-md-11, .et-col-md-12, .et-col-md-2, .et-col-md-3, .et-col-md-4, .et-col-md-5, .et-col-md-6, .et-col-md-7, .et-col-md-8, .et-col-md-9 {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.et-col-md-12 {
+    width: 100%;
+}
+
+.table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+}
+
+div {
+    display: block;
+}
+
+body {
+    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+body {
+    background-color: #f0f1f3;
+    /*font-family: Verdana!important;*/
+}
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}*/
+/**/
+
+element.style {
+    padding: 6px 0px 0px 0px;
+}
+.et-car-icon img {
+    width: 100%;
+    height: 130%;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+img {
+    border: 0;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.et-car-icon-avaiable {
+    background-color: #80b5d6;
+}
+.et-car-icon-selected {
+    background-color: #a6b727;
+}
+.et-car-icon-sold-out {
+    background-color: #df5327;
+}
+.et-car-icon {
+    margin: 0 1px 10px;
+    border-radius: 15%;
+    height: 18px;
+    overflow: visible;
+}
+.et-car-icon img {
+    width: 100%;
+    height: 130%;
+}
+.et-col-md-3 {
+  display: flex;
+  align-items: center;
+}
+.et-col-16 {
+    width: 16%;
+    float: left;
+    min-height: 1px;
+}
+.et-sit-side {
+    height: 30px;/*100%*/
+    background-color: #948a54;
+    border-radius: 2px;
+	padding-top: 7px;
+}
+.et-sit-sur {
+    height: 30px;/*100%*/
+    border-radius: 5px;
+    border-top: 1px solid #888;
+    border-right: 1px solid #888;
+    border-bottom: 1px solid #888;
+    line-height: inherit;
+    font-size: 1em;
+}
+.text-center {
+    text-align: center;
+}
+.et-col-md-3 {
+    width: 25%;
+}
+.et-bed-left {
+    border-left: 3px solid #385d8a;
+    height: 37px;
+}
+.et-bed-left .et-bed-outer {
+    padding-right: 2px;
+    padding-top: 3px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+.et-bed-illu {
+    border-bottom: 3px solid #385d8a;
+    border-left: 3px solid #385d8a;
+    border-right: 3px solid #385d8a;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+	height: 10px;
+    width: 30px;
+    line-height: 30px;
+}
+.et-bed {
+    height: 100%;
+    margin: 0 4px -8px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    line-height: 25px;
+}
+.text-center {
+    text-align: center;
+}
+.et-sit-longer {
+    background-color: #3578bd;
+    color: #fff;
+}
+.et-sit-blocked {
+    background-color: #df5327;
+    color: #fff;
+}
+h5 {
+  font-size: 20px;
+}
+.py-5 {
+    padding-bottom: 0!important;
+}
+.col-md-12 {
+    flex: 0 0 auto;
+    width: 800px;
+	margin-left: -50px;
+}
+.et-col-md-4 {
+	top: 10px;
+}
+/*Bảng dữ liệu tàu thoả*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    margin: auto;
+}
+
+.edit-button,
+.delete-button {
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-button {
+    background-color: #6ab04c;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    opacity: 0.8;
+}
+
+.et-page-header {
+    margin-bottom: 20px;
+}
+.wrapper {
+  width: 100%;
+  max-width: 960px; /* hoặc bất kỳ giá trị nào bạn muốn */
+  margin: 0 auto;
+}
+
+.left-column {
+  width: 80%; /* hoặc bất kỳ giá trị nào bạn muốn */
+  float: left;
+  left: -30px;
+}
+
+.right-column {
+  width: 20%; /* hoặc bất kỳ giá trị nào bạn muốn */
+  float: left;
+}
+/**/
+.et-widget {
+    border: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-top: 17px;
+	width: 240px;
+}
+/**/
+.et-main-label {
+    background: url(https://dsvn.vn/images/label_bg.png) right bottom no-repeat #0082c4;
+    padding: 5px 20px 5px 10px;
+    margin-left: -40px;
+    color: #fff;
+    font-family: Verdana;
+}
+/**/
+
+.et-train-block {
+  padding-left: 5px;
+  padding-right: 20px;
+  height: 140px;
+  cursor: pointer;
+  width: 140px;
+  display: inline-block;
+  margin-right: 25px; /* Thêm thuộc tính margin-right */
+}
+.et-train-base {
+    height: 0;
+    width: 0;
+    border-bottom: 62px solid #000;
+    border-left: 62px solid transparent;
+    border-right: 62px solid transparent;
+    position: absolute;
+    margin-top: 80px;
+    z-index: 1;
+    margin-left: -2px;
+}
+.et-train-head-selected {
+    background-color: #0091d4;
+}
+.et-train-head {
+    width: 132px;
+    height: 136px;
+    border-radius: 20px;
+    background-color: #999;
+    padding: 0 5px;
+    position: absolute;
+    z-index: 99;
+}
+.et-train-head-info {
+    height: 85px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 10px;
+    padding-left: -10px;
+    padding-right: 2px;
+    padding-top: 5px;
+}
+
+.et-train-lamp {
+    height: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    width: 100%;
+    margin: 0 auto;
+	margin-left: 44px;
+	margin-top: 4px;
+	margin-bottom: 1px;
+}
+
+.text-center {
+    text-align: center;
+}
+.et-train-lamp-bellow-left {
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: block;
+    margin-right: 15px;
+    margin-top: 4px;
+    float: right;
+}
+.et-train-lamp-bellow-right {
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    float: left;
+    display: block;
+    margin-left: 8px;
+    margin-top: 4px;
+}
+.et-train-block:hover .et-train-lamp,
+.et-train-block:hover .et-train-lamp-bellow-left,
+.et-train-block:hover .et-train-lamp-bellow-right {
+  background-color: #fec306;
+}
+
+.et-no-margin {
+    margin: 0 10px 0 6px!important;
+    width: 95%;
+}
+.et-train-head-selected {
+    background-color: #0091d4;
+}
+.et-train-base {
+  height: 0;
+  width: 0;
+  border-bottom: 62px solid #000;
+  border-left: 62px solid transparent;
+  border-right: 62px solid transparent;
+  position: absolute;
+  margin-top: 80px;
+  z-index: 1;
+  margin-left: -2px;
+  transform: translate(6px, 14px); /* Di chuyển sang phải 10px và xuống dưới 10px */
+}
+
+.et-train-base-2 {
+  height: 0;
+  width: 0;
+  border-bottom: 42px solid #fff;
+  border-left: 42px solid transparent;
+  border-right: 42px solid transparent;
+  position: absolute;
+  margin-top: 95px;
+  margin-left: 18px;
+  z-index: 2;
+  transform: translate(6px, 14px); /* Di chuyển sang phải 10px và xuống dưới 10px */
+}
+
+.et-train-base-3 {
+  height: 0;
+  width: 0;
+  border-bottom: 42px solid #000;
+  border-left: 42px solid transparent;
+  border-right: 42px solid transparent;
+  position: absolute;
+  margin-top: 90px;
+  margin-left: 18px;
+  z-index: 3;
+  transform: translate(6px, 14px); /* Di chuyển sang phải 10px và xuống dưới 10px */
+}
+
+.et-train-base-4 {
+  height: 0;
+  width: 0;
+  border-bottom: 32px solid #fff;
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
+  position: absolute;
+  margin-top: 95px;
+  margin-left: 28px;
+  z-index: 4;
+  transform: translate(6px, 14px); /* Di chuyển sang phải 10px và xuống dưới 10px */
+}
+
+.train-group {
+    white-space: nowrap;
+    width: 100%;
+    float: left;
+    margin-left: -30px;
+	display: flex;
+  	flex-wrap: wrap;
+}
+
+.et-no-margin {
+    margin: 0 10px 0 6px!important;
+    width: 95%;
+}
+.et-col-50 {
+    width: 50%;
+    float: left;
+    display: block;
+}
+.et-train-head-selected {
+    background-color: #0091d4;
+}
+
+.et-car-icon {
+    margin: 0 1px 10px;
+    border-radius: 15%;
+    height: 18px;
+    overflow: visible;
+}
+.et-car-icon img {
+    width: 100%;
+    height: 130%;
+}
+
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+#car-container .et-car-block {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 10px; /* Khoảng cách giữa các phần tử tàu */
+}
+/**/
+.trip-row {
+    display: flex;
+    align-items: center;
+}
+.et-car-block {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+}
+.et-car-icon img {
+    max-width: 50px;
+    height: auto;
+}
+.et-car-label {
+    font-size: 12px;
+}
+#trip-table {
+    border-collapse: collapse;
+    border: none;
+  }
+#trip-table td,
+#trip-table th {
+    border: none;
+	left: -15px;
+}
+.et-car-label {
+    position: relative;
+    top: 23px;
+    left: -18px;
+}
+.train-image {
+  width: auto; /* Đảm bảo ảnh không bị thu nhỏ */
+	left: -100px;
+}
+/**/
+.selected {
+  background-color: #a6b727; /* Thay đổi màu sắc tùy ý */
+}
+/**/
+#selected-car-name {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #317eac;
+    font-size: 18px;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 700px;
+}
+
+#search-button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#search-button:hover {
+  background-color: #0056b3;
+}
+.ticket-info {
+  margin-left: 170px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  width: 815px;
+  font-size: 16px;
+}
+
+
+
+    </style>
+<!-------------------------------------------->
+
+	<header>
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<!--<img src="http://127.0.0.1:5500/src/views/HomePage/images/trainlogo.png" alt="logo-train" width="70px" />-->
+						<img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/280068745_1908162402711465_8113313082114855897_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=d63DoD9VXSkAX--VfPO&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdTKF1dlnj07Tp-aUR8eFvU9yr6CYND0ru0im8sVnQT9HQ&oe=6483D505" alt="logo-train" width="70px"/>
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse d-inline-flex" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="  nav-item">
+								<a class="nav-link active" aria-current="page" href="/HomePage/ejs/main">Trang chủ</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Các quy định</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Thông tin lịch trình</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#">Quản lý đặt chỗ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page"
+								href="https://vr.com.vn/cam-nang-di-tau.html" target="_blank">Cẩm nang đi tàu</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+<!------>
+    
+    <main>
+		<div class="some-regulations">
+			<div class="col-2 l-2 text-center my-custom-class1">
+				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">-->
+				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/346104697_1569997260076324_3939682777754183455_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=olcx-YTmVwQAX8ERTCk&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdSYR9Wjzj0lDf6HhC2fmD9Q2OKdofwa0NmxS_5bKelWOQ&oe=64868227" alt="cac dich vu">
+			</div>
+
+			<div class="container  pt-5 px-0 pb-5">
+				<div class="grid">
+					<div class="row">
+
+
+                        <h5 class="titlegatau text-center mb-0 text-uppercase py-2">XEM THÔNG TIN VÉ:</h5>
+                        <div class="search-box">
+                            <input type="text" id="phone-number" placeholder="Nhập số điện thoại" style="margin-bottom: 26px;">
+                            <button id="search-button" onclick="searchTicket()" style="margin-bottom: 26px;">Tìm kiếm</button>
+                        </div>
+                        <div class="ticket-info">
+                            <p><strong>Họ tên:</strong> <span id="Hoten"></span></p>
+                            <p><strong>Số điện thoại:</strong> <span id="Phone"></span></p>
+                            <p><strong>Email:</strong> <span id="Email"></span></p>
+                            <p><strong>CCCD:</strong> <span id="CCCD"></span></p>
+                            <p><strong>Số vé:</strong> <span id="Sove"></span></p>
+                        </div>
+
+
+                        <table class="table" id="inforbooker" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 12%;">Họ và tên</th>
+                                    <th scope="col" style="width: 10%;">Số điện thoại</th>
+                                    <th scope="col" style="width: 28%;">Email</th>
+                                    <th scope="col" style="width: 10%;">CCCD</th>
+                                    <th scope="col" style="width: 5%;">Số vé</th>
+                                    <th scope="col" style="width: 10%;text-align: center;">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i < dataTable.length; i++) {
+                                    if(dataTable[i].Hoten !== null) { %>
+                                      <tr>
+                                          <td><%= dataTable[i].Hoten %></td>
+                                          <td><%= dataTable[i].Phone %></td>
+                                          <td><%= dataTable[i].Email %></td>
+                                          <td><%= dataTable[i].CCCD %></td>
+                                          <td><%= dataTable[i].Sove %></td>
+                                          <td><%= dataTable[i].Tongtien %></td>
+                                      </tr>
+                                  <% }
+                                } %>
+                            </tbody>
+                        </table>
+
+
+		<div class="wrapper">
+			<div class="left-column">
+						<div class="row" ng-show="tauDiKhuyenMaiInfos&amp;&amp;tauDiKhuyenMaiInfos.length>0">
+							<div class="col-md-12">
+								<h4 style="margin-top: 0px; font-size: 18px; margin-bottom: 13px; color: #317eac;" class="ng-binding">Khuyến mại cho chiều đi</h4>
+								<table class="table table-striped table-bordered table-hover">
+									<thead class="table-row-header">
+										<tr>
+											<th class="col-md-6 ng-binding" style="vertical-align: middle; width: 50%">Nội dung</th>
+											<th class="col-md-6 ng-binding" style="vertical-align: middle; width: 50%">Chi tiết</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- ngRepeat: item in tauDiKhuyenMaiInfos -->
+										<tr data-ng-repeat="item in tauDiKhuyenMaiInfos" class="ng-scope">
+											<td class="text-left ng-binding">
+												Thời gian áp dụng chương trình từ 21/02/23 đến 17/05/23. Giảm giá vé khứ hồi lượt về theo VB 1648/VTSG-KD&amp;CSKH ngày 21/12/2022. Theo mục III, điểm 2
+											</td>
+											<td class="text-left ng-binding">Giảm 10% khi mua vé khứ hồi lượt về</td>
+										</tr>
+										<!-- end ngRepeat: item in tauDiKhuyenMaiInfos -->
+										<tr data-ng-repeat="item in tauDiKhuyenMaiInfos" class="ng-scope">
+											<td class="text-left ng-binding">
+												Thời gian áp dụng chương trình từ 16/02/23 đến 27/12/23. Giảm giá vé khứ hồi chiều về theo CV 84 thấp điểm sau Tết
+											</td>
+											<td class="text-left ng-binding">Giảm 10% giá vé khi mua vé khứ hồi lượt về</td>
+										</tr>
+										<!-- end ngRepeat: item in tauDiKhuyenMaiInfos -->
+										<tr data-ng-repeat="item in tauDiKhuyenMaiInfos" class="ng-scope">
+											<td class="text-left ng-binding">
+												Thời gian áp dụng chương trình từ 16/02/23 đến 27/12/23. Giảm giá vé khứ hồi chiều về theo CV 84 thấp điểm sau Tết
+											</td>
+											<td class="text-left ng-binding">Giảm 10% giá vé khi mua vé khứ hồi lượt về</td>
+										</tr>
+										<!-- end ngRepeat: item in tauDiKhuyenMaiInfos -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="et-col-md-12 table-bordered list-ticket-deskhop" style="margin-top: 20px; padding: 5px ; width: 100%; left: -50px;"><!--width: 755px-->
+							<div class="et-col-md-12" style="margin-bottom: 15px; left: -40px;">
+								<div class="et-col-md-4 et-no-padding" style="margin-left: -8px;">
+									<div class="et-col-md-12">
+										<div class="et-col-md-12" style="padding:0px">
+											<div class="et-col-md-12" style="padding:6px 0px 0px 67px">
+												<div class="et-car-block" style="height:36px; display: inline-block;">
+													<div class="et-car-icon et-car-icon-avaiable">
+														<!--<img src="/HomePage/images/trainCar2.png">-->
+														<img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346106970_1317239385494022_3703447187004011364_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=b8aO2KMS1kQAX-OrVe0&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdRMg9j6crxbF0fwYzsDVld1ZhTUKhC2MMGf8SmXwq98bw&oe=64865B7E">
+													</div>
+												</div>
+												<span style="padding-left: 7px; display: inline-block; font-weight: 600;" class="ng-binding">Toa còn vé</span>
+											</div>
+										</div>
+										<div class="et-col-md-12 text-center et-no-padding ng-binding" style="margin-top: -20px; display:none; font-weight: 600;">Toa còn vé</div>
+									</div>
+								</div>
+								<div class="et-col-md-4 et-no-padding">
+									<div class="et-col-md-12" style="display: flex;">
+										<div class="et-col-md-6" style="padding-right: 60px; padding-left: -25px;">
+											<div class="et-col-md-12" style="padding:6px 0px 0px 0px;">
+												<div class="et-car-block" style="height:36px; display: inline-block;">
+													<div class="et-car-icon et-car-icon-selected">
+														<img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346106970_1317239385494022_3703447187004011364_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=b8aO2KMS1kQAX-OrVe0&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdRMg9j6crxbF0fwYzsDVld1ZhTUKhC2MMGf8SmXwq98bw&oe=64865B7E">
+													</div>
+												</div>
+												<span style="padding-left:6px; display: inline-block; font-weight: 600;" class="ng-binding">Toa đang chọn</span>
+											</div>
+										</div>
+										<div class="et-col-md-6" style="padding:0px">
+											<div class="et-col-md-12" style="padding:6px 0px 0px 0px;">
+												<div class="et-car-block" style="height:36px; display: inline-block;">
+													<div class="et-car-icon et-car-icon-sold-out">
+														<img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346106970_1317239385494022_3703447187004011364_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=b8aO2KMS1kQAX-OrVe0&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdRMg9j6crxbF0fwYzsDVld1ZhTUKhC2MMGf8SmXwq98bw&oe=64865B7E">
+													</div>
+												</div>
+												<span style="padding-left:6px; display: inline-block; font-weight: 600;" class="ng-binding">Toa hết vé</span>
+											</div>
+										</div>
+									</div>
+									<div class="et-col-md-12 et-no-padding text-center ng-binding" style="margin-top: -20px; display:none; font-weight: 600;">Toa đang chọn</div>
+								</div>
+							</div>
+						
+<!---------------------------------------------------------------------------------------------------------->
+							<div class="et-col-md-12 table-bordered"></div>
+							<div class="et-col-md-12 et-legend" style="padding:0px; margin-bottom: 27px;"><!--new 15/5 left-->
+								<div class="et-col-md-4" style="padding-left: 20px">
+									<div class="et-col-md-4" style="padding: 0px">
+										<div class="row">
+											<div class="et-car-nm-64-sit et-col-md-6" style="padding-right:0px; width:50%; margin-right: 8px;"><!--mới thêm width:30%-->
+												<div class="et-col-16 et-sit-side"></div>
+												<div class="et-col-64 et-sit-sur-outer">
+													<div class="et-sit-sur text-center"></div>
+												</div>
+											</div>
+											<div class="et-bed-left et-col-md-3 et-no-padding" style="width:30%">
+												<div class="et-bed-outer">
+													<div class="et-bed text-center"></div>
+													<div class="et-bed-illu"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="et-col-md-8" style="padding: 0px">
+										<div class="et-legend-label ng-binding" style="margin-left:30px; margin-top:15px; margin-right: 20px; font-weight: 600;">Chỗ trống</div> 
+									</div>
+								</div>
+								<div class="et-col-md-4" style="padding: 0px">
+									<div class="et-col-md-4" style="padding: 0px">
+										<div class="row">
+											<div class="et-car-nm-64-sit et-col-md-6" style="padding-right:0px; width:50%; margin-right: 8px;">
+												<div class="et-col-16 et-sit-side"></div>
+												<div class="et-col-64 et-sit-sur-outer">
+													<div class="et-sit-sur text-center et-sit-longer"></div>
+												</div>
+											</div>
+											<div class="et-bed-left et-col-md-3 et-no-padding" style="width:30%">
+												<div class="et-bed-outer">
+													<div class="et-bed text-center et-sit-longer"></div>
+													<div class="et-bed-illu"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="et-col-md-8" style="padding: 0px">
+										<div class="et-legend-label ng-binding" style="margin-left:30px; margin-top:15px; margin-right: 20px; font-weight: 600;">Chỗ chặng dài hơn</div>
+									</div>
+								</div>
+								<div class="et-col-md-4" style="padding: 0px">
+									<div class="et-col-md-4" style="padding: 0px">
+										<div class="row">
+											<div class="et-car-nm-64-sit et-col-md-6" style="padding-right:0px; width:50%; margin-right: 8px;">
+												<div class="et-col-16 et-sit-side"></div>
+												<div class="et-col-64 et-sit-sur-outer">
+													<div class="et-sit-sur text-center et-sit-blocked"></div>
+												</div>
+											</div>
+											<div class="et-bed-left et-col-md-3 et-no-padding" style="width:30%">
+												<div class="et-bed-outer">
+													<div class="et-bed text-center et-sit-blocked"></div>
+													<div class="et-bed-illu"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="et-col-md-8" style="padding: 0px">
+										<div class="et-legend-label ng-binding" style="margin-left:30px; margin-top:15px; font-weight: 600;">Chỗ đã bán, không bán</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	</div>
+
+	<div class="right-column" style="margin-top: 16px;">
+	<div et-social="" class="ng-isolate-scope" style="margin-left: 45px">
+		<div class="col-md-12 et-widget" style="padding-bottom: 8px;">
+			<div class="text-center text-info" style="margin-top: 5px; margin-bottom: 5px;" ng-show="!doneCount">
+				<strong style="font-size:13px;" class="ng-binding"><!--Kết nối với chúng tôi-->Kết nối với chúng tôi</strong>
+			</div>
+			<div class="text-center">
+				<a href="https://zalo.me/1400098068669393989" target="_blank"><img src="https://dsvn.vn/images/zalo.jpg" style="width:32px; height:32px" ;=""></a>
+				<a href="https://www.facebook.com/vetauduongsat" target="_blank"><img src="https://dsvn.vn/images/facebook.png" style="width:32px; height:32px" ;=""></a>
+				<a href="https://www.youtube.com/@vetauduongsat/" target="_blank"><img src="https://dsvn.vn/images/icon-youtube.png" style="width:32px; height:32px" ;=""></a>
+				<a href="http://hoivien.dsvn.vn" target="_blank"><img src="https://dsvn.vn/images/Member.png" style="width:32px; height:32px" ;=""></a>
+			</div>
+			<div class="text-center">
+				<a href="http://vr.com.vn" target="_blank"><img src="https://dsvn.vn/images/banner-vr.com.vn.png" style="width:194px;height:80px;margin-top:6px;border:solid 1px #929292;"></a>
+			</div>
+		</div>
+		<div class="col-md-12 et-widget" style="padding-bottom: 5px;">
+			<div class="text-center text-info" style="margin-top: 5px; margin-bottom: 5px;" ng-show="!doneCount">
+				<strong style="font-size:13px;" class="ng-binding"><!--Kết nối với Cty VTHN-->Kết nối với Cty VTHN</strong>
+			</div>
+			<div class="text-center">
+				<a href="https://www.facebook.com/congtyvantaiduongsathanoi" target="_blank"><img src="https://dsvn.vn/images/icon-ksg-facebook.png" style="width:32px; height:32px" ;=""></a>
+				&nbsp; 
+				<a href="http://www.vantaiduongsathanoi.vn" target="_blank"><img src="https://dsvn.vn/images/icon-ksg-website.png" style="width:32px; height:32px" ;=""></a>
+				&nbsp;
+				<a href="tel:19000109"><img src="https://dsvn.vn/images/phone-hn.png" style="width:100px; height:32px" ;=""></a>
+			</div>
+		</div>
+		<div class="col-md-12 et-widget" style="padding-bottom: 5px;">
+			<div class="text-center text-info" style="margin-top: 5px; margin-bottom: 5px;" ng-show="!doneCount">
+				<strong style="font-size:13px;" class="ng-binding"><!--Kết nối với Cty VTHN-->Kết nối với Cty VTHN</strong>
+			</div>
+			<div class="text-center">
+				<a href="https://www.facebook.com/congtyvantaiduongsathanoi" target="_blank"><img src="https://dsvn.vn/images/icon-ksg-facebook.png" style="width:32px; height:32px" ;=""></a>
+				&nbsp; 
+				<a href="http://www.vantaiduongsathanoi.vn" target="_blank"><img src="https://dsvn.vn/images/icon-ksg-website.png" style="width:32px; height:32px" ;=""></a>
+				&nbsp;
+				<a href="tel:19000109"><img src="https://dsvn.vn/images/phone-hn.png" style="width:100px; height:32px" ;=""></a>
+			</div>
+		</div>
+		<div class="col-md-12 et-widget" ng-show="!doneCount" style="padding-bottom: 4px;">
+			<div class="text-center text-info" style="margin-top: 5px; margin-bottom: 5px;">
+				<strong>Tra cứu hóa đơn</strong>
+			</div>
+			<div class="text-justify text-primary" style="margin-top: 5px; margin-bottom: 5px;width: 185px;margin-left: 29px;text-align: center;color: #2fa4e7;font-weight: 600;">
+				Để tra cứu hóa đơn điện tử, quý khách hàng vui lòng truy cập vào trang chủ.
+			</div>
+		</div>
+	</div>
+		
+	</div>
+
+</div>
+
+<div class="et-col-md-12 hidden-print text-center">
+	<div class="alert alert-info" style="margin-top: 15px; font-size: 16px;">
+		<strong>Chú ý:</strong> Xem quy định trả vé, đổi vé (Áp dụng với các tàu chạy từ ngày 01/4/2023 đến hết ngày 30/8/2023)
+	</div>
+</div>
+
+<div class="download-app mt-2">
+	<div class="container bg-white text-center border-top p-4 border-primary ">
+		<h5 class="main-color-text mb-3" style="margin-top: 17px;">Tải ứng dụng</h5>
+		<!--<a href="#"><img class="me-2" src="/HomePage/images/playstore.png" alt="playstore"
+				width="15%"></a>
+		<a href="#"><img src="/HomePage/images/appstore.png" alt="appstore" width="15%"></a>-->
+		<a href="#"><img class="me-2" src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/346106358_193278496982944_2021392920144749953_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_ohc=QNSLXzi-JigAX9o-exe&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdSL_OTkKkivyVA9G51kkI84Pa7nxzSjyFLWniK51ohcFA&oe=64866CEB" alt="playstore" width="15%"></a>
+		<a href="#"><img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346103565_765134348499818_4747672716900201717_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=jz9nL_8O7G4AX8qSPDR&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdQlF9_cED2pThY-r8ZLUZHLum_HdMmyT0PVDsyxvJCmPQ&oe=64867751" alt="appstore" width="15%"></a>
+	</div>
+</div>
+
+<div class="container1 px-0" style="margin-top: 10px;">
+	<ul class="nav justify-content-center main-color-bg py-2 ">
+
+		<div class="w-75 text-center">
+			<li class=" nav-item">
+				<a class="nav-link " aria-current="page" href="#">Tìm vé</a>
+			</li>
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Thông tin đặt chỗ</a>
+			</li>
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Giờ tàu - Giá vé</a>
+			</li>
+			<li class=" nav-item">
+				<!-- <a class="nav-link disabled">Disabled</a> -->
+				<a class="nav-link " href="#">Hướng dẫn</a>
+			</li>
+
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Liên hệ</a>
+			</li>
+		</div>
+		<div class="w-75 text-center">
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Chính sách mua hàng</a>
+			</li>
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Chính sách thanh toán</a>
+			</li>
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Chính sách hoàn trả</a>
+			</li>
+			<li class=" nav-item">
+				<a class="nav-link" href="#">Chính sách bảo mật</a>
+			</li>
+		</div>
+	</ul>
+
+	<div class="about bg-white d-flex py-5">
+		<div class="w-75 m-auto text-center">
+			<h5>Nhóm 28, Phát triển website bán vé tàu</h5>
+		</div>
+	</div>
+</div>
+</div>				
+				</div>
+			</div>
+			<div class="col-2 l-2 text-center my-custom-class2">
+				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/mua-ve-tau-online.png" alt="mua ve tau">-->
+				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/346105117_916327686330998_2380265099123286209_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=Yr8vdDqDhxAAX-4gzKX&_nc_ht=scontent.fsgn3-1.fna&oh=03_AdSRZXq6oJyd0zCRCQo5nB17HYUqgGhKn58SBWQjKz0HXQ&oe=648688F6" alt="mua ve tau">
+			</div>
+		</div>
+
+	</main>
+
+</body>
+<script>
+    function searchTicket() {
+  var phoneNumber = document.getElementById('phone-number').value;
+
+  // Ẩn bảng dữ liệu ban đầu
+  document.getElementById('inforbooker').style.display = 'none';
+
+  // Duyệt qua từng hàng trong bảng
+  var rows = document.querySelectorAll('#inforbooker tbody tr');
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i];
+    var Phone = row.querySelector('td:nth-child(2)').innerText;
+
+    // So sánh số điện thoại
+    if (Phone === phoneNumber) {
+      // Nếu trùng khớp, lấy thông tin và hiển thị
+      var Hoten = row.querySelector('td:nth-child(1)').innerText;
+      var Email = row.querySelector('td:nth-child(3)').innerText;
+      var CCCD = row.querySelector('td:nth-child(4)').innerText;
+      var Sove = row.querySelector('td:nth-child(5)').innerText;
+
+      // Hiển thị thông tin
+      document.getElementById('Hoten').textContent = Hoten;
+      document.getElementById('Phone').textContent = Phone;
+      document.getElementById('Email').textContent = Email;
+      document.getElementById('CCCD').textContent = CCCD;
+      document.getElementById('Sove').textContent = Sove;
+
+      // Hiển thị kết quả và dừng vòng lặp sau khi tìm thấy
+      document.getElementById('ticket-info').style.display = 'block';
+      break;
+    }
+  }
+}
+
+
+    </script>
+
+</html>

@@ -71,6 +71,7 @@ let initWebRouters = (app) => {
     router.get('/AdminPage/ejs/admin', homeControllers.insertUser1);
     router.get('/AdminPage/ejs/danhsachve', homeControllers.insertUser2);
     router.get('/AdminPage/ejs/thongtindat', homeControllers.insertUser3);
+    router.get('/AdminPage/ejs/quanlitau', homeControllers.quanlitau);
     router.get('/AdminPage/ejs/quanlilichtrinh', homeControllers.insertUser4);
 
     //Trang chủ

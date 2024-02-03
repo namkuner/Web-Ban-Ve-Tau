@@ -357,7 +357,7 @@ button:hover {
             <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
             <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
             <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlilichtrinh">Quản lí lịch trình</a></li>
-            <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Quản lí tàu</a></li>
+            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
             <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
         </div>
     </section>
@@ -394,9 +394,9 @@ button:hover {
         <div class="records">
             <div class="record-header">
                 <div class="add">
-                    <span>Quản lí lịch trình:</span>
+                    <span>Quản lý tàu:</span>
                     <a href="/nhapTrip">
-                        <button>Thêm lịch trình</button>
+                        <button>Thêm Tàu</button>
                     </a>
                 </div>
 
@@ -424,13 +424,9 @@ button:hover {
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Điểm xuất phát</th>
-            <th scope="col">Điểm đến</th>
-            <th scope="col">Thời gian đi</th>
-            <th scope="col">Số vé đã bán</th>
-            <th scope="col">Số vé chưa bán</th>
-            <th scope="col">Số toa</th>
-            <th scope="col">Tên tàu</th>
+            <th scope="col">Mã Tàu</th>
+            <th scope="col">Tên Tàu</th>
+            <th scope="col">Trạng Thái</th>
             <th scope="col">Chức năng</th>
         </tr>
     </thead>
@@ -438,32 +434,23 @@ button:hover {
         <% for (let i=0; i < trip.length; i++) { %>
             <tr>
                 <td>
-                    <%= trip[i].train.diemXuatPhat %>
+                    <%= trip[i].MaTau %>
                 </td>
                 <td>
-                    <%= trip[i].train.diemDen %>
+                    <%= trip[i].TenTau %>
                 </td>
                 <td>
-                    <%= trip[i].train.thoiGianDi %>
+                    <%= trip[i].TrangThai %>
                 </td>
-                <td>
-                    <%= trip[i].totalTickets %>
-                </td>
-                <td>
-                    <%= trip[i].train.soGhe-trip[i].totalTickets %>
-                </td>
-                <td>
-                    <%= trip[i].train.soToa %>
-                </td>
-                <td>
-                    <%= trip[i].train.tenTau %>
-                </td>
+
 
                 <td>
                     <div class="button-container">
-                        <a href="/xemvetau?id=<%=trip[i].train.id %>" class="edit-button" type="button">Xem Vé</a>
-                        <a href="/edit-trip?id=<%=trip[i].train.id %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-trip?id=<%=trip[i].train.id %>" class="delete-button" type="button">Delete</a>
+                        <a href="/xemvetau?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Xem</a>
+                        
+                        <a href="/edit-trip?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Edit</a>
+                        <a href="/delete-trip?id=<%=trip[i].MaTau %>" class="delete-button" type="button">Delete</a>
+                        <a href="/xemvetau?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Toa</a>
                         
                     </div>
                 </td>

@@ -4,7 +4,7 @@ import dangNhapDangKyService from "../services/dangNhapDangKyService"
 import nguoidatveService from "../services/nguoidatveService"
 import tripCRUD from "../services/tripCRUD"
 import searchtripService from "../services/searchtripService"
-
+import trainService from "../services/trainService"
 
 
 // import { strictRight } from "sequelize/types/lib/operators";
@@ -446,6 +446,13 @@ let insertUser4 = async(req, res)=>{
     return res.render('../views/AdminPage/ejs/quanlilichtrinh.ejs',{trip:data})
 
 }
+let quanlitau = async(req, res)=>{
+    console.log("quanlitau")
+    let data = await trainService.getAllTrain();
+    console.log(data)
+    return res.render('../views/AdminPage/ejs/quanlitau.ejs',{trip:data})
+
+}
 let insertUser7 = async (req, res) => {
     let data = await nguoidatveService.getAllBooker();
     return res.render('../views/HomePage/ejs/quanlidatcho.ejs', { dataTable: data })
@@ -625,6 +632,7 @@ module.exports = {
     insertUser2: insertUser2,
     insertUser3: insertUser3,
     insertUser4: insertUser4,
+    quanlitau: quanlitau,
     //Trang chủ
     insertUser6: insertUser6,
     //Trang booking
