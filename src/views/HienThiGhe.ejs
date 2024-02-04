@@ -393,11 +393,16 @@ button:hover {
 
         <div class="records">
             <div class="record-header">
-                <div class="add">
-                    <span>Quản lý tàu:</span>
-                    <a href="/ThemTau">
-                        <button>Thêm Tàu</button>
-                    </a>
+                <div  class ="add" >
+                    
+                    <!-- <a href="/ThemGhe">
+                        <button>Thêm Ghế</button>
+                    </a> -->
+                    <form action="/ThemGhe" method="post">
+                        <span>Quản lý toa: <%= toa.TenToa %> ---  Thuộc tàu: <%= tau.TenTau %></span>
+                        <input type="hidden" name="MaToa" value="<%= toa.MaToa %>">
+                        <button type="submit">Thêm Ghế</button>
+                    </form>
                 </div>
 
                 <div class="browse">
@@ -424,9 +429,7 @@ button:hover {
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Mã Tàu</th>
-            <th scope="col">Tên Tàu</th>
-            <th scope="col">Trạng Thái</th>
+            <th scope="col">Tên Ghế</th>
             <th scope="col">Chức năng</th>
         </tr>
     </thead>
@@ -434,27 +437,13 @@ button:hover {
         <% for (let i=0; i < trip.length; i++) { %>
             <tr>
                 <td>
-                    <%= trip[i].MaTau %>
-                </td>
-                <td>
-                    <%= trip[i].TenTau %>
-                </td>
-                <td>
-                    <% if (trip[i].TrangThai == "0") { %>
-                        Rảnh
-                    <% } else if (trip[i].TrangThai == "1") { %>
-                        Bận
-                    <% } %>
+                    <%= trip[i].TenGhe %>
                 </td>
 
-
                 <td>
-                    <div class="button-container">
-                        <a href="/xemvetau?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Xem</a>
-                        
-                        <a href="/edit-trip?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-tau?id=<%=trip[i].MaTau %>" class="delete-button" type="button">Delete</a>
-                        <a href="/toa-tau?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Toa</a>
+                    <div class="button-container">                        
+                        <a href="/edit-trip?id=<%=trip[i].MaToa %>" class="edit-button" type="button">Edit</a>
+                        <a href="/delete-tau?id=<%=trip[i].MaToa %>" class="delete-button" type="button">Delete</a>
                         
                     </div>
                 </td>

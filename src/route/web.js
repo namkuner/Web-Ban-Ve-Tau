@@ -74,6 +74,14 @@ let initWebRouters = (app) => {
     router.get('/AdminPage/ejs/quanlitau', homeControllers.quanlitau);
     router.get('/AdminPage/ejs/quanlilichtrinh', homeControllers.insertUser4);
 
+    //Tàu
+    router.get('/ThemTau', homeControllers.ThemTau);
+    router.post('/DoneThemTau', homeControllers.DoneThemTau);
+    router.get('/delete-tau', homeControllers.deleteTau);
+    router.get('/toa-tau', homeControllers.toa);
+    router.get('/ghe-toa', homeControllers.gheToa);
+    router.post('/ThemGhe', homeControllers.ThemGhe);
+    router.post('/DoneThemGhe', homeControllers.DoneThemGhe);
     //Trang chủ
     router.get('/HomePage/ejs/main', homeControllers.insertUser6);
 

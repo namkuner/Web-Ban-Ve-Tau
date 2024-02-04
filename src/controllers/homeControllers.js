@@ -585,7 +585,79 @@ let tonghoptauve = async (req, res) => {
     // res.render("allthongtin.ejs",{sortedResult:allTongSoVe})
 
 }
+
+let ThemTau = (req, res) => {
+    res.render("ThemTau.ejs")
+}
+let DoneThemTau = async (req, res) => {
+    let data = req.body
+    let checkTau = await trainService.checkTau(data.TenTau)
+    if (checkTau != null) {
+        return res.render("ThemTau.ejs", { er: "Tên tàu đã tồn tại" })
+    }
+    let message = await trainService.createNewTrain(req.body); // req.body la data nguoi nhap
+    console.log(message);
+    return res.redirect("AdminPage/ejs/quanlitau")
+}
+let deleteTau = async (req, res) => {
+    let tau = req.query.id
+    console.log("tau", tau)
+    if (tau) {
+        await trainService.deleteTauById(tau)
+        res.redirect('back')
+    }
+    else {
+        return res.send("Tàu không tìm thây!")
+    }
+
+}
+let toa = async (req, res) => {
+    console.log("toaaaaaaaaa")
+    let tau = req.query.id
+    console.log("tau", tau)
+    let infoTau = await trainService.getTauById(tau)   
+    console.log("infoTau",infoTau)
+    let data = await trainService.getToa(tau)
+    
+    res.render("../views/AdminPage/ejs/toa.ejs", { trip: data, tau:infoTau })
+}
+let gheToa = async (req, res) => {
+    console.log("gheToa")
+    let toa = req.query.id
+    console.log("toa", toa)
+    let infoToa = await trainService.getToaById(toa)
+    console.log("infoToa",infoToa.MaToa)
+    let infoTau = await trainService.getTauByToa(infoToa.MaTau)
+    let data = await trainService.getGhe(toa)
+    res.render("HienThiGhe.ejs", { trip: data, toa:infoToa ,tau:infoTau})
+}
+let ThemGhe = (req, res) => {
+    let MaToa =  req.body.MaToa
+    console.log("MaToa",MaToa)
+    res.render("ThemGhe.ejs", {MaToa:MaToa})
+}
+let DoneThemGhe = async (req, res) => {
+    let data = req.body
+    console.log("data",data)
+    let checkGhe = await trainService.checkTenGhe(data.TenGhe,data.MaToa)
+    if (checkGhe != null) {
+        return res.render("ThemGhe.ejs", { er: "Tên ghế đã tồn tại" })
+    }
+    
+    let message = await trainService.createNewGhe(data); // req.body la data nguoi nhap
+    console.log(message);
+    return res.redirect("AdminPage/ejs/quanlitau")
+}
 module.exports = {
+    //Train
+    ThemTau: ThemTau,
+    DoneThemTau: DoneThemTau,
+    deleteTau:deleteTau,
+    toa:toa,
+    ThemGhe:ThemGhe,
+    DoneThemGhe:DoneThemGhe,
+    gheToa:gheToa,
+
     //USER
     homepage: homepage,
     dangKy: dangKy,
