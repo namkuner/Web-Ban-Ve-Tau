@@ -394,10 +394,11 @@ button:hover {
         <div class="records">
             <div class="record-header">
                 <div class="add">
-                    <span>Quản lý tàu: <%= tau.TenTau %> </span>
-                    <a href="/ThemToa">
-                        <button>Thêm Toa</button>
-                    </a>
+                    <form action="/ThemToa" method="post">
+                        <span>Quản lý Tàu: <%= tau.TenTau %></span>
+                        <input type="hidden" name="MaTau" value="<%= tau.MaTau %>">
+                        <button type="submit">Thêm toa</button>
+                    </form>
                 </div>
 
                 <div class="browse">

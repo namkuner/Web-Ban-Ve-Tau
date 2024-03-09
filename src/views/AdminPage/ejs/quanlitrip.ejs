@@ -356,8 +356,8 @@ button:hover {
         <div class="items">
             <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
             <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
-            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlilichtrinh">Quản lí lịch trình</a></li>
-            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
+            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitrip">Quản lí lịch trình</a></li>
+            <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Quản lí tàu</a></li>
             <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
         </div>
     </section>
@@ -394,9 +394,9 @@ button:hover {
         <div class="records">
             <div class="record-header">
                 <div class="add">
-                    <span>Quản lý toa:</span>
-                    <a href="/ThemToa">
-                        <button>Thêm Toa</button>
+                    <span>Quản lí lịch trình:</span>
+                    <a href="/themTrip">
+                        <button>Thêm lịch trình</button>
                     </a>
                 </div>
 
@@ -424,9 +424,12 @@ button:hover {
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Mã Toa</th>
-            <th scope="col">Tên Tàu</th>
-            <th scope="col">Trạng Thái</th>
+            <th scope="col">Điểm xuất phát</th>
+            <th scope="col">Điểm đến</th>
+            <th scope="col">Thời gian đi</th>
+            <th scope="col">Thời gian đến</th>
+            <th scope="col">Giá vé</th>
+            <th scope="col">Tên tàu</th>
             <th scope="col">Chức năng</th>
         </tr>
     </thead>
@@ -434,28 +437,27 @@ button:hover {
         <% for (let i=0; i < trip.length; i++) { %>
             <tr>
                 <td>
-                    <%= trip[i].MaTau %>
+                    <%= trip[i].DiaDiemDi %>
                 </td>
                 <td>
-                    <%= trip[i].TenTau %>
+                    <%= trip[i].DiaDiemDen %>
                 </td>
                 <td>
-                    <% if (trip[i].TrangThai == "0") { %>
-                        Rảnh
-                    <% } else if (trip[i].TrangThai == "1") { %>
-                        Bận
-                    <% } %>
+                    <%= trip[i].ThoiGianDi %>
                 </td>
-
-
+                <td>
+                    <%= trip[i].ThoiGianDen %>
+                </td>
+                <td>
+                    <%= trip[i].Gia %>
+                </td>
+                <td>
+                    <%= trip[i].Train.TenTau %>
+                </td>
                 <td>
                     <div class="button-container">
-                        <a href="/xemvetau?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Xem</a>
-                        
-                        <a href="/edit-trip?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-tau?id=<%=trip[i].MaTau %>" class="delete-button" type="button">Delete</a>
-                        <a href="/toa?id=<%=trip[i].MaTau %>" class="edit-button" type="button">Toa</a>
-                        
+                        <a href="/edit-trip?id=<%=trip[i].MaTrip %>" class="edit-button" type="button">Edit</a>
+                        <a href="/delete-trip?id=<%=trip[i].MaTrip %>" class="delete-button" type="button">Delete</a>                
                     </div>
                 </td>
             </tr>

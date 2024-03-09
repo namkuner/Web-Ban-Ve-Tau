@@ -1,5 +1,6 @@
 import express from "express";
 import homeControllers from "../controllers/homeControllers";
+import tripControllers from "../controllers/tripControllers";
 /*const nguoidatveService = require('../services/nguoidatveService');*/
 let router = express.Router();
 
@@ -73,7 +74,10 @@ let initWebRouters = (app) => {
     router.get('/AdminPage/ejs/thongtindat', homeControllers.insertUser3);
     router.get('/AdminPage/ejs/quanlitau', homeControllers.quanlitau);
     router.get('/AdminPage/ejs/quanlilichtrinh', homeControllers.insertUser4);
-
+    router.get('/AdminPage/ejs/quanlitrip', tripControllers.quanlitrip);
+    //Trip
+    router.get('/themTrip', tripControllers.themTrip);
+    router.post('/doneThemTrip', tripControllers.doneThemTrip);
     //Tàu
     router.get('/ThemTau', homeControllers.ThemTau);
     router.post('/DoneThemTau', homeControllers.DoneThemTau);
@@ -81,12 +85,14 @@ let initWebRouters = (app) => {
     router.get('/toa-tau', homeControllers.toa);
     router.get('/ghe-toa', homeControllers.gheToa);
     router.post('/ThemGhe', homeControllers.ThemGhe);
+    router.post('/ThemToa', homeControllers.ThemToa);
     router.post('/DoneThemGhe', homeControllers.DoneThemGhe);
+    router.post('/DoneThemToa', homeControllers.DoneThemToa);
     //Trang chủ
     router.get('/HomePage/ejs/main', homeControllers.insertUser6);
 
     //Trang booking (Tìm kiếm)
-    router.post('/HomePage/ejs/booking',homeControllers.timkiemtau)
+    router.post('/HomePage/ejs/booking',tripControllers.timkiemtau)
 
     //Trang điền thông tin người đặt vé
     router.get('/HomePage/ejs/dataCustomer', homeControllers.dataBooker);

@@ -1,38 +1,61 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      
+      // Define associations here if needed
+      // For example, you might want to associate Userr with Tickett
+      User.hasMany(models.Ticket, {
+        foreignKey: 'UserID',
+        sourceKey: 'ID',
+        as: 'Ticket'
+      });
     }
   };
+
   User.init({
     ID: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    firstname: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
-    password : DataTypes.STRING,
-    email: DataTypes.STRING,
-    CMND :  DataTypes.STRING,
-    address : DataTypes.STRING,
-    gender : DataTypes.STRING,
-    roleID : DataTypes.STRING,
-    chucVu : DataTypes.STRING,
-    luong : DataTypes.INTEGER
+    CMND: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Ho: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Ten: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    PassWord: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    DiaChi: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    NgaySinh: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    SDT: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    Role: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'User',
   });
+
   return User;
 };

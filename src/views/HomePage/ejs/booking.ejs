@@ -690,7 +690,7 @@ img {
 <% for (let i=0; i < trip.length; i++) { %>
 <div class="row et-page-header">
 	<span class="et-main-label ng-binding">
-		<strong class="ng-binding">Chiều đi:</strong> ngày <%= trip[i].thoiGianDi %> từ <%= trip[i].diemXuatPhat %> đến <%= trip[i].diemDen %>
+		<strong class="ng-binding">Chiều đi:</strong> ngày <%= trip[i].ThoiGianDi %> từ <%= trip[i].DiaDiemDi %> đến <%= trip[i].DiaDiemDen %>
 	</span>
 </div>
 <% } %>
@@ -714,12 +714,12 @@ img {
 				<div class="et-train-head-info">
 					<div class="row et-no-margin">
 						<span class="pull-left et-bold ng-binding" style="margin-left: -7px;"><strong>TG đi</strong></span> 
-						<span class="pull-right ng-binding"><%= trip[i].thoiGianDi %></span>
+						<span class="pull-right ng-binding"><%= trip[i].ThoiGianDi %></span>
 					</div>
 					<div class="row et-no-margin">
 						<span class="pull-left et-bold ng-binding" style="margin-left: -7px;"><strong>TG đến</strong></span> 
 						<span class="pull-right"></span> 
-						<span class="pull-right ng-binding"><%= trip[i].thoiGianDen %></span>
+						<span class="pull-right ng-binding"><%= trip[i].ThoiGianDen %></span>
 					</div>
 					<div class="row et-no-margin">
 						<div class="et-col-50">
@@ -887,22 +887,22 @@ img {
 						<% for (let i=0; i < trip.length; i++) { %>
 							<tr>
 								<td>
-									<%= trip[i].diemXuatPhat %>
+									<%= trip[i].DiaDiemDi %>
 								</td>
 								<td>
-									<%= trip[i].diemDen %>
+									<%= trip[i].DiaDiemDen %>
 								</td>
 								<td>
-									<%= trip[i].thoiGianDi %>
+									<%= trip[i].ThoiGianDi %>
 								</td>
 								<td>
-									<%= trip[i].thoiGianDen %>
+									<%= trip[i].ThoiGianDen %>
 								</td>
 								<td>
-									<%= trip[i].giaVe %>
+									<%= trip[i].Gia %>
 								</td>
 								<td>
-									<%= trip[i].tenTau %>
+									<%= trip[i].MaTau %>
 								</td>
 								<td>
 									<%= trip[i].soToa %>
@@ -913,8 +913,7 @@ img {
 			
 								<td>
 									<div class="button-container">
-										<!--<a href="/vetau?id=<%=trip[i].id %>" class="edit-button" type="button" style="text-decoration: none;">Đặt vé</a>-->
-										<a href="/vetau?id=<%=trip[i].id %>&giaVe=<%= trip[i].giaVe %>&tenTau=<%= trip[i].tenTau %>&diemXuatPhat=<%= trip[i].diemXuatPhat %>&diemDen=<%= trip[i].diemDen %>&thoiGianDi=<%= trip[i].thoiGianDi %>" class="edit-button" type="button" style="text-decoration: none;">Đặt vé</a>
+										<a href="/vetau?id=<%=trip[i].MaTrip%>" class="edit-button" type="button" style="text-decoration: none;">Đặt vé</a>
 									</div>
 								</td>
 							</tr>

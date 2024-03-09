@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'MaTau',
         as: 'Train'
       });
+      Toa.hasMany(models.Ghe, { foreignKey: 'MaToa', as: 'Ghe' });
     }
   };
 

@@ -11,16 +11,13 @@ import trainService from "../services/trainService"
 import { Console } from "console";
 const ejs = require('ejs');
 const path = require('path');
-let idlogin = null
+
 let homepage = (req, res) => {
-    // res.cookie('idlogin', "null");
-    // let idlogin = req.cookies.idlogin
-    // console.log("idlogin",req.cookies.idlogin)
+    let idlogin = req.session.idlogin
     return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
 }
 
 let dangKy = (req, res) => {
-
     return res.render("dangky.ejs", { er: null })
 }
 let dangNhap = (req, res) => {
@@ -35,8 +32,12 @@ let loginn = async (req, res) => {
     let result = await dangNhapDangKyService.checkdangnhap(SDT_password)
     console.log(result)
     if (result.message == "Bạn đã đăng nhập thành công") {
-        idlogin = result.data.id;
-        if (result.data.roleID != 3) {
+        let idlogin = result.data.ID;
+        console.log("idlogin", idlogin)
+        req.session.idlogin = idlogin
+        console.log("req.session.idlogin", req.session.idlogin)
+        req.session.save();
+        if (result.data.roleID != "R3") {
             let data = await dangNhapDangKyService.dataAdmin();
             return res.render("AdminPage/ejs/admin", { idlogin: idlogin, user: data })
         }
@@ -51,7 +52,7 @@ let loginn = async (req, res) => {
 }
 
 let dangxuat = (req, res) => {
-    idlogin = null
+    req.sesson.idlogin = null
     console.log(idlogin)
     return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
 }
@@ -202,7 +203,7 @@ let deleteTrip = async (req, res) => {
 let searchTrip = async (req, res) => {
     try {
         const keyword = req.query.keyword
-        const searchResults = await tripCRUD.searchTrips(keyword)
+        const searchResults = await tripService.searchTrips(keyword)
         return res.render('../views/AdminPage/ejs/quanlilichtrinh.ejs',
             { trip: searchResults }
         )
@@ -225,6 +226,7 @@ let dataBooker = (req, res) => {
     const Tongtien = req.query.Tongtien;
     const trangThai = req.query.trangThai;
     const ticketIds = req.query.ticketIds;
+    let idlogin = req.session.idlogin;
     return res.render("HomePage/ejs/dataCustomer.ejs", {
         id: id,
         tenGhe: tenGhe,
@@ -237,7 +239,8 @@ let dataBooker = (req, res) => {
         Tongtien: Tongtien,
         trangThai: trangThai,
         req: req,
-        ticketIds: ticketIds
+        ticketIds: ticketIds,
+        idlogin: idlogin
     });
 }
 let dataBooker1 = (req, res) => {
@@ -453,6 +456,10 @@ let quanlitau = async(req, res)=>{
     return res.render('../views/AdminPage/ejs/quanlitau.ejs',{trip:data})
 
 }
+let quanlitrip = async(req, res)=>{
+    let data = await tripService.getAllDataTrip();
+    return res.render('../views/AdminPage/ejs/quanlilichtrinh.ejs',{trip:data})
+} 
 let insertUser7 = async (req, res) => {
     let data = await nguoidatveService.getAllBooker();
     return res.render('../views/HomePage/ejs/quanlidatcho.ejs', { dataTable: data })
@@ -470,9 +477,11 @@ let insertUser6 = async (req, res) => {
 /* -------------Trang booking----------*/
 let timkiemtau = async (req, res) => {
     let infotau = req.body
+    
     console.log(infotau)
     console.log("infotau.from", infotau.from)
-    let data = await searchtripService.handleSearchTripTrue(infotau.from, infotau.to, infotau.daygo)
+    
+    let data = await tripService.searchTripForUser(infotau.from, infotau.to, infotau.daygo)
     console.log(data)
     return res.render('HomePage/ejs/booking.ejs', {
         trip: data //trip <-- data
@@ -486,24 +495,19 @@ let hienthivetau =async(req,res)=>{
     console.log(data.length)
     res.render("ticketUser.ejs",{tickets:data})
 }*/
-let hienthivetau = async (req, res) => {
-    const giaVe = req.query.giaVe;
-    const tenTau = req.query.tenTau;
-    const diemXuatPhat = req.query.diemXuatPhat;
-    const diemDen = req.query.diemDen;
-    const thoiGianDi = req.query.thoiGianDi;
 
-    let tauid = req.query.id;
-    console.log(tauid);
-    let data = await tripCRUD.hienthive(tauid);
-    console.log(data.length);
+let hienthivetau = async (req, res) => {
+
+    let tripid = req.query;
+    console.log("tripID", tripid.id)
+    let ticket = await tripCRUD.hienthive(tripid.id);
+    let trip = await tripCRUD.getTripInforById(tripid.id)
+    // console.log("trip", trip.Train.TenTau)
+    console.log("ticket", ticket[0].Ghe.Toa.TenToa)
+    console.log("idlogin", req.session.idlogin)
     res.render("ticketUser.ejs", {
-        tickets: data,
-        giaVe: giaVe,
-        tenTau: tenTau,
-        diemXuatPhat: diemXuatPhat,
-        diemDen: diemDen,
-        thoiGianDi: thoiGianDi,
+        tickets: ticket,
+        trip: trip
     });
 }
 let vetau  = async (req, res) =>{
@@ -648,6 +652,24 @@ let DoneThemGhe = async (req, res) => {
     console.log(message);
     return res.redirect("AdminPage/ejs/quanlitau")
 }
+let ThemToa = (req, res) => {
+    let MaTau =  req.body.MaTau
+    console.log("MaTau",MaTau)
+    res.render("ThemToa.ejs", {MaTau:MaTau})
+}
+let DoneThemToa = async (req, res) => {
+    let data = req.body
+    console.log("data",data)
+    let checkToa = await trainService.checkTenToa(data.TenToa,data.MaTau)
+    if (checkToa != null) {
+        return res.render("ThemToa.ejs", { er: "Tên toa đã tồn tại" })
+    }
+    let message = await trainService.createNewToa(data); // req.body la data nguoi nhap
+    console.log(message);
+    return res.redirect("AdminPage/ejs/quanlitau")
+}
+
+
 module.exports = {
     //Train
     ThemTau: ThemTau,
@@ -657,6 +679,9 @@ module.exports = {
     ThemGhe:ThemGhe,
     DoneThemGhe:DoneThemGhe,
     gheToa:gheToa,
+    ThemToa:ThemToa,
+    DoneThemToa:DoneThemToa,
+
 
     //USER
     homepage: homepage,

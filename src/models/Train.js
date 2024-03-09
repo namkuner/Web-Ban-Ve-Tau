@@ -24,10 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    TrangThai: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    }
   }, {
     sequelize,
     modelName: 'Train',

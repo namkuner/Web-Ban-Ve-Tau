@@ -1,4 +1,5 @@
 import db from "../models/index"
+import trip from "../models/trip";
 const { Op } = require('sequelize');
 
 
@@ -84,8 +85,9 @@ const getTrainInfoWithTicketCount = async () => {
 let getTripInforById = (tripId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let trip = await db.Trip.findOne({
-                where: { id: tripId },
+            let trip = await db.Tripp.findOne({
+                where: { MaTrip: tripId },
+                include: [{ model : db.Train, as: 'Train'}],
                 raw: true
             })
             if (trip) {
@@ -143,14 +145,16 @@ let deteleTripById = (tripId) => {
         }
     })
 }
-let hienthive =(tauid)=>{
+let hienthive =(tripid)=>{
     return new Promise(async (resolve, reject) => {
        try{
-        let data = await db.Ticket.findAll({
-            where :{trainId :tauid}          
-        }   
+        let data = await db.Tickett.findAll({
+            where :{MaTrip :tripid},
+            include: [{ model :db.Ghe , as:'Ghe',include: [{ model: db.Toa, as: 'Toa' }]}],    
+        }
+         
         )
-       
+        console.log("ticket",data)  
         resolve(data)
        }
        catch(e)

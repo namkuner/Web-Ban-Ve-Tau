@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <a href="#" class="logo">Thêm toa mới</a>
+    <div class="header-right">
+      <a class="active" href="/AdminPage/ejs/quanlitau">Trang chủ</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">     
+        <form action="/DoneThemToa" method="POST">
+            
+            <!-- Các trường khác -->
+          
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="TenGhe">Tên Toa</label>
+                <input type="text" class="form-control" name="TenToa" placeholder="Enter toa name" required />
+                <input type="hidden" name="MaTau" value="<%= MaTau %>">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="soLuongGhe">Số Lượng Ghế</label>
+                <input type="text" class="form-control" name="soLuongGhe" placeholder="Enter num of chair" required />
+              </div>
+            </div>  
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label></label>
+                <button class="btn btn-primary" type="submit">Thêm Toa</button>
+              </div>
+            </div>
+          </form>
+            
+            <style>.container {
+                max-width: 800px;
+                margin: 0 auto;
+              }
+              
+              form {
+                padding: 20px;
+                margin-top: 100px;
+                width: 90%;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+              }
+
+              
+              input[type="text"],
+              input[type="tel"],
+              input[type="email"],
+              input[type="password"],
+              select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                border: none;
+                background-color: #e9ecef;
+                font-size: 16px;
+              }
+              
+              input[type="submit"] {
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+                font-size: 16px;
+                cursor: pointer;
+              }
+              
+              input[type="submit"]:hover {
+                background-color: #0069d9;
+              }
+              
+              label {
+                font-weight: bold;
+                margin-bottom: 10px;
+                display: block;
+              }
+              
+              .col-md-6 {
+                padding-right: 10px;
+                padding-left: 10px;
+              }
+              
+              @media (max-width: 767px) {
+                .col-md-6 {
+                  margin-bottom: 10px;
+                }
+                
+              }
+              .header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: left;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.header .logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header-right {
+  float: right;
+}
+
+.header-right a {
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.header-right a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header-right a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+        </div>
+    </div>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: left;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            color: #007bff;
+            font-weight: 700;
+        }
+
+        form {
+            padding: 20px;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            width: 90%;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #e9ecef;
+            font-size: 16px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .col-md-6 {
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</body>
+</html>

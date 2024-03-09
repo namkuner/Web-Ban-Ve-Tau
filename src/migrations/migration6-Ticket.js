@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Ticketts', {
+    await queryInterface.createTable('Tickets', {
       MaVe: {
         allowNull: false,
         autoIncrement: true,
@@ -11,17 +11,17 @@ module.exports = {
       },
       TrangThai: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       ThoiGianDatVe: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       },
       UserID: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
-          model: 'Userrs', // Assuming 'Userrs' is the name of the Userr table
+          model: 'Users', // Assuming 'Userrs' is the name of the Userr table
           key: 'ID'
         }
       },
@@ -37,7 +37,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Tripps', // Assuming 'Tripps' is the name of the Tripp table
+          model: 'Trips', // Assuming 'Tripps' is the name of the Tripp table
           key: 'MaTrip'
         }
       },
@@ -53,6 +53,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Ticketts');
+    await queryInterface.dropTable('Tickets');
   }
 };

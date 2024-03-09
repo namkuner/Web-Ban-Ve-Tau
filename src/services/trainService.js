@@ -152,12 +152,44 @@ let createNewGhe = async (data) => {
         throw new Error(e);
     }
 }
+let checkTenToa = async (TenToa, MaTau) => {
+    try {
+        const check = await db.Toa.findOne({
+            where: {
+                TenToa: TenToa,
+                MaTau: MaTau
+            }
+        });
+        return check;
+    } catch (e) {
+        throw new Error(e);
+    }
+}
+let createNewToa = async (data) => {
+    try {
+        const newToa = await db.Toa.create({
+            TenToa: data.TenToa,
+            MaTau: data.MaTau
+        });
+        for (let j = 1; j <= data.soLuongGhe; j++) {
+            await db.Ghe.create({
+                TenGhe: j,
+                MaToa: newToa.MaToa,
+            });
+        }
+        return newToa;
+    } catch (e) {
+        throw new Error(e);
+    }
+}
 module.exports = {
     getAllTrain: getAllTrain,
     getTauById: getTauById,
     getToaById: getToaById,
     getTauByToa: getTauByToa,
     getGhe: getGhe,
+    createNewToa: createNewToa,
+    checkTenToa: checkTenToa,
     createNewGhe: createNewGhe,
     checkTau: checkTau,
     checkTenGhe: checkTenGhe,

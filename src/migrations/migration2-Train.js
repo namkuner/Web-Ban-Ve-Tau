@@ -12,10 +12,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      TrangThai: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true // You can set a default value if needed
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

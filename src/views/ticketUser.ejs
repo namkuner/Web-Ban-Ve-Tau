@@ -768,6 +768,13 @@ h6 {
     margin-right: 5px;
     cursor: pointer;
   }
+  .seat div {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
 
   /* CSS cho ghế đã được chọn */
   .selected-seat .seat {
@@ -833,26 +840,26 @@ h6 {
   <% if (tickets.length > 0) { %>
     <% var displayedToas = []; %>
     <% tickets.forEach(function(ticket) { %>
-      <% if (!displayedToas.includes(ticket.toa)) { %>
-        <% displayedToas.push(ticket.toa); %>
+      <% if (!displayedToas.includes(ticket.Ghe.Toa.TenToa)) { %>
+        <% displayedToas.push(ticket.Ghe.Toa.TenToa); %>
         <div class="train-car">
           <div class="car-header" style="width: 50px;padding-top: 77px;padding-bottom: 77px;margin-top: -10px;">
-            Toa <%= ticket.toa %>
+            Toa <%= ticket.Ghe.Toa.TenToa %>
           </div>
           <div class="seat-row">
             <% var seatsInRow = 4; %>
             <% var seatsCount = 0; %>
             <% tickets.forEach(function(t) { %>
-              <% if (t.toa === ticket.toa) { %>
+              <% if (t.Ghe.Toa.TenToa === ticket.Ghe.Toa.TenToa) { %>
                 <% if (seatsCount !== 0 && seatsCount % seatsInRow === 0) { %>
                   </div>
                   <div class="seat-row">
                 <% } %>
-                <div class="seat" data-id="<%= t.id %>" data-toa="<%= t.toa %>">
-                  <% if (t.trangThai) { %>
-                    <button style="border: none; background-color: rgb(237, 71, 71); color: #fff;"><%= t.tenGhe %></button>
+                <div class="seat" data-id="<%= t.MaVe %>" data-toa="<%= t.Ghe.Toa.MaToa %>">
+                  <% if (!t.TrangThai) { %>
+                    <div style="border: none; background-color: rgb(237, 71, 71); color: #fff;"><%= t.Ghe.TenGhe %></div>
                   <% } else { %>
-                      <button style="border: none;"><%= t.tenGhe %></button>
+                      <button style="border: none;"><%= t.Ghe.TenGhe %></button>
                   <% } %>
                 </div>
                 <!-- Các phần tử ghế trong giỏ vé -->
@@ -1042,11 +1049,11 @@ h6 {
         </div>
         <div class="col-md-12 text-center mb-pos-fixed mb-b-40" style="margin-top: 2px;">
         
-       <!-- <a href="/homePage/ejs/dataCustomer?&tenTau=<%= tenTau %>&diemXuatPhat=<%= diemXuatPhat %>&diemDen=<%= diemDen %>&thoiGianDi=<%= thoiGianDi %>">
+       <!-- <a href="/homePage/ejs/dataCustomer?MaTrip=<%= trip.MaTrip %>">
           <input type="submit" value="Mua vé" style="padding:0px; background:#c10000; color:#fff; padding:3px 10px; font-size:25px; cursor:pointer; margin-left: -444px;">
-        </a>-->
+        </a> -->
         <button id="buyButton" style="padding:0px; background:#c10000; color:#fff; padding:3px 10px; font-size:25px; cursor:pointer; margin-left: -444px;">
-          Mua vé
+          Mua Vé
         </button>
         
 
@@ -1057,106 +1064,106 @@ h6 {
   
 
 
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-  var seats = document.querySelectorAll('.seat button');
-  var selectedSeatsDiv = document.getElementById('selectedSeats');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var seats = document.querySelectorAll('.seat button');
+    var selectedSeatsDiv = document.getElementById('selectedSeats');
+    var cartDiv = document.getElementById('cartDI');
+    var buyButton = document.getElementById('buyButton');
+    var selectedSeats = [];
+  
+    seats.forEach(function(seat) {
+      seat.addEventListener('click', function() {
+        var seatNumber = this.textContent;
+        var seatPrice = getPriceBySeatNumber(seatNumber); // Hàm getPriceBySeatNumber() để lấy giá vé dựa trên số ghế
+  
+        // Tạo phần tử để hiển thị thông tin ghế trong giỏ vé
+        var seatElement = document.createElement('div');
+        seatElement.textContent = 'Ghế số: ' + seatNumber + ', Giá vé: ' + seatPrice;
+        selectedSeatsDiv.appendChild(seatElement);
+      });
+    });
+  
+    buyButton.addEventListener('click', function() {
+      var selectedSeats = document.querySelectorAll('.seat.selected');
+      var seatsToUpdate = [];
+  
+      selectedSeats.forEach(function(seat) {
+        var toa = seat.getAttribute('data-toa');
+        var trangThai = seat.getAttribute('data-trangthai');
+        var seatNumber = seat.querySelector('button').textContent;
+        var id = seat.getAttribute('data-id');
+  
+        seatsToUpdate.push({ seatNumber: seatNumber, toa: toa, trangThai: false, id: id });
+  
+        seat.setAttribute('data-trangthai', '0');
+      });
+  
+      var urlParams = createURLParams(seatsToUpdate);
+      var seatCount = selectedSeats.length; // Số lượng ghế đã chọn
+      
+      var url = '/homePage/ejs/dataCustomer?' + urlParams + '&Sove='+  encodeURIComponent(seatCount) + '&giaVe=<%= trip.Gia %>&tenTau=<%= trip.MaTau %>&diemXuatPhat=<%= trip.DiaDiemDi %>&diemDen=<%= trip.DiaDiemDen %>&thoiGianDi=<%= trip.ThoiGianDi %>';
+  
+      // Chuyển hướng đến trang /homePage/ejs/dataCustomer với chuỗi URL parameters
+      window.location.href = url;
+    });
+  
+  });
+  
   var cartDiv = document.getElementById('cartDI');
-  var buyButton = document.getElementById('buyButton');
+  var seats = document.getElementsByClassName('seat');
   var selectedSeats = [];
-
-  seats.forEach(function(seat) {
-    seat.addEventListener('click', function() {
-      var seatNumber = this.textContent;
-      var seatPrice = getPriceBySeatNumber(seatNumber); // Hàm getPriceBySeatNumber() để lấy giá vé dựa trên số ghế
-
-      // Tạo phần tử để hiển thị thông tin ghế trong giỏ vé
+  
+  function renderSelectedSeats() {
+    // Xóa nội dung hiện tại của giỏ vé
+    cartDiv.innerHTML = '';
+  
+    // Tạo phần tử hiển thị cho từng ghế đã chọn
+    selectedSeats.forEach(function(seatInfo) {
       var seatElement = document.createElement('div');
-      seatElement.textContent = 'Ghế số: ' + seatNumber + ', Giá vé: ' + seatPrice;
-      selectedSeatsDiv.appendChild(seatElement);
+      seatElement.textContent = '<%= trip.MaTau %>'+ ' - ' + 'Toa ' +seatInfo.toa + ' - ' + 'Ghế ' + seatInfo.seatNumber +' - ' + '<%= trip.DiaDiemDi %>' +' - ' + '<%= trip.DiaDiemDen %>' + ' - ' + '<%= trip.ThoiGianDi %>';
+      cartDiv.appendChild(seatElement);
+    });
+  
+    // Cập nhật href của liên kết "Mua vé"
+    var link = document.querySelector('a');
+    var urlParams = createURLParams(selectedSeats);
+    link.href = '/homePage/ejs/dataCustomer?' + urlParams;
+  }
+  
+  // Xử lý sự kiện khi người dùng chọn ghế
+  Array.from(seats).forEach(function(seat) {
+    seat.addEventListener('click', function() {
+      var seatNumber = this.querySelector('button').textContent;
+      var toa = this.getAttribute('data-toa');
+      var tenGhe = this.getAttribute('data-tenghe');
+      var id = this.getAttribute('data-id');
+  
+      var seatIndex = selectedSeats.findIndex(function(seatInfo) {
+        return seatInfo.seatNumber === seatNumber && seatInfo.toa === toa && seatInfo.id === id;
+      });
+  
+      if (seatIndex === -1) {
+        selectedSeats.push({ seatNumber: seatNumber, toa: toa, tenGhe: tenGhe, id: id });
+      } else {
+        selectedSeats.splice(seatIndex, 1);
+      }
+  
+      renderSelectedSeats();
     });
   });
-
-  buyButton.addEventListener('click', function() {
-    var selectedSeats = document.querySelectorAll('.seat.selected');
-    var seatsToUpdate = [];
-
-    selectedSeats.forEach(function(seat) {
-      var toa = seat.getAttribute('data-toa');
-      var trangThai = seat.getAttribute('data-trangthai');
-      var seatNumber = seat.querySelector('button').textContent;
-      var id = seat.getAttribute('data-id');
-
-      seatsToUpdate.push({ seatNumber: seatNumber, toa: toa, trangThai: false, id: id });
-
-      seat.setAttribute('data-trangthai', '0');
-    });
-
-    var urlParams = createURLParams(seatsToUpdate);
-    var seatCount = selectedSeats.length; // Số lượng ghế đã chọn
-    
-    var url = '/homePage/ejs/dataCustomer?' + urlParams + '&Sove='+  encodeURIComponent(seatCount) + '&giaVe=<%= giaVe %>&tenTau=<%= tenTau %>&diemXuatPhat=<%= diemXuatPhat %>&diemDen=<%= diemDen %>&thoiGianDi=<%= thoiGianDi %>';
-
-    // Chuyển hướng đến trang /homePage/ejs/dataCustomer với chuỗi URL parameters
-    window.location.href = url;
-  });
-
-});
-
-var cartDiv = document.getElementById('cartDI');
-var seats = document.getElementsByClassName('seat');
-var selectedSeats = [];
-
-function renderSelectedSeats() {
-  // Xóa nội dung hiện tại của giỏ vé
-  cartDiv.innerHTML = '';
-
-  // Tạo phần tử hiển thị cho từng ghế đã chọn
-  selectedSeats.forEach(function(seatInfo) {
-    var seatElement = document.createElement('div');
-    seatElement.textContent = '<%= tenTau %>'+ ' - ' + 'Toa ' +seatInfo.toa + ' - ' + 'Ghế ' + seatInfo.seatNumber +' - ' + '<%= diemXuatPhat %>' +' - ' + '<%= diemDen %>' + ' - ' + '<%= thoiGianDi %>';
-    cartDiv.appendChild(seatElement);
-  });
-
-  // Cập nhật href của liên kết "Mua vé"
-  var link = document.querySelector('a');
-  var urlParams = createURLParams(selectedSeats);
-  link.href = '/homePage/ejs/dataCustomer?' + urlParams;
-}
-
-// Xử lý sự kiện khi người dùng chọn ghế
-Array.from(seats).forEach(function(seat) {
-  seat.addEventListener('click', function() {
-    var seatNumber = this.querySelector('button').textContent;
-    var toa = this.getAttribute('data-toa');
-    var tenGhe = this.getAttribute('data-tenghe');
-    var id = this.getAttribute('data-id');
-
-    var seatIndex = selectedSeats.findIndex(function(seatInfo) {
-      return seatInfo.seatNumber === seatNumber && seatInfo.toa === toa && seatInfo.id === id;
-    });
-
-    if (seatIndex === -1) {
-      selectedSeats.push({ seatNumber: seatNumber, toa: toa, tenGhe: tenGhe, id: id });
-    } else {
-      selectedSeats.splice(seatIndex, 1);
-    }
-
-    renderSelectedSeats();
-  });
-});
-
-//...
-
-function createURLParams(selectedSeats) {
-  var urlParams = selectedSeats.map(function(seat) {
-    return 'id=' + encodeURIComponent(seat.id) + '&tenGhe=' + encodeURIComponent(seat.seatNumber) + '&toa=' + encodeURIComponent(seat.toa);
-  }).join('&');
-  return urlParams;
-}
-
-
-</script>
+  
+  //...
+  
+  function createURLParams(selectedSeats) {
+    var urlParams = selectedSeats.map(function(seat) {
+      return 'id=' + encodeURIComponent(seat.id) + '&tenGhe=' + encodeURIComponent(seat.seatNumber) + '&toa=' + encodeURIComponent(seat.toa);
+    }).join('&');
+    return urlParams;
+  }
+  
+  
+  </script>
 
 </div>
 

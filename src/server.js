@@ -5,6 +5,7 @@ import initWebRouters from './route/web';
 import connectDB from './config/connectDB';
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const session = require('express-session');
 
 require('dotenv').config();
 let app = express();
@@ -12,6 +13,11 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session({
+    secret: "amar",
+    saveUninitialized: true,
+    resave: true
+}));
 viewEngine(app);
 initWebRouters(app);
 
