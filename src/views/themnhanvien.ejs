@@ -34,29 +34,29 @@
       <form action="/complete-themnhanvien" method="POST" >
         <div class="row">
           <div  class="col-md-6 mb-3">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" placeholder="Enter first name"
+            <label for="Ten">First Name</label>
+            <input type="text" class="form-control" name="Ten" placeholder="Enter first name"
              required />
           </div>
           <div class="col-md-6 mb-3">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" placeholder="Enter last name"
+            <label for="Ho">Last Name</label>
+            <input type="text" class="form-control" name="Ho" placeholder="Enter last name"
               required />
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="phoneNumber">Phone Number</label>
-          <input type="tel" class="form-control" name="phoneNumber" placeholder="Enter phone number"
+            <label for="SDT">Phone Number</label>
+          <input type="tel" class="form-control" name="SDT" placeholder="Enter phone number"
               />
           </div>
           <div class="col-md-6 mb-3">
-            <label for="password">Password</label>
+            <label for="PassWord">password</label>
           <div class="input-group">
-            <input type="password" class="form-control" name="password" placeholder="Enter password"
+            <input type="PassWord" class="form-control" name="PassWord" placeholder="Enter PassWord"
                required />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+              <button class="btn btn-outline-secondary" type="button" onclick="togglepassword()">
                 <i class="fa fa-eye"></i>
               </button>
             </div>
@@ -66,8 +66,8 @@
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="email">Email Address</label>
-            <input type="email" class="form-control" name="email" placeholder="Enter email" required />
+            <label for="DiaChi">Địa Chỉ</label>
+            <input type="text" class="form-control" name="DiaChi" placeholder="Enter DiaChi" />
           </div>
           <div class="col-md-6 mb-3">
             <label for="CMND">CMND</label>
@@ -75,46 +75,23 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="email">Chức vụ</label>
-              <input type="text" class="form-control" name="chucvu" placeholder="Chức Vụ" required />
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="CMND">Lương</label>
-              <input type="text" class="form-control" name="luong" placeholder="Nhập lương" />
-            </div>
+          <div class="col-md-6 mb-3">
+            <label for="NgaySinh">Ngày Sinh</label>
+            <input type="date" class="form-control" name="NgaySinh" placeholder="Select Day" required />
           </div>
-        
-        
-
-        <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" name="address" placeholder="Enter address"
-             />
         </div>
-
-
         <div class="row">
+          <input type="hidden" name="Role" value="R2">
           <div class="col-md-6 mb-3">
-            <label for="gender">Gender</label>
-          <select class="form-control" name="gender"  required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-          </div>
-          <input type="hidden" name="roleid" value="R2">
-          <div class="col-md-6 mb-3">
-            <label ></label>
-            
             <button class="btn btn-primary" type="submit">Đăng ký</button>
           </div>
+        </div>
         </div>
         
 
       </form>
             <script>
-              function togglePassword() {
+              function togglepassword() {
                 var passwordInput = document.getElementsByName('password')[0];
                 if (passwordInput.type === 'password') {
                   passwordInput.type = 'text';

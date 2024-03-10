@@ -1,6 +1,7 @@
 import express from "express";
 import homeControllers from "../controllers/homeControllers";
-import tripControllers from "../controllers/tripControllers";
+import tripControllers from "../controllers/TripControllers";
+import trip from "../models/trip";
 /*const nguoidatveService = require('../services/nguoidatveService');*/
 let router = express.Router();
 
@@ -35,7 +36,7 @@ let initWebRouters = (app) => {
 
     router.get('/tonghopthongtin',homeControllers.tonghopthongtin)
     router.post('/tongsotauve',homeControllers.tonghoptauve)
-    
+
     //TRIP
     router.get('/nhapTrip', homeControllers.formCreateTrip)
     router.post('/done-nhapTrip', homeControllers.doneCreateTrip);
@@ -46,6 +47,8 @@ let initWebRouters = (app) => {
     router.get('/search', homeControllers.searchTrip)
     router.get('/vetau',homeControllers.hienthivetau)
     router.get('/xemvetau',homeControllers.vetau)
+    router.get('/ticket',tripControllers.xemve) 
+    router.post('/donebook',tripControllers.donebook)
     //BOOK
     router.get('/databooker', homeControllers.dataBooker);
     router.post('/complete-databooker', homeControllers.completeDatabooker);

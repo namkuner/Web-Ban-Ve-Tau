@@ -20,6 +20,19 @@ let homepage = (req, res) => {
 let dangKy = (req, res) => {
     return res.render("dangky.ejs", { er: null })
 }
+let completeRegister = async (req, res) => {
+    let data = req.body
+    console.log("thông tin dăng kí", data)
+    let checkSDT = await dangNhapDangKyService.infordangky(data)
+    console.log("checkSDT", checkSDT)
+    if (checkSDT != null) {
+        return res.render("dangky.ejs", { er: "Số điện thoại này đã có người đăng ký" })
+    }
+    let message = await dangNhapDangKyService.createNewUser(req.body); // req.body la data nguoi nhap
+    console.log(message);
+    let idlogin = message
+    return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
+}
 let dangNhap = (req, res) => {
 
     return res.render("dangnhap.ejs", { er: null })
@@ -37,7 +50,7 @@ let loginn = async (req, res) => {
         req.session.idlogin = idlogin
         console.log("req.session.idlogin", req.session.idlogin)
         req.session.save();
-        if (result.data.roleID != "R3") {
+        if (result.data.Role !== "R3")  {
             let data = await dangNhapDangKyService.dataAdmin();
             return res.render("AdminPage/ejs/admin", { idlogin: idlogin, user: data })
         }
@@ -53,22 +66,11 @@ let loginn = async (req, res) => {
 
 let dangxuat = (req, res) => {
     req.sesson.idlogin = null
-    console.log(idlogin)
+    req.session.save();
+    let idlogin = req.sesson.idlogin
     return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
 }
-let completeRegister = async (req, res) => {
-    let data = req.body
-    console.log("thong tin dăng kí", data)
-    let checkSDT = await dangNhapDangKyService.infordangky(data)
-    console.log("checkSDT", checkSDT)
-    if (checkSDT != null) {
-        return res.render("dangky.ejs", { er: "Số điện thoại này đã có người đăng ký" })
-    }
-    let message = await dangNhapDangKyService.createNewUser(req.body); // req.body la data nguoi nhap
-    console.log(message);
-    idlogin = message
-    return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
-}
+
 let insertUser = async (req, res) => {
     let data = await dangNhapDangKyService.dataUser();
     return res.render('dataUser.ejs', { user: data })
@@ -87,10 +89,10 @@ let capnhatthongtin = async (req, res) => {
     return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
 }
 let xemtruocuser = async (req, res) => {
-    console.log(req.query.id)
+    console.log("req.query.id",req.query.id)
     let userid = req.query.id
     let data = await dangNhapDangKyService.infomationUser(userid);
-    console.log(data)
+    console.log("data user xóa", data)
     // let message = await dangNhapDangKyService.xoathongtinuser(userid)
     return res.render('xoaUser.ejs', { user: data })
 }
@@ -214,10 +216,15 @@ let searchTrip = async (req, res) => {
 
 /* --------------BOOKING ----------*/
 
-let dataBooker = (req, res) => {
+let dataBooker = async(req, res) => {
+    let idlogin = req.session.idlogin;
+    let user = await dangNhapDangKyService.infomationUser(idlogin);
     const id = req.query.id;
     const giaVe = req.query.giaVe;
     const tenGhe = req.query.tenGhe;
+    const toa = req.query.toa;
+    var viTri = tenGhe.map((value, index) => toa[index] + value);
+    console.log("viTri", viTri)
     const tenTau = req.query.tenTau;
     const diemXuatPhat = req.query.diemXuatPhat;
     const diemDen = req.query.diemDen;
@@ -226,10 +233,13 @@ let dataBooker = (req, res) => {
     const Tongtien = req.query.Tongtien;
     const trangThai = req.query.trangThai;
     const ticketIds = req.query.ticketIds;
-    let idlogin = req.session.idlogin;
+    console.log("id", id)
+    console.log("user",user)
+    console.log("alldata", req.query)
     return res.render("HomePage/ejs/dataCustomer.ejs", {
         id: id,
         tenGhe: tenGhe,
+        viTri: viTri,
         giaVe: giaVe,
         tenTau: tenTau,
         diemXuatPhat: diemXuatPhat,
@@ -240,7 +250,8 @@ let dataBooker = (req, res) => {
         trangThai: trangThai,
         req: req,
         ticketIds: ticketIds,
-        idlogin: idlogin
+        idlogin: idlogin,
+        user : user
     });
 }
 let dataBooker1 = (req, res) => {
@@ -497,14 +508,17 @@ let hienthivetau =async(req,res)=>{
 }*/
 
 let hienthivetau = async (req, res) => {
-
+    let idlogin = req.session.idlogin
+    if (idlogin == null) {
+        return res.render("dangnhap.ejs", { er: "Bạn cần đăng nhập để xem vé" })
+    }
     let tripid = req.query;
     console.log("tripID", tripid.id)
     let ticket = await tripCRUD.hienthive(tripid.id);
     let trip = await tripCRUD.getTripInforById(tripid.id)
     // console.log("trip", trip.Train.TenTau)
-    console.log("ticket", ticket[0].Ghe.Toa.TenToa)
     console.log("idlogin", req.session.idlogin)
+    console.log("ticket", ticket)
     res.render("ticketUser.ejs", {
         tickets: ticket,
         trip: trip

@@ -369,9 +369,8 @@ h5 {
 			<div class="container">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="#">
-						<!--<img src="http://127.0.0.1:5500/src/views/HomePage/images/trainlogo.png" alt="logo-train" width="70px" />-->
-						<img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/280068745_1908162402711465_8113313082114855897_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=d63DoD9VXSkAX--VfPO&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdTKF1dlnj07Tp-aUR8eFvU9yr6CYND0ru0im8sVnQT9HQ&oe=6483D505" alt="logo-train" width="70px"/>
-					</a>
+						<img src="/trainlogo.png" alt="logo-train" width="70px" />
+</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -408,9 +407,8 @@ h5 {
     <main>
 		<div class="some-regulations">
 			<div class="col-2 l-2 text-center my-custom-class1">
-				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">-->
-				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/346104697_1569997260076324_3939682777754183455_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=olcx-YTmVwQAX8ERTCk&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdSYR9Wjzj0lDf6HhC2fmD9Q2OKdofwa0NmxS_5bKelWOQ&oe=64868227" alt="cac dich vu">
-			</div>
+				<img class=" w-75" style="max-width: 130px;" src="/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">
+</div>
 
 			<div class="container  pt-5 px-0 pb-5">
 				<div class="grid">
@@ -476,7 +474,7 @@ h5 {
 							</tr>
 							<tr>
 								<th>Tên ghế</th>
-								<td><%= tenGhe %></td>
+								<td><%= viTri %></td>
 							</tr>
 							<tr>
 								<th>Tên tàu</th>
@@ -515,13 +513,11 @@ h5 {
 
 						<div class="container2">
 							<div class="row">
-							  <form action="/complete-databooker" method="POST">
+							  <form action="/donebook" method="POST">
 							
 								<div class="row">
-
-									<input type="hidden" id="sove" name="Sove" value="<%= Sove %>">
-									<input type="hidden" id="giave" name="giaVe" value="<%= giaVe %>">
-									<input type="hidden" name="Tongtien" value="<%= Tongtien %>">
+									
+									<input type="hidden"  name="ids" value="<%=id%>">
 
 								  <div class="col-md-6">
 									<div class="mb-3">
@@ -531,6 +527,7 @@ h5 {
 										class="form-control"
 										name="Hoten"
 										placeholder="Họ và tên"
+										value="<%=user.Ten%> <%=user.Ho%> "  
 										required
 										style="padding-top: 10px; padding-bottom: 10px;"
 									  />
@@ -543,6 +540,8 @@ h5 {
 										name="CCCD"
 										placeholder="Số CCCD/Hộ chiếu"
 										required
+										value="<%=user.CMND%>"
+										readonly
 										style="padding-top: 10px; padding-bottom: 10px;"
 									  />
 									</div>
@@ -553,6 +552,8 @@ h5 {
 										  class="form-control"
 										  name="Phone"
 										  placeholder="Số di động"
+										  value="<%=user.SDT%>"
+										  readonly
 										  required
 										  style="padding-top: 10px; padding-bottom: 10px;"
 										/>
@@ -560,34 +561,39 @@ h5 {
 								  </div>
 								  <div class="col-md-6">
 									<div class="mb-3">
-									  <label for="Email" style="margin-bottom: 10px;font-weight: 600;">Email</label>
+									  <label for="Diachi" style="margin-bottom: 10px;font-weight: 600;">Địa Chỉ</label>
 									  <input
-										type="email"
+										type="text"
 										class="form-control"
-										name="Email"
-										placeholder="Enter email"
+										name="DiaChi"
+										value="<%=user.DiaChi%>"
+										readonly
 										required
 										style="padding-top: 10px; padding-bottom: 10px;"
 									  />
 									</div>
 						  
 									<div class="mb-3">
-									  <label for="email1" style="margin-bottom: 10px;font-weight: 600;">Xác nhận email</label>
+									  <label for="NgaySinh" style="margin-bottom: 10px;font-weight: 600;">Ngày Sinh</label>
 									  <input
-										type="email"
+										type="date"
 										class="form-control"
-										name="email1"
-										placeholder="Xác nhận email"
+										name="NgaySinh"
+										value="<%=user.NgaySinh%>"
+										readonly
 										required
 										style="padding-top: 10px; padding-bottom: 10px;"
 									  />
 									</div>
 								  </div>
 								</div>
-								<input type="hidden" name="roleid" value="R3">
 								<button class="btn btn-primary" type="submit" style="padding: 7px 30px;font-size: 16px;margin-top: 7px;">Xác nhận</button>
+							  </form>
+
+							
+
 								<!---->
-								<div class="modal">
+								<!-- <div class="modal">
 									<div class="modal_inner">
 										<div class="modal_header">
 											<p>Welcome</p>
@@ -601,31 +607,31 @@ h5 {
 											<button>Close</button>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<!---->
-							  </form>
+							  
 							  
 							</div>
 						  </div>
 						  
 						</div>
 						
-						<script>
-							document.addEventListener('DOMContentLoaded', function() {
-							  var form = document.querySelector('form');
-							  var urlParams = new URLSearchParams(window.location.search);
-							  var seatCount = urlParams.get('Sove');
-							  var hiddenInput = document.querySelector('input[name="Sove"]');
-							  hiddenInput.value = seatCount;
-						  
-							  var SoveInput = document.getElementById('sove');
-							  var Sove = parseInt(SoveInput.value);
-							  var giaVeInput = document.getElementById('giave');
-							  var giaVe = parseInt(giaVeInput.value);
-							  var Tongtien = Sove * giaVe;
-						  
-							  var hiddenTongtienInput = document.querySelector('input[name="Tongtien"]');
-							  hiddenTongtienInput.value = Tongtien;
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+var form = document.querySelector('form');
+var urlParams = new URLSearchParams(window.location.search);
+var seatCount = urlParams.get('Sove');
+var hiddenInput = document.querySelector('input[name="Sove"]');
+hiddenInput.value = seatCount;
+
+var SoveInput = document.getElementById('sove');
+var Sove = parseInt(SoveInput.value);
+var giaVeInput = document.getElementById('giave');
+var giaVe = parseInt(giaVeInput.value);
+var Tongtien = Sove * giaVe;
+
+var hiddenTongtienInput = document.querySelector('input[name="Tongtien"]');
+hiddenTongtienInput.value = Tongtien;
 
 
 
@@ -677,7 +683,7 @@ document.body.appendChild(script);
 						<div class="list-group">
 							<!-- 1 -->
 							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+								<table  cellpadding="0" cellspacing="0" style="width: 100%">
 									<tbody>
 										<tr>
 											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
@@ -710,7 +716,7 @@ document.body.appendChild(script);
 							
 							<!-- 2 -->
 							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+								<table  cellpadding="0" cellspacing="0" style="width: 100%">
 									<tbody>
 										<tr>
 											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
@@ -739,7 +745,7 @@ document.body.appendChild(script);
 							</div>
 							<!-- 3 -->
 							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+								<table  cellpadding="0" cellspacing="0" style="width: 100%">
 									<tbody>
 										<tr>
 											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
@@ -768,7 +774,7 @@ document.body.appendChild(script);
 							</div>
 							<!-- 4 -->
 							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+								<table  cellpadding="0" cellspacing="0" style="width: 100%">
 									<tbody>
 										<tr>
 											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
@@ -797,7 +803,7 @@ document.body.appendChild(script);
 							</div>
 							<!-- 5 -->
 							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+								<table  cellpadding="0" cellspacing="0" style="width: 100%">
 									<tbody>
 										<tr>
 											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
@@ -826,7 +832,7 @@ document.body.appendChild(script);
 							</div>
 							<!-- 6 -->
 							<div class="list-group-item ng-scope" ng-repeat="item in listCongTT" ng-style="{'border-color': congThanhToanError?'red':'#dddddd'}" ng-show="item.MaCongTT=='PayLater'||!register.IsVeThang" style="border-color: rgb(221, 221, 221);">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+								<table  cellpadding="0" cellspacing="0" style="width: 100%">
 									<tbody>
 										<tr>
 											<td style="cursor:pointer;width: 3%" ng-click="setCongTT(item.MaCongTT)">
@@ -935,8 +941,7 @@ document.body.appendChild(script);
 				</div>
 			</div>
 			<div class="col-2 l-2 text-center my-custom-class2">
-				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/mua-ve-tau-online.png" alt="mua ve tau">-->
-				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/346105117_916327686330998_2380265099123286209_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=Yr8vdDqDhxAAX-4gzKX&_nc_ht=scontent.fsgn3-1.fna&oh=03_AdSRZXq6oJyd0zCRCQo5nB17HYUqgGhKn58SBWQjKz0HXQ&oe=648688F6" alt="mua ve tau">
+				<img class=" w-75" style="max-width: 130px;" src="/mua-ve-tau-online.png" alt="mua ve tau">
 			</div>
 		</div>
 

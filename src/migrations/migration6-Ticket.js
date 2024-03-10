@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true
       },
+      Gia: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
+      },
       UserID: {
         type: Sequelize.INTEGER,
         allowNull: true,
@@ -41,6 +45,7 @@ module.exports = {
           key: 'MaTrip'
         }
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -48,7 +53,12 @@ module.exports = {
     updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-    }
+    },
+    flag : {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true }
+       
     });
   },
 

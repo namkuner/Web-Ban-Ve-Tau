@@ -29,7 +29,6 @@ let createNewTrain = async (data) => {
     try {
         const newTrain = await db.Train.create({
             TenTau: data.TenTau,
-            TrangThai: data.TrangThai
         });
     //will automatically create a "SoToa" car with the car names A,B,C,... and the MaTau of the car is the train code just created. At the same time, create a SoGhe/SoToa seat for each carriage, with the MaToa of the corresponding Seat
     let GheMoiToa = Math.floor(data.SoGhe /data.SoToa) ;
@@ -45,7 +44,7 @@ let createNewTrain = async (data) => {
                 });
             }
         }
-        return newTrain;
+        return newTrain; 
     } catch (e) {
         throw new Error(e);
     }
@@ -182,6 +181,7 @@ let createNewToa = async (data) => {
         throw new Error(e);
     }
 }
+
 module.exports = {
     getAllTrain: getAllTrain,
     getTauById: getTauById,

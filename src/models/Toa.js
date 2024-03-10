@@ -32,6 +32,11 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Train', // Assuming 'Train' is the name of the Train model
         key: 'MaTau'
       }
+    },
+    flag: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   }, {
     sequelize,

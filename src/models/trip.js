@@ -36,10 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    Gia: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false
-    },
     MaTau: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -47,6 +43,11 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Train', // Assuming 'Train' is the name of the Train model
         key: 'MaTau'
       }
+    },
+    flag: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   }, {
     sequelize,

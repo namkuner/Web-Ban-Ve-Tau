@@ -665,9 +665,8 @@ h6 {
 			<div class="container">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="#">
-						<!--<img src="http://127.0.0.1:5500/src/views/HomePage/images/trainlogo.png" alt="logo-train" width="70px" />-->
-						<img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/280068745_1908162402711465_8113313082114855897_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=d63DoD9VXSkAX--VfPO&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdTKF1dlnj07Tp-aUR8eFvU9yr6CYND0ru0im8sVnQT9HQ&oe=6483D505" alt="logo-train" width="70px"/>
-					</a>
+						<img src="/trainlogo.png" alt="logo-train" width="70px" />
+</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -704,9 +703,8 @@ h6 {
     <main>
 		<div class="some-regulations">
 			<div class="col-2 l-2 text-center my-custom-class1">
-				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">-->
-				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/346104697_1569997260076324_3939682777754183455_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=olcx-YTmVwQAX8ERTCk&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdSYR9Wjzj0lDf6HhC2fmD9Q2OKdofwa0NmxS_5bKelWOQ&oe=64868227" alt="cac dich vu">
-			</div>
+				<img class=" w-75" style="max-width: 130px;" src="/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">
+</div>
 
 			<div class="container  pt-5 px-0 pb-5">
 				<div class="grid">
@@ -719,7 +717,7 @@ h6 {
 
 <button onclick="goBack()" class="edit-button" style="margin-bottom: 15px;">Quay lại</button>
 
-<h1 style="margin-left: -40px;">Thông tin vé tàu</h1>
+<h1 style="margin-left: -30px;">Thông tin vé tàu</h1>
 
 <style>
   /* CSS cho bố cục hình chữ nhật ngang */
@@ -735,6 +733,7 @@ h6 {
     padding: 5px;
     font-weight: bold;
     margin-right: 10px;
+    margin-left: 30px;
   }
 
   /* CSS cho các hàng ghế */
@@ -754,6 +753,15 @@ h6 {
 	flex: 1; /* Tự động chia đều kích thước các ô ghế */
 	margin-bottom: 5px;
   }
+  .seatt {
+    background-color: #f1f1f1;
+    border: none; /* Xoá đường viền */
+    padding: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+	flex: 1; /* Tự động chia đều kích thước các ô ghế */
+	margin-bottom: 5px;
+  }
 
   /* CSS cho ghế đã chọn */
   .seat.selected {
@@ -761,14 +769,14 @@ h6 {
   }
 
 
-  .seat button {
+  .seat button, .seatt button {
     background-color: #f1f1f1;
     border: none;
     padding: 5px;
     margin-right: 5px;
     cursor: pointer;
   }
-  .seat div {
+  .seat div,.seatt div {
     background-color: #f1f1f1;
     border: none;
     padding: 5px;
@@ -855,13 +863,19 @@ h6 {
                   </div>
                   <div class="seat-row">
                 <% } %>
-                <div class="seat" data-id="<%= t.MaVe %>" data-toa="<%= t.Ghe.Toa.MaToa %>">
-                  <% if (!t.TrangThai) { %>
-                    <div style="border: none; background-color: rgb(237, 71, 71); color: #fff;"><%= t.Ghe.TenGhe %></div>
+                
+                  <% if (t.TrangThai == 1) { %>
+                    <div  class="seatt" data-id="<%= t.MaVe %>" data-toa="<%= t.Ghe.Toa.TenToa %>" data-ghe ="<%= t.Ghe.TenGhe %>" data-giave="<%= t.Gia %>"  >
+                      <div  style="border: none; background-color: rgb(237, 71, 71); color: #fff;"><%= t.Ghe.TenGhe %></div>
+                    </div>
+                    
                   <% } else { %>
-                      <button style="border: none;"><%= t.Ghe.TenGhe %></button>
+                    <div  class="seat" data-id="<%= t.MaVe %>" data-toa="<%= t.Ghe.Toa.TenToa %>" data-ghe ="<%= t.Ghe.TenGhe %>" data-giave="<%= t.Gia %>"  >
+                      <button  style="border: none;"><%= t.Ghe.TenGhe %></button>
+                    </div>
+                      
                   <% } %>
-                </div>
+                
                 <!-- Các phần tử ghế trong giỏ vé -->
                 <% seatsCount++; %>
               <% } %>
@@ -922,9 +936,8 @@ h6 {
 					<div class="et-col-md-12" style="padding:6px 0px 0px 67px">
 						<div class="et-car-block" style="height:36px; display: inline-block;">
 							<div class="et-car-icon et-car-icon-avaiable">
-								<!--<img src="/HomePage/images/trainCar2.png">-->
-								<img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346106970_1317239385494022_3703447187004011364_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=b8aO2KMS1kQAX-OrVe0&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdRMg9j6crxbF0fwYzsDVld1ZhTUKhC2MMGf8SmXwq98bw&oe=64865B7E">
-							</div>
+								<img src="/trainCar2.png">
+              </div>
 						</div>
 						<span style="padding-left: 7px; display: inline-block; font-weight: 600;" class="ng-binding">Toa còn vé</span>
 					</div>
@@ -1093,8 +1106,8 @@ h6 {
         var trangThai = seat.getAttribute('data-trangthai');
         var seatNumber = seat.querySelector('button').textContent;
         var id = seat.getAttribute('data-id');
-  
-        seatsToUpdate.push({ seatNumber: seatNumber, toa: toa, trangThai: false, id: id });
+        var giaVe = seat.getAttribute('data-giave');
+        seatsToUpdate.push({ seatNumber: seatNumber, toa: toa, trangThai: false, id: id , giaVe: giaVe});
   
         seat.setAttribute('data-trangthai', '0');
       });
@@ -1102,7 +1115,7 @@ h6 {
       var urlParams = createURLParams(seatsToUpdate);
       var seatCount = selectedSeats.length; // Số lượng ghế đã chọn
       
-      var url = '/homePage/ejs/dataCustomer?' + urlParams + '&Sove='+  encodeURIComponent(seatCount) + '&giaVe=<%= trip.Gia %>&tenTau=<%= trip.MaTau %>&diemXuatPhat=<%= trip.DiaDiemDi %>&diemDen=<%= trip.DiaDiemDen %>&thoiGianDi=<%= trip.ThoiGianDi %>';
+      var url = '/homePage/ejs/dataCustomer?' + urlParams + '&Sove='+  encodeURIComponent(seatCount) + '&tenTau=<%= trip.Train.TenTau %>&diemXuatPhat=<%= trip.DiaDiemDi %>&diemDen=<%= trip.DiaDiemDen %>&thoiGianDi=<%= trip.ThoiGianDi %>';
   
       // Chuyển hướng đến trang /homePage/ejs/dataCustomer với chuỗi URL parameters
       window.location.href = url;
@@ -1121,7 +1134,7 @@ h6 {
     // Tạo phần tử hiển thị cho từng ghế đã chọn
     selectedSeats.forEach(function(seatInfo) {
       var seatElement = document.createElement('div');
-      seatElement.textContent = '<%= trip.MaTau %>'+ ' - ' + 'Toa ' +seatInfo.toa + ' - ' + 'Ghế ' + seatInfo.seatNumber +' - ' + '<%= trip.DiaDiemDi %>' +' - ' + '<%= trip.DiaDiemDen %>' + ' - ' + '<%= trip.ThoiGianDi %>';
+      seatElement.textContent = '<%= trip.Train.TenTau %>'+ ' - ' + 'Toa ' +seatInfo.toa + ' - ' + 'Ghế ' + seatInfo.seatNumber +' - ' +"Giá " + seatInfo.giaVe + ' VND' + '<%= trip.DiaDiemDi %>' +' - ' + '<%= trip.DiaDiemDen %>' + ' - ' + '<%= trip.ThoiGianDi %>' + ' - ' + 'Giá vé: ' ;
       cartDiv.appendChild(seatElement);
     });
   
@@ -1138,13 +1151,14 @@ h6 {
       var toa = this.getAttribute('data-toa');
       var tenGhe = this.getAttribute('data-tenghe');
       var id = this.getAttribute('data-id');
+      var giaVe = this.getAttribute('data-giave');
   
       var seatIndex = selectedSeats.findIndex(function(seatInfo) {
-        return seatInfo.seatNumber === seatNumber && seatInfo.toa === toa && seatInfo.id === id;
-      });
+        return seatInfo.seatNumber === seatNumber && seatInfo.toa === toa && seatInfo.id === id && seatInfo.giaVe === giaVe;
+      }); 
   
       if (seatIndex === -1) {
-        selectedSeats.push({ seatNumber: seatNumber, toa: toa, tenGhe: tenGhe, id: id });
+        selectedSeats.push({ seatNumber: seatNumber, toa: toa, tenGhe: tenGhe, id: id  , giaVe: giaVe});
       } else {
         selectedSeats.splice(seatIndex, 1);
       }
@@ -1157,7 +1171,7 @@ h6 {
   
   function createURLParams(selectedSeats) {
     var urlParams = selectedSeats.map(function(seat) {
-      return 'id=' + encodeURIComponent(seat.id) + '&tenGhe=' + encodeURIComponent(seat.seatNumber) + '&toa=' + encodeURIComponent(seat.toa);
+      return 'id=' + encodeURIComponent(seat.id) + '&tenGhe=' + encodeURIComponent(seat.seatNumber) + '&toa=' + encodeURIComponent(seat.toa) +'&giaVe='+encodeURIComponent(seat.giaVe);
     }).join('&');
     return urlParams;
   }
@@ -1180,12 +1194,10 @@ h6 {
 <div class="download-app mt-2">
 	<div class="container bg-white text-center border-top p-4 border-primary ">
 		<h5 class="main-color-text mb-3" style="margin-top: 17px;">Tải ứng dụng</h5>
-		<!--<a href="#"><img class="me-2" src="/HomePage/images/playstore.png" alt="playstore"
+		<a href="#"><img class="me-2" src="/playstore.png" alt="playstore"
 				width="15%"></a>
-		<a href="#"><img src="/HomePage/images/appstore.png" alt="appstore" width="15%"></a>-->
-		<a href="#"><img class="me-2" src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/346106358_193278496982944_2021392920144749953_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_ohc=QNSLXzi-JigAX9o-exe&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdSL_OTkKkivyVA9G51kkI84Pa7nxzSjyFLWniK51ohcFA&oe=64866CEB" alt="playstore" width="15%"></a>
-		<a href="#"><img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346103565_765134348499818_4747672716900201717_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=jz9nL_8O7G4AX8qSPDR&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdQlF9_cED2pThY-r8ZLUZHLum_HdMmyT0PVDsyxvJCmPQ&oe=64867751" alt="appstore" width="15%"></a>
-	</div>
+		<a href="#"><img src="/appstore.png" alt="appstore" width="15%"></a>
+</div>
 </div>
 
 <div class="container1 px-0">
@@ -1228,7 +1240,7 @@ h6 {
 
 	<div class="about bg-white d-flex py-5">
 		<div class="w-75 m-auto text-center">
-			<h5>Nhóm 28, Phát triển website bán vé tàu</h5>
+			<h5>Nhóm 23: Phát triển website bán vé tàu</h5>
 		</div>
 	</div>
 </div>
@@ -1236,9 +1248,8 @@ h6 {
 				</div>
 			</div>
 			<div class="col-2 l-2 text-center my-custom-class2">
-				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/mua-ve-tau-online.png" alt="mua ve tau">-->
-				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/346105117_916327686330998_2380265099123286209_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=Yr8vdDqDhxAAX-4gzKX&_nc_ht=scontent.fsgn3-1.fna&oh=03_AdSRZXq6oJyd0zCRCQo5nB17HYUqgGhKn58SBWQjKz0HXQ&oe=648688F6" alt="mua ve tau">
-			</div>
+				<img class=" w-75" style="max-width: 130px;" src="/mua-ve-tau-online.png" alt="mua ve tau">
+</div>
 		</div>
 
 	</main>

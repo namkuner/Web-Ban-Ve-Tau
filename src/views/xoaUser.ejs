@@ -26,21 +26,21 @@
       <form action="/xoa-user" method="POST">
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" placeholder="Enter first name"
-              value="<%= user.firstName %>" required readonly />
+            <label for="Ten">First Name</label>
+            <input type="text" class="form-control" name="Ten" placeholder="Enter first name"
+              value="<%= user.Ten %>" required readonly />
           </div>
           <div class="col-md-6 mb-3">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" placeholder="Enter last name"
-              value="<%=user.lastName%>" required readonly />
+            <label for="Ho">Last Name</label>
+            <input type="text" class="form-control" name="Ho" placeholder="Enter last name"
+              value="<%=user.Ho%>" required readonly />
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="tel" class="form-control" name="phoneNumber" placeholder="Enter phone number"
-            value="<%=user.phoneNumber%>" readonly />
+          <label for="SDT">Phone Number</label>
+          <input type="tel" class="form-control" name="SDT" placeholder="Enter phone number"
+            value="<%=user.SDT%>" readonly />
         </div>
 
         <div class="mb-3">
@@ -57,11 +57,6 @@
         </div>
 
 
-        <div class="mb-3">
-          <label for="email">Email Address</label>
-          <input type="email" class="form-control" name="email" placeholder="Enter email" value="<%=user.email%>"
-            required readonly />
-        </div>
 
         <div class="mb-3">
           <label for="CMND">CMND</label>
@@ -70,21 +65,13 @@
         </div>
 
         <div class="mb-3">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" name="address" placeholder="Enter address" value="<%=user.address%>"
+          <label for="DiaChi">DiaChi</label>
+          <input type="text" class="form-control" name="DiaChi" placeholder="Enter DiaChi" value="<%=user.DiaChi%>"
             readonly />
         </div>
 
-        <div class="mb-3">
-          <label for="gender">Gender</label>
-          <select class="form-control" name="gender" value="<%=user.gender%> " readonly required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <input type="hidden" name="roleid" value="R3">
-        <input type="hidden" name="id" value="<%=user.id%>">
+
+        <input type="hidden" name="id" value="<%=user.ID%>">
         <div class="col-12 mt-3"><b>Bạn có chắc chắn muốn xóa không</b></div>
         <button class="btn btn-primary" type="submit">Delete</button>
       </form>

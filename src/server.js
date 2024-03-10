@@ -8,7 +8,7 @@ const path = require('path');
 const session = require('express-session');
 
 require('dotenv').config();
-let app = express();
+let app = express(); 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

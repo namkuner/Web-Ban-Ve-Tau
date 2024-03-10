@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 let getAllDataTrip = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Tripp.findAll(
+            let data = await db.Trip.findAll(
                 {include: [{
                     model: db.Train,
                     as: 'Train'
@@ -19,18 +19,12 @@ let getAllDataTrip = () => {
 }
 let createNewTrip = async (data) => {
     try {
-        const newTrip = await db.Tripp.create({
+        const newTrip = await db.Trip.create({
             ThoiGianDi: data.ThoiGianDi,
             ThoiGianDen: data.ThoiGianDen,
             DiaDiemDi: data.DiaDiemDi,
             DiaDiemDen: data.DiaDiemDen,
-            Gia: data.Gia, 
             MaTau: data.MaTau
-        });
-        db.Train.update({TrangThai: 1}, {
-            where: {
-                MaTau: data.MaTau
-            }
         });
         //Với từng mã ghế trong từng toá của tàu trong chuyến đi, sẽ tạo ra 1 mã vé mới
         let cars = await db.Toa.findAll({
@@ -45,9 +39,10 @@ let createNewTrip = async (data) => {
                 }
             });
             seats.forEach(async seat => {
-                await db.Tickett.create({
+                await db.Ticket.create({
                     MaGhe: seat.MaGhe,
                     MaTrip: newTrip.MaTrip,
+                    Gia: data.Gia, //Giá vé mặc định
                     TrangThai: 0
                 });
             });
@@ -62,7 +57,7 @@ let createNewTrip = async (data) => {
 let checkTime = (MaTau, ThoiGianDi,ThoiGianDen) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const check = await db.Tripp.findOne({
+            const check = await db.Trip.findOne({
                 where: {
                     MaTau: MaTau,
                     [Op.or]: [
@@ -126,7 +121,7 @@ let getSeatCountByTrain= (MaTau) => {
 let searchTrip = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let trips = await db.Tripp.findAll({
+            let trips = await db.Trip.findAll({
                 where: {
                     DiaDiemDi: data.DiaDiemDi,
                     DiaDiemDen: data.DiaDiemDen,
@@ -137,7 +132,7 @@ let searchTrip = (data) => {
             });
             if (trips === null)
             {
-                trips = await db.Tripp.findAll({
+                trips = await db.Trip.findAll({
                     where: {
                         DiaDiemDi: data.DiaDiemDi,
                         DiaDiemDen: data.DiaDiemDen,
@@ -187,7 +182,7 @@ let handleSearchTripTrue = async (diemXuatPhat, diemDen, ngayKhoiHanh) => {
 let searchTripForUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let trips = await db.Tripp.findAll({
+            let trips = await db.Trip.findAll({
                 where: {
                     DiaDiemDi: data.DiaDiemDi,
                     DiaDiemDen: data.DiaDiemDen,
@@ -204,7 +199,7 @@ let searchTripForUser = (data) => {
             console.log("data",data);
             if (trips === null)
             {
-                trips = await db.Tripp.findAll({
+                trips = await db.Trip.findAll({
                     where: {
                         DiaDiemDi: data.DiaDiemDi,
                         DiaDiemDen: data.DiaDiemDen,
@@ -222,11 +217,89 @@ let searchTripForUser = (data) => {
         }
     })
 } 
+let getTicketByTripId = (tripId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Ticket.findAll({
+                where: {
+                    MaTrip: tripId
+                }
+            });
+            resolve(data);
+        }
+        catch (e) {
+            reject(e);
+        }
+    })
+}
+let getTripById = (tripId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Trip.findOne({
+                where: {
+                    MaTrip: tripId
+                }
+            });
+            resolve(data);
+        }
+        catch (e) {
+            reject(e);
+        }
+    })
+}
+let bookTicket = async (ve, idlogin) => {
+    //ve là 1 string  "96,98" nhưng dữ liệu của MaVe trong table database là interger
+    try {
+        console.log("ve",ve);
+        console.log(typeof ve); 
+        let date =  new Date();
+        const ticket = await db.Ticket.update({
+            TrangThai: 1,
+            UserID: idlogin,
+            ThoiGianDatVe: date
+        }, {
+            where: {
+                MaVe: {
+                    [Op.in]: ve.split(",")
+                }
+            }
+        });
+        return ticket;
+    } catch (e) {
+        throw new Error(e);
+    }
+}
+//i don't want destroy it. i want to fix flag of trip to false and all ticket have MaTrip = tripId to false
+let deleteTrip = async (tripId) => {
+    try {
+        const trip = await db.Trip.update({
+            flag: false
+        }, {
+            where: {
+                MaTrip: tripId
+            }
+        });
+        const ticket = await db.Ticket.update({
+            flag : false
+        }, {
+            where: {
+                MaTrip: tripId
+            }
+        });
+        return trip;
+    } catch (e) {
+        throw new Error(e);
+    }
+}
 module.exports = {
     getAllDataTrip:getAllDataTrip,
     checkTime:checkTime,
     createNewTrip:createNewTrip,
+    getTicketByTripId:getTicketByTripId,
     getSeatCountByTrain:getSeatCountByTrain,
     searchTrip:searchTrip,
+    deleteTrip:deleteTrip,
+    getTripById:getTripById,
+    bookTicket:bookTicket,
     searchTripForUser:searchTripForUser
 }

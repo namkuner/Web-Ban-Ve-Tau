@@ -357,7 +357,7 @@ button:hover {
             <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
             <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
             <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitrip">Quản lí lịch trình</a></li>
-            <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Quản lí tàu</a></li>
+            <li><i class="fas solid fa-user"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
             <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
         </div>
     </section>
@@ -428,7 +428,6 @@ button:hover {
             <th scope="col">Điểm đến</th>
             <th scope="col">Thời gian đi</th>
             <th scope="col">Thời gian đến</th>
-            <th scope="col">Giá vé</th>
             <th scope="col">Tên tàu</th>
             <th scope="col">Chức năng</th>
         </tr>
@@ -449,15 +448,13 @@ button:hover {
                     <%= trip[i].ThoiGianDen %>
                 </td>
                 <td>
-                    <%= trip[i].Gia %>
-                </td>
-                <td>
                     <%= trip[i].Train.TenTau %>
                 </td>
                 <td>
                     <div class="button-container">
                         <a href="/edit-trip?id=<%=trip[i].MaTrip %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-trip?id=<%=trip[i].MaTrip %>" class="delete-button" type="button">Delete</a>                
+                        <a href="/delete-trip?id=<%=trip[i].MaTrip %>" class="delete-button" type="button">Delete</a>  
+                        <a href="/ticket?id=<%=trip[i].MaTrip %>" class="edit-button" type="button">Vé</a>              
                     </div>
                 </td>
             </tr>

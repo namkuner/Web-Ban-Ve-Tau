@@ -8,15 +8,15 @@
   <div class="header">
     <a href="#" class="logo">Đăng nhập</a>
     <div class="header-right">
-      <a class="active" href="/">Trang chủ</a>
+      <a class="active" href="/HomePage/ejs/main">Trang chủ</a>
     </div>
   </div>
   <div id="form-wrapper">
     <form method="POST" action="/login">
       <label for="SDT">Số điện thoại</label>
       <input type="text" id="SDT" name="SDT" required>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
+      <label for="PassWord">PassWord</label>
+      <input type="PassWord" id="PassWord" name="PassWord" required>
       <button type="submit">Login</button>
     </form>
   </div>
@@ -51,7 +51,7 @@
   }
   
   input[type="text"],
-  input[type="password"] {
+  input[type="PassWord"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;

@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true
     },
+    Gia: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
+    },
     UserID: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -61,7 +65,12 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Trip', // Assuming 'Tripp' is the name of the Tripp model
         key: 'MaTrip'
       }
-    }
+    },
+    flag: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    } 
   }, {
     sequelize,
     modelName: 'Ticket',

@@ -355,8 +355,9 @@ button:hover {
 
         <div class="items">
             <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
+            <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
             <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitrip">Quản lí lịch trình</a></li>
-            <li><i class="fas solid fa-user"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
+            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
             <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
         </div>
     </section>
@@ -375,7 +376,7 @@ button:hover {
 
             <div class="profile">
                 <i class="far fa-bell"></i>
-                <img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/249803599_4381368368599156_2938778103120703174_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=_Q9etVQwFLUAX-BYVv3&_nc_oc=AQnCvwdc7nYIV3M954xlwSjseoAaQ7HvWepCV27txJUiPYZIJI9OB7jI5zbXh2cSiiq1VrCGC2AOeZE7iU6xrsaN&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdRGUyky7FiKnUHb10_66dmbH0x-3ceDFGEWCqX2wB0cpw&oe=6483DF7B" alt="">
+                <img src="/admin.png" alt="">
                 <span class="admin-text">Admin</span>
             </div>
         </div>
@@ -393,9 +394,9 @@ button:hover {
         <div class="records">
             <div class="record-header">
                 <div class="add">
-                    <span>Quản lí lịch trình:</span>
-                    <a href="/ThemTrip">
-                        <button>Thêm lịch trình</button>
+                    <span>VÉ chuyến đi <%= trip.MaTrip %>: từ <%= trip.DiaDiemDi %> đến <%= trip.DiaDiemDen %></span>
+                    <a href="/ThemTau">
+                        <button>Thêm Vé</button>
                     </a>
                 </div>
 
@@ -423,46 +424,41 @@ button:hover {
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Điểm xuất phát</th>
-            <th scope="col">Điểm đến</th>
-            <th scope="col">Thời gian đi</th>
-            <th scope="col">Số vé đã bán</th>
-            <th scope="col">Số vé chưa bán</th>
-            <th scope="col">Số toa</th>
-            <th scope="col">Tên tàu</th>
-            <th scope="col">Chức năng</th>
+            <th scope="col">Mã Vé</th>
+            <th scope="col">Trạng Thái</th>
+            <th scope="col">Thời gian đặt vé</th>
+            <th scope="col">User đặt vé</th>
+            <th scope="col">Mã Ghế</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Chức năng</th>
         </tr>
     </thead>
     <tbody>
-        <% for (let i=0; i < trip.length; i++) { %>
+        <% for (let i=0; i < ticket.length; i++) { %>
             <tr>
                 <td>
-                    <%= trip[i].train.diemXuatPhat %>
+                    <%= ticket[i].MaVe %>
                 </td>
                 <td>
-                    <%= trip[i].train.diemDen %>
+                    <%= ticket[i].TrangThai %>
                 </td>
                 <td>
-                    <%= trip[i].train.thoiGianDi %>
+                    <%= ticket[i].ThoiGianDatVe %>
                 </td>
                 <td>
-                    <%= trip[i].totalTickets %>
+                    <%= ticket[i].UserID %>
                 </td>
                 <td>
-                    <%= trip[i].train.soGhe-trip[i].totalTickets %>
+                    <%= ticket[i].MaGhe %>
                 </td>
                 <td>
-                    <%= trip[i].train.soToa %>
+                    <%= ticket[i].Gia %>
                 </td>
                 <td>
-                    <%= trip[i].train.tenTau %>
-                </td>
+                    <div class="button-container">                        
+                        <a href="/edit-trip?id=<%=ticket[i].MaTau %>" class="edit-button" type="button">Edit</a>
+                        <a href="/delete-tau?id=<%=ticket[i].MaTau %>" class="delete-button" type="button">Delete</a>
 
-                <td>
-                    <div class="button-container">
-                        <a href="/xemvetau?id=<%=trip[i].train.id %>" class="edit-button" type="button">Xem Vé</a>
-                        <a href="/edit-trip?id=<%=trip[i].train.id %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-trip?id=<%=trip[i].train.id %>" class="delete-button" type="button">Delete</a>
                         
                     </div>
                 </td>

@@ -25,10 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      Gia: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
+
       MaTau: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -44,7 +41,11 @@ module.exports = {
     updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-    }
+    },
+    flag : {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: true }
       
     });
   },

@@ -85,10 +85,10 @@ const getTrainInfoWithTicketCount = async () => {
 let getTripInforById = (tripId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let trip = await db.Tripp.findOne({
+            let trip = await db.Trip.findOne({
                 where: { MaTrip: tripId },
-                include: [{ model : db.Train, as: 'Train'}],
-                raw: true
+                include: [{ model : db.Train, as: 'Train'}]
+        
             })
             if (trip) {
                 console.log(trip)
@@ -148,7 +148,7 @@ let deteleTripById = (tripId) => {
 let hienthive =(tripid)=>{
     return new Promise(async (resolve, reject) => {
        try{
-        let data = await db.Tickett.findAll({
+        let data = await db.Ticket.findAll({
             where :{MaTrip :tripid},
             include: [{ model :db.Ghe , as:'Ghe',include: [{ model: db.Toa, as: 'Toa' }]}],    
         }

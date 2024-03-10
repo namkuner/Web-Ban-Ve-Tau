@@ -4,15 +4,14 @@ let createNewUser = (data) =>{
     return new Promise(async(reslove, reject)=>{
         try{
             let user = await db.User.create({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                phoneNumber: data.phoneNumber,
-                password : data.password,
-                email:data.email,
+                Ten: data.Ten,
+                Ho: data.Ho,
+                SDT: data.SDT,
+                PassWord : data.PassWord,
+                NgaySinh:data.NgaySinh,
                 CMND :  data.CMND,
-                address :data.address,
-                gender : data.gender,
-                roleID : data.roleid,
+                DiaChi :data.DiaChi,
+                Role : data.Role,
             })
             reslove(user.id);
         }
@@ -27,17 +26,14 @@ let themnhanvien = (data) =>{
     return new Promise(async(reslove, reject)=>{
         try{
             let user = await db.User.create({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                phoneNumber: data.phoneNumber,
-                password : data.password,
-                email:data.email,
+                Ten: data.Ten,
+                Ho: data.Ho,
+                SDT: data.SDT,
+                PassWord : data.PassWord,
+                NgaySinh:data.NgaySinh,
                 CMND :  data.CMND,
-                address :data.address,
-                gender : data.gender,
-                roleID : data.roleid,
-                chucVu: data.chucvu,
-                luong :data.luong
+                DiaChi :data.DiaChi,
+                Role : data.Role,
             })
             reslove(user.id);
         }
@@ -71,13 +67,13 @@ let infomationUser=(userid)=>{
         }
     })
 }
-let checkdangnhap = (user_password)=>{
+let checkdangnhap = (user_PassWord)=>{
     return new Promise(async(reslove,reject)=>{
         try{
-            let data =await db.User.findOne({where :{phoneNumber: user_password.SDT}})
+            let data =await db.User.findOne({where :{SDT: user_PassWord.SDT}})
             if(data)
             {
-                if(data.password ==user_password.password)
+                if(data.PassWord ==user_PassWord.PassWord)
                 {
                     reslove({ message: "Bạn đã đăng nhập thành công", data: data })
                 }
@@ -99,14 +95,14 @@ let updateUser = async (user) => {
         console.log(user);
         console.log("data", data);
         if (data) {
-            data.firstName = user.firstName;
-            data.lastName = user.lastName;
-            data.phoneNumber = user.phoneNumber;
-            data.password = user.password;
-            data.email = user.email;
+            data.Ten = user.Ten;
+            data.Ho = user.Ho;
+            data.SDT = user.SDT;
+            data.PassWord = user.PassWord;
+            data.NgaySinh = user.NgaySinh;
             data.CMND = user.CMND;
-            data.address = user.address;
-            data.gender = user.gender;
+            data.DiaChi = user.DiaChi;
+            data.Role = user.Role;
         }
         await data.save();
     } catch (error) {
@@ -132,7 +128,7 @@ let xoathongtinuser = (dataid)=>
 let inforSDT=(userinfo)=>{
     return new Promise(async(reslove, reject)=>{
         try{
-            let data = await db.User.findOne({where:{phoneNumber: userinfo.SDT}})
+            let data = await db.User.findOne({where:{SDT: userinfo.SDT}})
             reslove(data);
         }
         catch(e){
@@ -143,7 +139,7 @@ let inforSDT=(userinfo)=>{
 let infordangky=(userinfo)=>{
     return new Promise(async(reslove, reject)=>{
         try{
-            let data = await db.User.findOne({where:{phoneNumber: userinfo.phoneNumber}})
+            let data = await db.User.findOne({where:{SDT: userinfo.SDT}})
             reslove(data);
         }
         catch(e){

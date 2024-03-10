@@ -144,7 +144,11 @@
                 <button class="btn btn-primary" type="submit">Thêm chuyến</button>
             </div>
           </form>
-            
+<% if ( mess !== null) { %>
+  <script>
+      alert('<%= mess %>');
+  </script>
+<% } %>
             <style>.container {
                 max-width: 800px;
                 margin: 0 auto;

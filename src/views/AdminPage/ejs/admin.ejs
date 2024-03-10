@@ -344,7 +344,7 @@ button:hover {
         <div class="items">
             <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
             <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
-            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlilichtrinh">Quản lí lịch trình</a></li>
+            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitrip">Quản lí lịch trình</a></li>
             <li><i class="fas solid fa-user"></i><a href="/AdminPage/ejs/quanlitau">Quản lý tàu</a></li>
             <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
         </div>
@@ -364,38 +364,16 @@ button:hover {
 
             <div class="profile">
                 <i class="far fa-bell"></i>
-                <img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/249803599_4381368368599156_2938778103120703174_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=_Q9etVQwFLUAX-BYVv3&_nc_oc=AQnCvwdc7nYIV3M954xlwSjseoAaQ7HvWepCV27txJUiPYZIJI9OB7jI5zbXh2cSiiq1VrCGC2AOeZE7iU6xrsaN&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdRGUyky7FiKnUHb10_66dmbH0x-3ceDFGEWCqX2wB0cpw&oe=6483DF7B" alt="">
-                <!--<img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/249803599_4381368368599156_2938778103120703174_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=_Q9etVQwFLUAX-BYVv3&_nc_oc=AQnCvwdc7nYIV3M954xlwSjseoAaQ7HvWepCV27txJUiPYZIJI9OB7jI5zbXh2cSiiq1VrCGC2AOeZE7iU6xrsaN&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdRGUyky7FiKnUHb10_66dmbH0x-3ceDFGEWCqX2wB0cpw&oe=6483DF7B" alt="">-->
+                <img src="/admin.png" alt="">
                 <span class="admin-text">Admin</span>
             </div>
         </div>
 
         <h3 class="i-name">
-            Quản lí ga tàu: Nhóm 28
+            Web bán vé Tàu: Nhóm 23
         </h3>
 
         <div class="values">
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>N21DCCN002</h3>
-                    <span>Trần Kim An</span>
-                </div>
-            </div>
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>N21DCCN020</h3>
-                    <span>Nguyễn Văn Dũng</span>
-                </div>
-            </div>
-            <div class="val-box">
-                <i class="fas fa-user"></i>
-                <div>
-                    <h3>N21DCCN034</h3>
-                    <span>Nguyễn Minh Hoàng</span>
-                </div>
-            </div>
             <div class="val-box">
                 <i class="fas fa-user"></i>
                 <div>
@@ -441,29 +419,27 @@ button:hover {
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Email</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Họ</th>
+            <th scope="col">SDT</th>
             <th scope="col">CMND</th>
-            <th scope="col">Address</th>
-            <th scope="col">Gender</th>
+            <th scope="col">Địa Chỉ</th>
+            <th scope="col">Ngày Sinh</th>
             <th scope="col">Manage</th>
           </tr>
         </thead>
         <tbody>
           <% for (let i = 0; i < user.length; i++) { %>
             <tr>
-              <td><%= user[i].firstName %></td>
-              <td><%= user[i].lastName %></td>
-              <td><%= user[i].phoneNumber %></td>
-              <td><%= user[i].email %></td>
+              <td><%= user[i].Ten %></td>
+              <td><%= user[i].Ho %></td>
+              <td><%= user[i].SDT %></td>
               <td><%= user[i].CMND %></td>
-              <td><%= user[i].address %></td>
-              <td><%= user[i].gender %></td>
+              <td><%= user[i].DiaChi %></td>
+              <td><%= user[i].NgaySinh %></td>
               <td> <div class="button-container">
-                <a href="/editUser?id=<%=user[i].id %>" class="edit-button" type="button">Edit</a>
-                <a href="/xemtruockhixoa?id=<%=user[i].id %>" class="delete-button" type="button">Delete</a>
+                <a href="/editUser?id=<%=user[i].ID %>" class="edit-button" type="button">Edit</a>
+                <a href="/xemtruockhixoa?id=<%=user[i].ID %>" class="delete-button" type="button">Delete</a>
               </div></td>
             </tr>
           <% } %>

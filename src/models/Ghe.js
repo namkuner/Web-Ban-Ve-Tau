@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Toa', // Assuming 'Toa' is the name of the Toa model
         key: 'MaToa'
       }
+    },
+    flag: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   }, {
     sequelize,

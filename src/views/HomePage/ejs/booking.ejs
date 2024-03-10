@@ -635,9 +635,8 @@ img {
 			<div class="container">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="#">
-						<!--<img src="http://127.0.0.1:5500/src/views/HomePage/images/trainlogo.png" alt="logo-train" width="70px" />-->
-						<img src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/280068745_1908162402711465_8113313082114855897_n.png?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=d63DoD9VXSkAX--VfPO&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdTKF1dlnj07Tp-aUR8eFvU9yr6CYND0ru0im8sVnQT9HQ&oe=6483D505" alt="logo-train" width="70px"/>
-					</a>
+						<img src="/trainlogo.png" alt="logo-train" width="70px" />
+						</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -675,10 +674,9 @@ img {
     
     <main>
 		<div class="some-regulations">
-			<div class="col-2 l-2 text-center my-custom-class1">
-				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">-->
-				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/346104697_1569997260076324_3939682777754183455_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=olcx-YTmVwQAX8ERTCk&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdSYR9Wjzj0lDf6HhC2fmD9Q2OKdofwa0NmxS_5bKelWOQ&oe=64868227" alt="cac dich vu">
-			</div>
+			<div class="col-1 l-2 text-center my-custom-class1">
+				<img class=" w-75" style="max-width: 200px;" src="/cac-dich-vu-ve-tau-mien-phi.png" alt="cac dich vu">
+				</div>
 
 			<div class="container  pt-5 px-0 pb-5">
 				<div class="grid">
@@ -687,13 +685,7 @@ img {
 			<div class="left-column">
 
 
-<% for (let i=0; i < trip.length; i++) { %>
-<div class="row et-page-header">
-	<span class="et-main-label ng-binding">
-		<strong class="ng-binding">Chiều đi:</strong> ngày <%= trip[i].ThoiGianDi %> từ <%= trip[i].DiaDiemDi %> đến <%= trip[i].DiaDiemDen %>
-	</span>
-</div>
-<% } %>
+
 
 
 <!---->
@@ -878,8 +870,7 @@ img {
 							<th scope="col">Thời gian đến</th>
 							<th scope="col">Giá vé</th>
 							<th scope="col">Tên tàu</th>
-							<th scope="col">Số toa</th>
-							<th scope="col">Số ghế</th>
+
 							<th scope="col">Chức năng</th>
 						</tr>
 					</thead>
@@ -902,13 +893,7 @@ img {
 									<%= trip[i].Gia %>
 								</td>
 								<td>
-									<%= trip[i].MaTau %>
-								</td>
-								<td>
-									<%= trip[i].soToa %>
-								</td>
-								<td>
-									<%= trip[i].soGhe %>
+									<%= trip[i].Train.TenTau %>
 								</td>
 			
 								<td>
@@ -1164,11 +1149,10 @@ img {
 <div class="download-app mt-2">
 	<div class="container bg-white text-center border-top p-4 border-primary ">
 		<h5 class="main-color-text mb-3" style="margin-top: 17px;">Tải ứng dụng</h5>
-		<!--<a href="#"><img class="me-2" src="/HomePage/images/playstore.png" alt="playstore"
+		<a href="#"><img class="me-2" src="/playstore.png" alt="playstore"
 				width="15%"></a>
-		<a href="#"><img src="/HomePage/images/appstore.png" alt="appstore" width="15%"></a>-->
-		<a href="#"><img class="me-2" src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.15752-9/346106358_193278496982944_2021392920144749953_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_ohc=QNSLXzi-JigAX9o-exe&_nc_ht=scontent.fsgn4-1.fna&oh=03_AdSL_OTkKkivyVA9G51kkI84Pa7nxzSjyFLWniK51ohcFA&oe=64866CEB" alt="playstore" width="15%"></a>
-		<a href="#"><img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.15752-9/346103565_765134348499818_4747672716900201717_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=jz9nL_8O7G4AX8qSPDR&_nc_ht=scontent.fsgn13-3.fna&oh=03_AdQlF9_cED2pThY-r8ZLUZHLum_HdMmyT0PVDsyxvJCmPQ&oe=64867751" alt="appstore" width="15%"></a>
+		<a href="#"><img src="/appstore.png" alt="appstore" width="15%"></a>
+
 	</div>
 </div>
 
@@ -1220,9 +1204,8 @@ img {
 				</div>
 			</div>
 			<div class="col-2 l-2 text-center my-custom-class2">
-				<!--<img class=" w-75" style="max-width: 130px;" src="/HomePage/images/mua-ve-tau-online.png" alt="mua ve tau">-->
-				<img class=" w-75" style="max-width: 130px;" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/346105117_916327686330998_2380265099123286209_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=Yr8vdDqDhxAAX-4gzKX&_nc_ht=scontent.fsgn3-1.fna&oh=03_AdSRZXq6oJyd0zCRCQo5nB17HYUqgGhKn58SBWQjKz0HXQ&oe=648688F6" alt="mua ve tau">
-			</div>
+				<img class=" w-75" style="max-width: 130px;" src="/mua-ve-tau-online.png" alt="mua ve tau">
+				</div>
 		</div>
 
 	</main>
