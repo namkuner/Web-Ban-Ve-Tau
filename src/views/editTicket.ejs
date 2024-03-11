@@ -20,36 +20,84 @@
 </head>
 <body>
   <div class="header">
-    <a href="#" class="logo">Thêm chuyến mới</a>
+    <a href="#" class="logo">Chỉnh sửa thông tin vé tàu</a>
     <div class="header-right">
-      <a class="active" href="/AdminPage/ejs/quanlitau">Trang chủ</a>
+      <a class="active" href="/AdminPage/ejs/quanlitrip">Trang chủ</a>
     </div>
   </div>
   <div class="container">
     <div class="row">     
-        <form action="/DoneThemGhe" method="POST">
+        <form action="/done-editTicket" method="POST">
             
+
+          
             <!-- Các trường khác -->
           
             <div class="row">
+
               <div class="col-md-6 mb-3">
-                <label for="TenGhe">Tên Ghế</label>
-                <input type="text" class="form-control" name="TenGhe" placeholder="Enter train name" required />
-                <input type="hidden" name="MaToa" value="<%= MaToa %>">
+                <label for="GiaVe">Giá vé</label>
+                <input type="number" class="form-control" name="GiaVe" placeholder="Nhập Giá Vé" value="<%=ticket.Gia%>" required />
               </div>
-            </div>  
+              <div class="col-md-6 mb-3">
+                <label for="MaGhe">Mã Ghế </label>
+                <select  name="MaGhe"   required>
+
+                        <option value="<%=ticket.MaGhe%>"><%=ticket.MaGhe%></option>
+                        <% dataGhe.forEach(Ghe => { %>
+                            <option value="<%= Ghe.MaGhe %>"><%= Ghe.MaGhe %></option>
+                        <% }); %>
+                </select>
+              </div>
+
+            </div>
+          
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label for="TrangThai">Trạng Thái </label>
+                <select  name="TrangThai"   required>
+                    <% if(ticket.TrangThai == 0){ %>
+                        <option value="<%=ticket.TrangThai%>">Chưa đặt</option>
+                    <% } 
+                        else {
+                    %> <option value="<%=ticket.TrangThai%>">Đã đặt</option> <% } %>
+                        } %>
+                        <option value=0 >Chưa đặt</option>
+                        <option value=1 >Đã đặt</option>
+                    
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="Lưu ý">Lưu ý: Khi trạng thái là chưa đặt thì toàn bộ User đặt vé, thời gian đặt vé được cập nhật là null</label>
+                
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="UserID">User đặt vé</label>
+                    <input type="number" class="form-control" value="<%=ticket.UserID%>" name="UserID" placeholder="Nhập User đặt vé"  />
+                  </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="ThoiGianDatVe">Thời gian đặt vé</label>
+                  <input type="datetime-local" value ="<%=ThoiGianDatVe %>" class="form-control" name="ThoiGianDatVe" placeholder="Chọn thời gian đặt vé" />
+                </div>
+              </div>
+          
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label></label>
-                <button class="btn btn-primary" type="submit">Thêm Ghế</button>
+                <input type="hidden" name="MaVe" value="<%=ticket.MaVe%>">
+                <button class="btn btn-primary" type="submit">Xác nhận</button>
               </div>
             </div>
           </form>
-          <% if ( mess !== null) { %>
-            <script>
-                alert('<%= mess %>');
-            </script>
-        <% } %>
+<% if ( mess !== null) { %>
+<script>
+    alert('<%= mess %>');
+</script>
+<% } %>        
             <style>.container {
                 max-width: 800px;
                 margin: 0 auto;

@@ -1,11 +1,13 @@
 import db from "../models/index"
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 
 let getAllDataTrip = () => {
     return new Promise(async (resolve, reject) => {
         try {
             let data = await db.Trip.findAll(
-                {include: [{
+                 //flag = true là chuyến đi còn vé
+                {where : {flag: true}, 
+                    include: [{
                     model: db.Train,
                     as: 'Train'
                 }]}
@@ -60,6 +62,7 @@ let checkTime = (MaTau, ThoiGianDi,ThoiGianDen) => {
             const check = await db.Trip.findOne({
                 where: {
                     MaTau: MaTau,
+                    flag: true,
                     [Op.or]: [
                         {
                             ThoiGianDi: {
@@ -186,6 +189,11 @@ let searchTripForUser = (data) => {
                 where: {
                     DiaDiemDi: data.DiaDiemDi,
                     DiaDiemDen: data.DiaDiemDen,
+                    //Thời gian đi phải lớn hơn thời gian hiện tại
+                    ThoiGianDi: {
+                        [Op.gt]: new Date()
+                    }
+
                     // ThoiGianDi: {
                     //     [Op.between]: [data.ThoiGianDi, data.ThoiGianDen]
                     // }
@@ -197,19 +205,6 @@ let searchTripForUser = (data) => {
             });
             console.log("trips",trips); 
             console.log("data",data);
-            if (trips === null)
-            {
-                trips = await db.Trip.findAll({
-                    where: {
-                        DiaDiemDi: data.DiaDiemDi,
-                        DiaDiemDen: data.DiaDiemDen,
-                    },
-                    include: [{
-                        model: db.Train,
-                        as: 'Train'
-                    }]
-                });
-            } 
             resolve(trips);
         }
         catch (e) {
@@ -222,7 +217,8 @@ let getTicketByTripId = (tripId) => {
         try {
             let data = await db.Ticket.findAll({
                 where: {
-                    MaTrip: tripId
+                    MaTrip: tripId,
+                    flag: true
                 }
             });
             resolve(data);
@@ -237,8 +233,14 @@ let getTripById = (tripId) => {
         try {
             let data = await db.Trip.findOne({
                 where: {
-                    MaTrip: tripId
-                }
+                    MaTrip: tripId,
+                    flag: true,
+
+                },
+                include: [{
+                    model: db.Train,
+                    as: 'Train'
+                }]
             });
             resolve(data);
         }
@@ -291,6 +293,80 @@ let deleteTrip = async (tripId) => {
         throw new Error(e);
     }
 }
+let restoreTripData = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Trip.findAll({
+                where: {
+                    flag: false
+                },
+                include: [{
+                    model: db.Train,
+                    as: 'Train'
+                }]
+            });
+            resolve(data);
+        }
+        catch (e) {
+            reject(e);
+        }
+    })
+}
+let restoreTrip = async (tripId) => {
+    try {
+        const trip = await db.Trip.update({
+            flag: true
+        }, {
+            where: {
+                MaTrip: tripId
+            }
+        });
+        const ticket = await db.Ticket.update({
+            flag : true
+        }, {
+            where: {
+                MaTrip: tripId
+            }
+        });
+        return trip;
+    } catch (e) {
+        throw new Error(e);
+    }
+}
+let getTripRestoreById = (tripId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Trip.findOne({
+                where: {
+                    MaTrip: tripId,
+                    flag: false
+                }
+            });
+            resolve(data);
+        }
+        catch (e) {
+            reject(e);
+        }
+    })
+}
+let updateTrip = async (data) => {
+    try {
+        const trip = await db.Trip.update({
+            ThoiGianDi: data.ThoiGianDi,
+            ThoiGianDen: data.ThoiGianDen,
+            DiaDiemDi: data.DiaDiemDi,
+            DiaDiemDen: data.DiaDiemDen,
+            MaTau: data.MaTau
+        }, {
+            where: {
+                MaTrip: data.MaTrip
+            }
+        });
+        return trip;
+    } catch (e) {
+        throw new Error(e);
+    }
+}   
 module.exports = {
     getAllDataTrip:getAllDataTrip,
     checkTime:checkTime,
@@ -298,8 +374,12 @@ module.exports = {
     getTicketByTripId:getTicketByTripId,
     getSeatCountByTrain:getSeatCountByTrain,
     searchTrip:searchTrip,
+    getTripRestoreById:getTripRestoreById,
     deleteTrip:deleteTrip,
+    restoreTripData:restoreTripData,
+    restoreTrip:restoreTrip,
     getTripById:getTripById,
-    bookTicket:bookTicket,
+    updateTrip:updateTrip,
+    bookTicket:bookTicket, 
     searchTripForUser:searchTripForUser
 }

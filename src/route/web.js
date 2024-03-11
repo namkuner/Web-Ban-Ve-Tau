@@ -2,6 +2,7 @@ import express from "express";
 import homeControllers from "../controllers/homeControllers";
 import tripControllers from "../controllers/TripControllers";
 import trip from "../models/trip";
+import ticketControllers from "../controllers/ticketControllers";
 /*const nguoidatveService = require('../services/nguoidatveService');*/
 let router = express.Router();
 
@@ -36,19 +37,28 @@ let initWebRouters = (app) => {
 
     router.get('/tonghopthongtin',homeControllers.tonghopthongtin)
     router.post('/tongsotauve',homeControllers.tonghoptauve)
-
+    //Ticket
+    router.get('/delete-ticket', ticketControllers.deleteTicket)
+    router.get('/restoreTicketPage', ticketControllers.restoreTicketPage)
+    router.get('/restore-ticket', ticketControllers.restoreTicket)
+    router.get('/edit-ticket', ticketControllers.displayEditTicket)
+    router.post('/done-editTicket', ticketControllers.editTicket)
+    router.get('/themTicket', ticketControllers.themTicketForm)
+    router.post('/done-themTicket', ticketControllers.doneThemTicket)
     //TRIP
     router.get('/nhapTrip', homeControllers.formCreateTrip)
     router.post('/done-nhapTrip', homeControllers.doneCreateTrip);
     router.get('/display-trips', homeControllers.xemTrip)
-    router.get('/edit-trip', homeControllers.getEditTripById)
-    router.post('/update-trip', homeControllers.updateTrips)
-    router.get('/delete-trip', homeControllers.deleteTrip)
+    router.get('/edit-trip', tripControllers.displayEditTrip)
+    router.post('/update-trip', tripControllers.updateTrip)
+    router.get('/delete-trip', tripControllers.deleteTrip)
     router.get('/search', homeControllers.searchTrip)
     router.get('/vetau',homeControllers.hienthivetau)
     router.get('/xemvetau',homeControllers.vetau)
     router.get('/ticket',tripControllers.xemve) 
     router.post('/donebook',tripControllers.donebook)
+    router.get('/RestoreTrip',tripControllers.RestoreTrip)
+    router.get('/completeRestoretrip',tripControllers.completeRestoreTrip)
     //BOOK
     router.get('/databooker', homeControllers.dataBooker);
     router.post('/complete-databooker', homeControllers.completeDatabooker);

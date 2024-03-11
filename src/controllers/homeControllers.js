@@ -480,7 +480,7 @@ let insertUser7 = async (req, res) => {
 
 /* -------------Trang chủ----------*/
 let insertUser6 = async (req, res) => {
-    let idlogin = null
+    let idlogin  = req.session.idlogin
     return res.render("HomePage/ejs/main.ejs", { idlogin: idlogin })
 }
 /*---------------------------------*/
@@ -652,14 +652,14 @@ let gheToa = async (req, res) => {
 let ThemGhe = (req, res) => {
     let MaToa =  req.body.MaToa
     console.log("MaToa",MaToa)
-    res.render("ThemGhe.ejs", {MaToa:MaToa})
+    res.render("ThemGhe.ejs", {MaToa:MaToa,mess:null})
 }
 let DoneThemGhe = async (req, res) => {
     let data = req.body
     console.log("data",data)
     let checkGhe = await trainService.checkTenGhe(data.TenGhe,data.MaToa)
     if (checkGhe != null) {
-        return res.render("ThemGhe.ejs", { er: "Tên ghế đã tồn tại" })
+        return res.render("ThemGhe.ejs", { mess: "Tên ghế đã tồn tại",MaToa:data.MaToa })
     }
     
     let message = await trainService.createNewGhe(data); // req.body la data nguoi nhap

@@ -71,22 +71,74 @@ let donebook = async (req, res) => {
     console.log("ve",ve);
     let idlogin = req.session.idlogin;
     let ticket = await tripService.bookTicket(ve.ids, idlogin);
-    return res.redirect('/HomePage/ejs/main')
+    return res.render("HomePage/ejs/main.ejs",{idlogin:idlogin})
 }
 let deleteTrip = async(req, res)=>{
     let id = req.query.id;
     let data = await tripService.deleteTrip(id);
     return res.redirect('/AdminPage/ejs/quanlitrip')
 }
+let RestoreTrip = async(req, res)=>{
+    
+    let data = await tripService.restoreTripData();
+    return res.render("RestoreTrip.ejs",{trip:data,mess:null})
+}
 
+let completeRestoreTrip = async(req, res)=>{
+    let id = req.query.id;
+    let getDataTrip = await tripService.getTripRestoreById(id);
+    let checkBusyTrain = await tripService.checkTime(getDataTrip.MaTau, getDataTrip.ThoiGianDi, getDataTrip.ThoiGianDen);
+    
+    if (checkBusyTrain) {
+        let data = await tripService.restoreTripData();
+        return res.render('RestoreTrip.ejs', { mess: "Không thể Restore Trip này vì trùng lịch", trip: data });
+    }
+    let data = await tripService.restoreTrip(id);
 
+    return res.redirect('/AdminPage/ejs/quanlitrip')
+}
+let displayEditTrip = async(req, res)=>{
+    let id = req.query.id;
+    let data = await tripService.getTripById(id);
+    let taus = await trainService.getAllTrain();
+    console.log("data",data);
+    return res.render('editTrip.ejs',{trip:data,taus:taus, mess:null})
+}
+let updateTrip = async(req, res)=>{
+    let data = req.body;
+    let taus = await trainService.getAllTrain();
+    console.log("data",data);
+    let t = await tripService.getTripById(data.MaTrip);
+    if (data.DiaDiemDi === data.DiaDiemDen) {
+        return res.render('editTrip.ejs', { mess: "Điểm đến và điểm đi không thể trùng nhau",taus:taus,trip:t});
+    }
+    if (data.ThoiGianDi > data.ThoiGianDen) {
+        return res.render('editTrip.ejs', { mess: "Thời gian đi không thể sau thời gian đến" ,taus:taus,trip:t });
+    }
+    let date = new Date();
+    date = date.toISOString().slice(0, 19)
+    if (data.ThoiGianDi < date) {
+
+        return res.render('editTrip.ejs', { mess: "Thời gian đi không thể trước thời gian hiện tại" ,taus:taus,trip:t });
+    }
+    let check = await tripService.checkTime(data.MaTau, data.ThoiGianDi, data.ThoiGianDen);
+    if (check) {
+        return res.render('editTrip.ejs', { mess: "Trong thời gian này Tàu đang bận " ,taus:taus ,  trip:t });
+    }
+    let trip = await tripService.updateTrip(data);
+    return res.redirect('/AdminPage/ejs/quanlitrip')
+}
 module.exports = 
 {
     quanlitrip:quanlitrip,
     doneThemTrip:doneThemTrip,
     xemve : xemve,
     donebook:donebook,
+    RestoreTrip:RestoreTrip,
+    updateTrip:updateTrip,
     deleteTrip:deleteTrip,
+    completeRestoreTrip:completeRestoreTrip,
+    displayEditTrip:displayEditTrip,
     timkiemtau:timkiemtau,
     themTrip:themTrip
 }

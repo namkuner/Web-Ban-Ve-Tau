@@ -344,7 +344,11 @@ button:hover {
 
 </head>
 </head>
-
+<% if ( mess !== null) { %>
+    <script>
+        alert('<%= mess %>');
+    </script> 
+<% } %>
 <body>
 
     <section id="menu">
@@ -394,8 +398,11 @@ button:hover {
             <div class="record-header">
                 <div class="add">
                     <span>Quản lí lịch trình:</span>
-                    <a href="/ThemTrip">
+                    <a href="/themTrip">
                         <button>Thêm lịch trình</button>
+                    </a>
+                    <a href="/RestoreTrip">
+                        <button>Restore</button>
                     </a>
                 </div>
 
@@ -426,9 +433,7 @@ button:hover {
             <th scope="col">Điểm xuất phát</th>
             <th scope="col">Điểm đến</th>
             <th scope="col">Thời gian đi</th>
-            <th scope="col">Số vé đã bán</th>
-            <th scope="col">Số vé chưa bán</th>
-            <th scope="col">Số toa</th>
+            <th scope="col">Thời gian đến</th>
             <th scope="col">Tên tàu</th>
             <th scope="col">Chức năng</th>
         </tr>
@@ -437,33 +442,23 @@ button:hover {
         <% for (let i=0; i < trip.length; i++) { %>
             <tr>
                 <td>
-                    <%= trip[i].train.diemXuatPhat %>
+                    <%= trip[i].DiaDiemDi %>
                 </td>
                 <td>
-                    <%= trip[i].train.diemDen %>
+                    <%= trip[i].DiaDiemDen %>
                 </td>
                 <td>
-                    <%= trip[i].train.thoiGianDi %>
+                    <%= trip[i].ThoiGianDi %>
                 </td>
                 <td>
-                    <%= trip[i].totalTickets %>
+                    <%= trip[i].ThoiGianDen %>
                 </td>
                 <td>
-                    <%= trip[i].train.soGhe-trip[i].totalTickets %>
+                    <%= trip[i].Train.TenTau %>
                 </td>
-                <td>
-                    <%= trip[i].train.soToa %>
-                </td>
-                <td>
-                    <%= trip[i].train.tenTau %>
-                </td>
-
                 <td>
                     <div class="button-container">
-                        <a href="/xemvetau?id=<%=trip[i].train.id %>" class="edit-button" type="button">Xem Vé</a>
-                        <a href="/edit-trip?id=<%=trip[i].train.id %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-trip?id=<%=trip[i].train.id %>" class="delete-button" type="button">Delete</a>
-                        
+                        <a href="/completeRestoretrip?id=<%=trip[i].MaTrip %>" class="edit-button" type="button">Restore</a>              
                     </div>
                 </td>
             </tr>

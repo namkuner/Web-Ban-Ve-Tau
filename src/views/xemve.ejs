@@ -355,9 +355,8 @@ button:hover {
 
         <div class="items">
             <li><i class="fas fa-home"></i><a href="/AdminPage/ejs/admin">Trang chủ</a></li>
-            <li><i class="fas solid fa-book"></i><a href="/AdminPage/ejs/thongtindat">Thông tin đặt</a></li>
             <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitrip">Quản lí lịch trình</a></li>
-            <li><i class="fas sharp fa-solid fa-calendar-week"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
+            <li><i class="fas solid fa-user"></i><a href="/AdminPage/ejs/quanlitau">Quản lí tàu</a></li>
             <li><i class="fas solid fa-user"></i><a href="/tonghopthongtin">Tổng hợp thông tin</a></li>
         </div>
     </section>
@@ -394,27 +393,16 @@ button:hover {
         <div class="records">
             <div class="record-header">
                 <div class="add">
-                    <span>VÉ chuyến đi <%= trip.MaTrip %>: từ <%= trip.DiaDiemDi %> đến <%= trip.DiaDiemDen %></span>
-                    <a href="/ThemTau">
+                    <span>Vé của Trip <%= trip.MaTrip %>: từ <%= trip.DiaDiemDi %> đến <%= trip.DiaDiemDen %></span>
+                    <a href="/themTicket?MaTrip=<%= trip.MaTrip %>">
                         <button>Thêm Vé</button>
+                    </a>
+                    <a href="/restoreTicketPage?MaTrip=<%= trip.MaTrip %>">
+                        <button>Restore</button>
                     </a>
                 </div>
 
-                <div class="browse">
-                    <!--<i class="fas fa-search"></i>
-        <input type="search" placeholder="Tìm kiếm" class="record-search">-->
-                    <div class="search1">
-                        <form action="/search" method="get">
-                            <i class="fas fa-search"></i>
-                            <input type="text" name="keyword" placeholder="Tìm kiếm">\
-                            <button type="submit">Tìm</button>
-                        </form>
-                    </div>
 
-                    <select name="" id="">
-                        <option value="">Status</option>
-                    </select>
-                </div>
             </div>
         </div>
 
@@ -456,8 +444,9 @@ button:hover {
                 </td>
                 <td>
                     <div class="button-container">                        
-                        <a href="/edit-trip?id=<%=ticket[i].MaTau %>" class="edit-button" type="button">Edit</a>
-                        <a href="/delete-tau?id=<%=ticket[i].MaTau %>" class="delete-button" type="button">Delete</a>
+                        <a href="/edit-ticket?id=<%=ticket[i].MaVe %>&MaTrip=<%= ticket[i].MaTrip%>" class="edit-button" type="button">Edit</a>
+                        <a href="/delete-ticket?id=<%= ticket[i].MaVe %>&MaTrip=<%= ticket[i].MaTrip %>" class="delete-button" type="button">Delete</a>
+
 
                         
                     </div>
